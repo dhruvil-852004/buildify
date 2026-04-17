@@ -3,27 +3,35 @@ import {
   Building2,
   CheckCircle2,
   Clock,
+  ExternalLink,
   Mail,
   MapPin,
+  Navigation,
   Phone,
   Send,
 } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 
+// Office coordinates — Nariman Point, Mumbai
+const OSM_EMBED_URL =
+  "https://www.openstreetmap.org/export/embed.html?bbox=72.7742%2C18.8756%2C72.8742%2C18.9756&layer=mapnik&marker=18.9256%2C72.8242";
+const OSM_DIRECTIONS_URL =
+  "https://www.openstreetmap.org/?mlat=18.9256&mlon=72.8242#map=15/18.9256/72.8242";
+
 const contactCards = [
   {
     icon: MapPin,
     label: "Our Office",
-    value: "1250 Harbor Blvd, Suite 400",
-    sub: "San Francisco, CA 94107",
+    value: "Nariman Point, Mumbai",
+    sub: "Maharashtra 400021, India",
     accent: "bg-brand-teal",
   },
   {
     icon: Phone,
     label: "Call Us",
-    value: "+1 (415) 800-2200",
-    sub: "Mon–Fri, 7am – 6pm PST",
+    value: "+91 22 4800 2200",
+    sub: "Mon–Sat, 9am – 7pm IST",
     accent: "bg-brand-tan",
   },
   {
@@ -36,8 +44,8 @@ const contactCards = [
 ];
 
 const officeHours = [
-  { day: "Monday – Friday", hours: "7:00 AM – 6:00 PM" },
-  { day: "Saturday", hours: "8:00 AM – 4:00 PM" },
+  { day: "Monday – Friday", hours: "9:00 AM – 7:00 PM" },
+  { day: "Saturday", hours: "9:00 AM – 4:00 PM" },
   { day: "Sunday", hours: "Closed" },
 ];
 
@@ -48,6 +56,13 @@ const projectTypes = [
   "Renovation",
   "Infrastructure",
   "Interior Fit-Out",
+];
+
+const serviceCities = [
+  { city: "Mumbai", state: "Maharashtra" },
+  { city: "Pune", state: "Maharashtra" },
+  { city: "Ahmedabad", state: "Gujarat" },
+  { city: "Surat", state: "Gujarat" },
 ];
 
 type FormState = {
@@ -88,7 +103,6 @@ export default function ContactPage() {
         className="relative overflow-hidden min-h-[420px] md:min-h-[500px] flex items-center"
         data-ocid="contact.hero_section"
       >
-        {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -96,9 +110,7 @@ export default function ContactPage() {
               "url('/assets/generated/contact-hero.dim_1400x600.jpg')",
           }}
         />
-        {/* Overlay */}
         <div className="absolute inset-0 bg-brand-slate opacity-80" />
-        {/* Subtle teal grid */}
         <div
           className="absolute inset-0 opacity-[0.07]"
           style={{
@@ -129,7 +141,6 @@ export default function ContactPage() {
             </p>
           </motion.div>
 
-          {/* Breadcrumb */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -167,7 +178,7 @@ export default function ContactPage() {
                 data-ocid={`contact.info_card.${i + 1}`}
               >
                 <div
-                  className={`w-13 h-13 w-12 h-12 ${card.accent} rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}
+                  className={`w-12 h-12 ${card.accent} rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform`}
                 >
                   <card.icon size={22} className="text-white" />
                 </div>
@@ -249,7 +260,6 @@ export default function ContactPage() {
                   className="space-y-5"
                   data-ocid="contact.form"
                 >
-                  {/* Full Name + Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label
@@ -265,7 +275,7 @@ export default function ContactPage() {
                         required
                         value={form.name}
                         onChange={handleChange}
-                        placeholder="Marcus Harrington"
+                        placeholder="Rahul Sharma"
                         className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-brand-text bg-brand-bg placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/30 focus:border-brand-teal transition-all"
                         data-ocid="contact.name_input"
                       />
@@ -285,14 +295,13 @@ export default function ContactPage() {
                         required
                         value={form.email}
                         onChange={handleChange}
-                        placeholder="marcus@buildify.com"
+                        placeholder="rahul@buildify.com"
                         className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-brand-text bg-brand-bg placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/30 focus:border-brand-teal transition-all"
                         data-ocid="contact.email_input"
                       />
                     </div>
                   </div>
 
-                  {/* Phone + Project Type */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label
@@ -310,7 +319,7 @@ export default function ContactPage() {
                         type="tel"
                         value={form.phone}
                         onChange={handleChange}
-                        placeholder="+1 (415) 555-0100"
+                        placeholder="+91 98765 43210"
                         className="w-full border border-border rounded-lg px-4 py-2.5 text-sm text-brand-text bg-brand-bg placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/30 focus:border-brand-teal transition-all"
                         data-ocid="contact.phone_input"
                       />
@@ -344,7 +353,6 @@ export default function ContactPage() {
                     </div>
                   </div>
 
-                  {/* Description */}
                   <div>
                     <label
                       htmlFor="description"
@@ -386,7 +394,6 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="lg:col-span-2 flex flex-col gap-6"
             >
-              {/* Why Buildify card */}
               <div className="bg-brand-slate rounded-2xl p-7 text-white">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 bg-brand-teal/20 rounded-lg flex items-center justify-center">
@@ -417,7 +424,6 @@ export default function ContactPage() {
                 </ul>
               </div>
 
-              {/* Office Hours card */}
               <div
                 className="bg-white rounded-2xl p-7 border border-border shadow-card"
                 data-ocid="contact.hours_card"
@@ -460,55 +466,174 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map / Visual Band */}
+      {/* Find Our Office — Live Location Map Section */}
       <section
-        className="relative overflow-hidden"
+        className="bg-brand-slate section-padding overflow-hidden"
         data-ocid="contact.map_section"
       >
-        {/* Background image strip */}
-        <div
-          className="h-64 md:h-80 bg-cover bg-center relative"
-          style={{
-            backgroundImage:
-              "url('/assets/generated/contact-hero.dim_1400x600.jpg')",
-            backgroundAttachment: "fixed",
-          }}
-        >
-          {/* Dark overlay */}
-          <div className="absolute inset-0 bg-brand-slate/75" />
-          {/* Teal accent line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-brand-teal" />
+        <div className="container-max">
+          {/* Section heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+            className="text-center mb-10"
+          >
+            <p className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-2">
+              Our Location
+            </p>
+            <h2 className="text-3xl md:text-4xl font-black text-white">
+              Find Our <span className="text-brand-orange">Office</span>
+            </h2>
+          </motion.div>
 
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
+            {/* Map panel */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center px-4"
+              transition={{ duration: 0.65 }}
+              className="lg:col-span-3 relative rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+              data-ocid="contact.map_panel"
             >
-              <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
-                Proudly Serving the West Coast
-              </p>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
-                Serving Your Area Since 2009
-              </h2>
-              <p className="text-white/60 text-base max-w-lg mx-auto">
-                Operations across California, Nevada, and Washington State —
-                with boots on the ground near you.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 mt-6">
-                {["San Francisco", "Los Angeles", "Las Vegas", "Seattle"].map(
-                  (city, i) => (
-                    <span
+              {/* Interactive OpenStreetMap embed */}
+              <iframe
+                src={OSM_EMBED_URL}
+                title="Buildify office location — Nariman Point, Mumbai"
+                width="100%"
+                height="420"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                data-ocid="contact.map_iframe"
+              />
+
+              {/* Address chip at bottom */}
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className="bg-brand-slate/90 backdrop-blur-sm rounded-xl px-4 py-3 flex items-center gap-3 border border-white/10">
+                  <div className="w-8 h-8 bg-brand-orange rounded-lg flex items-center justify-center shrink-0">
+                    <Building2 size={16} className="text-white" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-white font-semibold text-sm leading-tight truncate">
+                      Nariman Point, Mumbai
+                    </p>
+                    <p className="text-white/60 text-xs">
+                      Maharashtra 400021, India
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right panel */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, delay: 0.12 }}
+              className="lg:col-span-2 flex flex-col gap-6"
+            >
+              {/* Address + directions card */}
+              <div
+                className="bg-white/5 border border-white/10 rounded-2xl p-6"
+                data-ocid="contact.address_card"
+              >
+                <h3 className="text-white font-bold text-lg mb-5 flex items-center gap-2">
+                  <MapPin size={18} className="text-brand-orange" />
+                  Headquarters
+                </h3>
+                <ul className="space-y-4">
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-brand-orange/15 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                      <MapPin size={15} className="text-brand-orange" />
+                    </div>
+                    <div>
+                      <p className="text-white/50 text-xs uppercase tracking-wider mb-0.5">
+                        Address
+                      </p>
+                      <p className="text-white font-semibold text-sm leading-snug">
+                        Nariman Point, Mumbai
+                      </p>
+                      <p className="text-white/70 text-sm">
+                        Maharashtra 400021, India
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-brand-teal/15 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                      <Phone size={15} className="text-brand-teal" />
+                    </div>
+                    <div>
+                      <p className="text-white/50 text-xs uppercase tracking-wider mb-0.5">
+                        Phone
+                      </p>
+                      <p className="text-white font-semibold text-sm">
+                        +91 22 4800 2200
+                      </p>
+                    </div>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-brand-teal/15 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                      <Mail size={15} className="text-brand-teal" />
+                    </div>
+                    <div>
+                      <p className="text-white/50 text-xs uppercase tracking-wider mb-0.5">
+                        Email
+                      </p>
+                      <p className="text-white font-semibold text-sm">
+                        hello@buildify.com
+                      </p>
+                    </div>
+                  </li>
+                </ul>
+
+                {/* Get Directions button */}
+                <a
+                  href={OSM_DIRECTIONS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 flex items-center justify-center gap-2.5 bg-brand-orange text-white text-sm font-bold uppercase tracking-wide px-6 py-3 rounded-full hover:opacity-90 active:scale-[0.98] transition-all w-full"
+                  data-ocid="contact.get_directions_button"
+                >
+                  <Navigation size={16} />
+                  Get Directions
+                  <ExternalLink size={14} className="opacity-70" />
+                </a>
+              </div>
+
+              {/* Proudly Serving — Indian cities */}
+              <div
+                className="bg-white/5 border border-white/10 rounded-2xl p-6"
+                data-ocid="contact.service_areas_card"
+              >
+                <h3 className="text-white font-bold text-sm uppercase tracking-widest mb-4">
+                  Proudly Serving
+                </h3>
+                <p className="text-white/50 text-xs leading-relaxed mb-4">
+                  Operations across Maharashtra &amp; Gujarat — with dedicated
+                  teams on the ground near you.
+                </p>
+                <div className="grid grid-cols-2 gap-2.5">
+                  {serviceCities.map(({ city, state }, i) => (
+                    <div
                       key={city}
-                      className="text-white/80 text-sm font-medium border border-white/20 rounded-full px-4 py-1.5"
+                      className="flex items-center gap-2 bg-white/5 hover:bg-brand-orange/10 border border-white/10 hover:border-brand-orange/30 rounded-lg px-3 py-2 transition-colors"
                       data-ocid={`contact.city_badge.${i + 1}`}
                     >
-                      {city}
-                    </span>
-                  ),
-                )}
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand-orange shrink-0" />
+                      <div className="min-w-0">
+                        <p className="text-white text-xs font-semibold leading-tight truncate">
+                          {city}
+                        </p>
+                        <p className="text-white/40 text-xs">{state}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
@@ -551,7 +676,7 @@ export default function ContactPage() {
             </h2>
             <p className="text-white/60 text-lg mb-8">
               Explore our completed projects or learn more about what makes
-              Buildify the most trusted name on the West Coast.
+              Buildify the most trusted name across India.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

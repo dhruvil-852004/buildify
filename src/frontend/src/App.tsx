@@ -8,6 +8,7 @@ import FAB from "./components/FAB";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import Products from "./components/Products";
 import Projects from "./components/Projects";
 import Services from "./components/Services";
 import Team from "./components/Team";
@@ -22,6 +23,7 @@ function HomePage() {
       <main>
         <Hero />
         <Services />
+        <Products />
         <Projects />
         <Team />
       </main>
