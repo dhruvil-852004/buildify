@@ -187,10 +187,10 @@ const galleryImages = [
 
 export default function AboutPage() {
   return (
-    <div className="pt-16 md:pt-20" data-ocid="about.page">
+    <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="about.page">
       {/* ── Hero ── */}
       <section
-        className="relative min-h-[580px] flex items-center overflow-hidden"
+        className="relative min-h-[400px] sm:min-h-[500px] md:min-h-[580px] flex items-center overflow-hidden"
         data-ocid="about.hero_section"
       >
         <div className="absolute inset-0">
@@ -208,31 +208,31 @@ export default function AboutPage() {
           />
         </div>
 
-        <div className="container-max px-4 md:px-6 relative z-10 py-20 md:py-28 text-left">
+        <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20 md:py-28 text-left">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
             className="max-w-2xl text-left"
           >
-            <span className="inline-flex items-center gap-2 bg-brand-teal/20 border border-brand-teal/40 text-brand-teal text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
+            <span className="inline-flex items-center gap-2 bg-brand-teal/20 border border-brand-teal/40 text-brand-teal text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5 sm:mb-6">
               <MapPin size={12} />
               Mumbai · Pune · Ahmedabad · Surat
             </span>
-            <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6 text-left">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-5 sm:mb-6 text-left">
               Masters of <span className="text-brand-teal">Site Regrading</span>{" "}
               &amp; Ground Preparation
             </h1>
-            <p className="text-white/80 text-lg md:text-xl leading-relaxed mb-8 text-left">
+            <p className="text-white/80 text-base sm:text-lg md:text-xl leading-relaxed mb-7 sm:mb-8 text-left">
               For 20+ years, Buildify has shaped the ground beneath Western
               India's most ambitious developments — delivering precision-graded,
               compacted, and drainage-ready sites that every structure can be
               built on with confidence.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 text-left">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-left">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 bg-brand-teal text-white font-bold text-sm uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 transition-opacity"
+                className="inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-bold text-sm uppercase tracking-wide px-7 py-3.5 rounded-full hover:opacity-90 transition-opacity min-h-[44px] w-full sm:w-auto"
                 data-ocid="about.hero_cta_primary"
               >
                 Get a Site Assessment
@@ -240,7 +240,7 @@ export default function AboutPage() {
               </Link>
               <a
                 href="#regrading-services"
-                className="inline-flex items-center gap-2 border border-white/40 text-white font-semibold text-sm uppercase tracking-wide px-8 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-white/40 text-white font-semibold text-sm uppercase tracking-wide px-7 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
                 data-ocid="about.hero_cta_secondary"
               >
                 Our Services
@@ -253,8 +253,8 @@ export default function AboutPage() {
 
       {/* ── Stats Strip ── */}
       <section className="bg-brand-slate" data-ocid="about.stats_section">
-        <div className="container-max px-4 md:px-6 py-12">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+        <div className="container-max px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
             {stats.map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -264,10 +264,10 @@ export default function AboutPage() {
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 data-ocid={`about.stat.${i + 1}`}
               >
-                <p className="text-4xl md:text-5xl font-black text-brand-teal mb-2">
+                <p className="text-3xl sm:text-4xl md:text-5xl font-black text-brand-teal mb-2">
                   {stat.value}
                 </p>
-                <p className="text-white/80 text-sm font-medium uppercase tracking-wide">
+                <p className="text-white/80 text-xs sm:text-sm font-medium uppercase tracking-wide">
                   {stat.label}
                 </p>
               </motion.div>
@@ -278,11 +278,11 @@ export default function AboutPage() {
 
       {/* ── What is Site Regrading? ── */}
       <section
-        className="section-padding bg-brand-bg"
+        className="py-12 sm:py-16 lg:py-20 bg-brand-bg"
         data-ocid="about.what_is_section"
       >
-        <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -293,11 +293,11 @@ export default function AboutPage() {
               <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-3">
                 The Foundation of Every Build
               </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-brand-text mb-5">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text mb-5">
                 What is Site Regrading?
               </h2>
-              <div className="w-10 h-1 bg-brand-teal rounded-full mb-7" />
-              <div className="space-y-4 text-brand-muted leading-relaxed">
+              <div className="w-10 h-1 bg-brand-teal rounded-full mb-6 sm:mb-7" />
+              <div className="space-y-4 text-brand-muted leading-relaxed text-sm sm:text-base">
                 <p>
                   <strong className="text-brand-text">Site regrading</strong> is
                   the controlled reshaping of land to a designed elevation and
@@ -325,7 +325,7 @@ export default function AboutPage() {
                   structural engineer's sign-off.
                 </p>
               </div>
-              <div className="mt-8 grid grid-cols-2 gap-4">
+              <div className="mt-7 sm:mt-8 grid grid-cols-2 gap-3 sm:gap-4">
                 {[
                   "GPS Machine Control",
                   "Proctor Density Testing",
@@ -334,10 +334,10 @@ export default function AboutPage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 text-sm text-brand-text font-medium"
+                    className="flex items-center gap-2 text-xs sm:text-sm text-brand-text font-medium"
                   >
                     <CheckCircle2
-                      size={15}
+                      size={14}
                       className="text-brand-teal shrink-0"
                     />
                     {item}
@@ -359,7 +359,7 @@ export default function AboutPage() {
                   alt="Surveying instrument on graded construction site"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-5 sm:p-6">
                   <p className="text-white font-semibold text-sm">
                     GPS-guided laser levelling in progress
                   </p>
@@ -376,21 +376,21 @@ export default function AboutPage() {
       {/* ── Regrading Services ── */}
       <section
         id="regrading-services"
-        className="section-padding bg-brand-bg"
+        className="py-12 sm:py-16 lg:py-20 bg-brand-bg"
         data-ocid="about.services_section"
       >
-        <div className="container-max">
-          <div className="text-center mb-14">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-2">
               What We Do
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-text">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text">
               Our Regrading Services
             </h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {services.map((svc, i) => (
               <motion.div
                 key={svc.title}
@@ -401,21 +401,21 @@ export default function AboutPage() {
                 className="bg-card rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-all hover:-translate-y-1 group"
                 data-ocid={`about.service_card.${i + 1}`}
               >
-                <div className="h-44 overflow-hidden">
+                <div className="h-40 sm:h-44 overflow-hidden">
                   <img
                     src={svc.img}
                     alt={svc.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-5 sm:p-6">
                   <div className="w-10 h-10 bg-brand-teal/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-brand-teal transition-colors">
                     <svc.icon
                       size={20}
                       className="text-brand-teal group-hover:text-white transition-colors"
                     />
                   </div>
-                  <h3 className="font-bold text-brand-text text-lg mb-2">
+                  <h3 className="font-bold text-brand-text text-base sm:text-lg mb-2">
                     {svc.title}
                   </h3>
                   <p className="text-brand-muted text-sm leading-relaxed">
@@ -430,21 +430,21 @@ export default function AboutPage() {
 
       {/* ── Our Process ── */}
       <section
-        className="section-padding bg-brand-bg"
+        className="py-12 sm:py-16 lg:py-20 bg-brand-bg"
         data-ocid="about.process_section"
       >
-        <div className="container-max">
-          <div className="text-center mb-14">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-2">
               How We Work
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-text">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text">
               The Regrading Process
             </h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div className="space-y-0">
               {process.map((step, i) => (
                 <motion.div
@@ -453,11 +453,11 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="flex gap-5 group"
+                  className="flex gap-4 sm:gap-5 group"
                   data-ocid={`about.process_step.${i + 1}`}
                 >
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-full bg-brand-teal flex items-center justify-center shrink-0 group-hover:bg-brand-tan transition-colors">
+                  <div className="flex flex-col items-center shrink-0">
+                    <div className="w-12 h-12 rounded-full bg-brand-teal flex items-center justify-center group-hover:bg-brand-tan transition-colors">
                       <span className="text-white font-black text-sm">
                         {step.step}
                       </span>
@@ -466,8 +466,8 @@ export default function AboutPage() {
                       <div className="w-0.5 flex-1 bg-brand-teal/20 my-2" />
                     )}
                   </div>
-                  <div className="pb-8">
-                    <h3 className="font-bold text-brand-text text-lg mb-1">
+                  <div className="pb-7 sm:pb-8 min-w-0">
+                    <h3 className="font-bold text-brand-text text-base sm:text-lg mb-1">
                       {step.title}
                     </h3>
                     <p className="text-brand-muted text-sm leading-relaxed">
@@ -491,10 +491,10 @@ export default function AboutPage() {
                 className="w-full object-cover"
               />
               <div className="absolute inset-0 flex items-end">
-                <div className="w-full bg-gradient-to-t from-black/70 to-transparent p-6">
-                  <div className="flex gap-6">
+                <div className="w-full bg-gradient-to-t from-black/70 to-transparent p-5 sm:p-6">
+                  <div className="flex gap-4 sm:gap-6">
                     <div>
-                      <p className="text-brand-teal font-black text-2xl">
+                      <p className="text-brand-teal font-black text-xl sm:text-2xl">
                         Before
                       </p>
                       <p className="text-white/70 text-xs">
@@ -503,7 +503,7 @@ export default function AboutPage() {
                     </div>
                     <div className="w-px bg-white/30" />
                     <div>
-                      <p className="text-brand-teal font-black text-2xl">
+                      <p className="text-brand-teal font-black text-xl sm:text-2xl">
                         After
                       </p>
                       <p className="text-white/70 text-xs">
@@ -520,21 +520,21 @@ export default function AboutPage() {
 
       {/* ── Core Values ── */}
       <section
-        className="section-padding bg-brand-slate"
+        className="py-12 sm:py-16 lg:py-20 bg-brand-slate"
         data-ocid="about.values_section"
       >
-        <div className="container-max">
-          <div className="text-center mb-14">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-2">
               What We Stand For
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
               Why Choose Buildify
             </h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {values.map((value, i) => (
               <motion.div
                 key={value.title}
@@ -542,16 +542,16 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="border border-white/10 rounded-2xl p-7 hover:border-brand-teal/50 hover:bg-white/5 transition-all group"
+                className="border border-white/10 rounded-2xl p-6 sm:p-7 hover:border-brand-teal/50 hover:bg-white/5 transition-all group"
                 data-ocid={`about.value_card.${i + 1}`}
               >
-                <div className="w-12 h-12 bg-brand-teal/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-brand-teal transition-colors">
+                <div className="w-12 h-12 bg-brand-teal/10 rounded-xl flex items-center justify-center mb-4 sm:mb-5 group-hover:bg-brand-teal transition-colors">
                   <value.icon
                     size={22}
                     className="text-brand-teal group-hover:text-white transition-colors"
                   />
                 </div>
-                <h3 className="font-bold text-white text-lg mb-3">
+                <h3 className="font-bold text-white text-base sm:text-lg mb-3">
                   {value.title}
                 </h3>
                 <p className="text-white/60 text-sm leading-relaxed">
@@ -565,21 +565,21 @@ export default function AboutPage() {
 
       {/* ── Project Gallery ── */}
       <section
-        className="section-padding bg-brand-bg"
+        className="py-12 sm:py-16 lg:py-20 bg-brand-bg"
         data-ocid="about.gallery_section"
       >
-        <div className="container-max">
-          <div className="text-center mb-14">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-2">
               Our Work in the Field
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-text">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text">
               Project Gallery
             </h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {galleryImages.map((img, i) => (
               <motion.div
                 key={img.caption}
@@ -608,21 +608,21 @@ export default function AboutPage() {
 
       {/* ── Leadership Team ── */}
       <section
-        className="section-padding bg-brand-bg"
+        className="py-12 sm:py-16 lg:py-20 bg-brand-bg"
         data-ocid="about.leadership_section"
       >
-        <div className="container-max">
-          <div className="text-center mb-14">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-2">
               The Specialists Behind Every Site
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-text">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text">
               Our Leadership Team
             </h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {leaders.map((leader, i) => (
               <motion.div
                 key={leader.name}
@@ -640,7 +640,7 @@ export default function AboutPage() {
                     className="w-full h-full object-cover object-top"
                   />
                 </div>
-                <div className="p-5">
+                <div className="p-4 sm:p-5">
                   <h3 className="font-bold text-brand-text text-base mb-0.5">
                     {leader.name}
                   </h3>
@@ -695,8 +695,8 @@ export default function AboutPage() {
             style={{ background: "oklch(0.15 0.02 50 / 0.75)" }}
           />
         </div>
-        <div className="relative z-10 py-24 px-4">
-          <div className="container-max">
+        <div className="relative z-10 py-14 sm:py-20 md:py-24">
+          <div className="container-max px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -705,17 +705,17 @@ export default function AboutPage() {
               className="max-w-3xl"
             >
               <div className="flex items-center gap-3 mb-5">
-                <Award className="text-brand-teal" size={28} />
+                <Award className="text-brand-teal shrink-0" size={26} />
                 <p className="text-brand-teal text-xs font-bold uppercase tracking-widest">
                   Recognised Industry Leader
                 </p>
               </div>
-              <blockquote className="text-2xl md:text-3xl font-bold text-white leading-snug mb-6">
+              <blockquote className="text-lg sm:text-2xl md:text-3xl font-bold text-white leading-snug mb-6">
                 "Proper grading is the single most important thing you can do
                 before a foundation is poured — and it's the one step most
                 developers underestimate."
               </blockquote>
-              <p className="text-white/70 font-medium">
+              <p className="text-white/70 font-medium text-sm sm:text-base">
                 Marcus Harrington — Site Grading Director, Buildify
               </p>
             </motion.div>
@@ -725,10 +725,10 @@ export default function AboutPage() {
 
       {/* ── CTA ── */}
       <section
-        className="bg-brand-slate section-padding"
+        className="bg-brand-slate py-12 sm:py-16 lg:py-20"
         data-ocid="about.cta_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -739,17 +739,17 @@ export default function AboutPage() {
             <div className="w-14 h-14 bg-brand-teal/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <Mountain className="text-brand-teal" size={26} />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
               Ready to Transform Your Site?
             </h2>
-            <p className="text-white/70 text-lg mb-8">
+            <p className="text-white/70 text-base sm:text-lg mb-7 sm:mb-8">
               Tell us about your project. We'll provide a free site assessment
               and grading plan within 48 hours — no obligation.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-bold text-sm uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 transition-opacity"
+                className="inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-bold text-sm uppercase tracking-wide px-7 py-3.5 rounded-full hover:opacity-90 transition-opacity min-h-[44px] w-full sm:w-auto"
                 data-ocid="about.cta_primary_button"
               >
                 Get a Free Quote
@@ -757,7 +757,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 to="/services"
-                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-semibold text-sm uppercase tracking-wide px-8 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-semibold text-sm uppercase tracking-wide px-7 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
                 data-ocid="about.cta_secondary_button"
               >
                 All Services

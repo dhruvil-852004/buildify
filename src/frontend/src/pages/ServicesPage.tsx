@@ -226,10 +226,10 @@ function AnimatedCounter({
 
 export default function ServicesPage() {
   return (
-    <div className="pt-16 md:pt-20" data-ocid="services.page">
+    <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="services.page">
       {/* ── Hero ── */}
       <section
-        className="relative overflow-hidden min-h-[460px] md:min-h-[560px] flex items-center"
+        className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[560px] flex items-center"
         data-ocid="services.hero_section"
       >
         <div
@@ -258,7 +258,7 @@ export default function ServicesPage() {
           }}
         />
 
-        <div className="container-max px-4 md:px-6 relative z-10 py-20">
+        <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -268,24 +268,24 @@ export default function ServicesPage() {
             <p className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-4">
               What We Do
             </p>
-            <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-5 sm:mb-6">
               Our <span className="text-brand-teal">Services</span>
             </h1>
-            <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-xl mb-8">
+            <p className="text-white/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-xl mb-7 sm:mb-8">
               From ground-breaking to ribbon-cutting, Buildify delivers
               construction excellence across every project type and scale.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 bg-brand-orange text-white text-sm font-bold uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 active:scale-[0.98] transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white text-sm font-bold uppercase tracking-wide px-7 py-3.5 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px] w-full sm:w-auto"
                 data-ocid="services.hero_cta_button"
               >
                 Get a Free Quote <ArrowRight size={16} />
               </Link>
               <a
                 href="/#projects"
-                className="inline-flex items-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-8 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-7 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
                 data-ocid="services.hero_projects_button"
               >
                 View Projects
@@ -298,7 +298,7 @@ export default function ServicesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex items-center gap-2 mt-12 text-white/50 text-sm"
+            className="flex items-center gap-2 mt-10 sm:mt-12 text-white/50 text-sm"
           >
             <Link
               to="/"
@@ -315,30 +315,30 @@ export default function ServicesPage() {
 
       {/* ── Services Grid ── */}
       <section
-        className="bg-brand-bg section-padding"
+        className="bg-brand-bg py-12 sm:py-16 lg:py-20"
         data-ocid="services.grid_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-14"
+            className="text-center mb-10 sm:mb-14"
           >
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               Core Offerings
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
               Built for Every Scale
             </h2>
-            <p className="text-brand-muted text-lg max-w-2xl mx-auto">
+            <p className="text-brand-muted text-base sm:text-lg max-w-2xl mx-auto">
               Whether you're building a family home or a commercial complex, we
               have the expertise, team, and infrastructure to deliver.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7">
             {services.map((svc, i) => (
               <motion.div
                 key={svc.title}
@@ -346,22 +346,22 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.55 }}
-                className={`bg-white rounded-2xl p-8 border border-border shadow-card ${svc.borderHover} hover:shadow-card-hover transition-all group`}
+                className={`bg-white rounded-2xl p-6 sm:p-8 border border-border shadow-card ${svc.borderHover} hover:shadow-card-hover transition-all group`}
                 data-ocid={`services.service_card.${i + 1}`}
               >
                 {/* Icon + tag */}
                 <div className="flex items-start justify-between mb-5">
                   <div
-                    className={`w-14 h-14 ${svc.accent} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                    className={`w-12 h-12 sm:w-14 sm:h-14 ${svc.accent} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shrink-0`}
                   >
-                    <svc.icon size={26} className="text-white" />
+                    <svc.icon size={24} className="text-white" />
                   </div>
-                  <span className="text-xs font-semibold text-brand-muted uppercase tracking-widest pt-1">
+                  <span className="text-xs font-semibold text-brand-muted uppercase tracking-widest pt-1 text-right ml-3 leading-snug">
                     {svc.tagline}
                   </span>
                 </div>
 
-                <h3 className="text-xl font-black text-brand-text mb-3">
+                <h3 className="text-lg sm:text-xl font-black text-brand-text mb-3">
                   {svc.title}
                 </h3>
                 <p className="text-brand-muted text-sm leading-relaxed mb-5">
@@ -401,32 +401,32 @@ export default function ServicesPage() {
 
       {/* ── Why Choose Us ── */}
       <section
-        className="section-padding"
+        className="py-12 sm:py-16 lg:py-20"
         style={{ backgroundColor: "oklch(0.318 0.042 213.5)" }}
         data-ocid="services.why_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-14"
+            className="text-center mb-10 sm:mb-14"
           >
             <p className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-3">
               The Buildify Advantage
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4">
               Why Choose Us?
             </h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+            <p className="text-white/60 text-base sm:text-lg max-w-2xl mx-auto">
               We've earned the trust of hundreds of clients by combining
               technical depth, disciplined execution, and genuine care for every
               project outcome.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {strengths.map((str, i) => (
               <motion.div
                 key={str.title}
@@ -454,25 +454,25 @@ export default function ServicesPage() {
 
       {/* ── Stats Banner ── */}
       <section
-        className="bg-brand-orange py-16 md:py-20"
+        className="bg-brand-orange py-12 sm:py-16 md:py-20"
         data-ocid="services.stats_section"
       >
-        <div className="container-max px-4">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-10"
+            className="text-center mb-8 sm:mb-10"
           >
             <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-2">
               By The Numbers
             </p>
-            <h2 className="text-2xl md:text-3xl font-black text-white">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">
               Our Performance Speaks
             </h2>
           </motion.div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-4">
             {statsData.map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -483,10 +483,10 @@ export default function ServicesPage() {
                 className="text-center"
                 data-ocid={`services.stat.${i + 1}`}
               >
-                <p className="text-4xl md:text-5xl font-black text-white mb-1">
+                <p className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-1">
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </p>
-                <p className="text-white/70 text-sm font-semibold uppercase tracking-wider">
+                <p className="text-white/70 text-xs sm:text-sm font-semibold uppercase tracking-wider">
                   {stat.label}
                 </p>
               </motion.div>
@@ -497,24 +497,24 @@ export default function ServicesPage() {
 
       {/* ── Process Timeline ── */}
       <section
-        className="bg-brand-bg section-padding"
+        className="bg-brand-bg py-12 sm:py-16 lg:py-20"
         data-ocid="services.process_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-14"
+            className="text-center mb-10 sm:mb-14"
           >
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               How We Work
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
               Our Process
             </h2>
-            <p className="text-brand-muted text-lg max-w-2xl mx-auto">
+            <p className="text-brand-muted text-base sm:text-lg max-w-2xl mx-auto">
               A clear, structured approach — from your first call to the day you
               take ownership of your completed project.
             </p>
@@ -564,12 +564,12 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="flex gap-5"
+                className="flex gap-4 sm:gap-5"
                 data-ocid={`services.process_step_mobile.${i + 1}`}
               >
                 {/* Left: line + circle */}
-                <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 rounded-full bg-white border-2 border-brand-teal flex flex-col items-center justify-center shadow-card shrink-0">
+                <div className="flex flex-col items-center shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-white border-2 border-brand-teal flex flex-col items-center justify-center shadow-card">
                     <span className="text-brand-orange text-[9px] font-black uppercase leading-none">
                       {step.step}
                     </span>
@@ -580,7 +580,7 @@ export default function ServicesPage() {
                   )}
                 </div>
                 {/* Right: text */}
-                <div className="pb-6 pt-1">
+                <div className="pb-6 pt-1 min-w-0">
                   <h3 className="text-brand-text font-bold text-base mb-1">
                     {step.title}
                   </h3>
@@ -596,11 +596,11 @@ export default function ServicesPage() {
 
       {/* ── Accreditations strip ── */}
       <section
-        className="bg-brand-teal py-6"
+        className="bg-brand-teal py-4 sm:py-6"
         data-ocid="services.accreditations_strip"
       >
-        <div className="container-max px-4">
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-12 text-white">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 md:gap-10 lg:gap-12 text-white">
             {[
               { icon: Award, label: "ISO 9001 Certified" },
               { icon: Shield, label: "ISO 45001 Safety" },
@@ -610,10 +610,10 @@ export default function ServicesPage() {
             ].map((item) => (
               <div
                 key={item.label}
-                className="flex items-center gap-2 text-sm font-semibold"
+                className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-semibold"
               >
-                <item.icon size={15} className="text-white/70 shrink-0" />
-                {item.label}
+                <item.icon size={13} className="text-white/70 shrink-0" />
+                <span className="whitespace-nowrap">{item.label}</span>
               </div>
             ))}
           </div>
@@ -622,10 +622,10 @@ export default function ServicesPage() {
 
       {/* ── Bottom CTA ── */}
       <section
-        className="bg-brand-slate section-padding"
+        className="bg-brand-slate py-12 sm:py-16 lg:py-20"
         data-ocid="services.cta_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -636,24 +636,24 @@ export default function ServicesPage() {
             <p className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-4">
               Let's Get Started
             </p>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-5 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-5 leading-tight">
               Ready to Build?
             </h2>
-            <p className="text-white/60 text-lg mb-10 leading-relaxed">
+            <p className="text-white/60 text-base sm:text-lg mb-8 sm:mb-10 leading-relaxed">
               Tell us about your project. Our team will reach out within 24
               hours with a tailored proposal and a no-obligation consultation.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white text-sm font-bold uppercase tracking-wide px-8 py-4 rounded-full hover:opacity-90 active:scale-[0.98] transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white text-sm font-bold uppercase tracking-wide px-7 py-4 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px] w-full sm:w-auto"
                 data-ocid="services.cta_contact_button"
               >
                 Contact Us <ArrowRight size={16} />
               </Link>
               <a
                 href="/#projects"
-                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-8 py-4 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-7 py-4 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
                 data-ocid="services.cta_projects_button"
               >
                 View Projects

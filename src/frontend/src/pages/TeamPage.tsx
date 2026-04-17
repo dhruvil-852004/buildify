@@ -241,10 +241,10 @@ export default function TeamPage() {
       : teamMembers.filter((m) => m.department === activeDept);
 
   return (
-    <div className="pt-16 md:pt-20" data-ocid="team.page">
+    <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="team.page">
       {/* ── Hero ── */}
       <section
-        className="relative overflow-hidden min-h-[460px] md:min-h-[560px] flex items-center"
+        className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[560px] flex items-center"
         data-ocid="team.hero_section"
       >
         <div
@@ -273,7 +273,7 @@ export default function TeamPage() {
           }}
         />
 
-        <div className="container-max px-4 md:px-6 relative z-10 py-20">
+        <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -283,14 +283,14 @@ export default function TeamPage() {
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-4">
               The People Behind Every Build
             </p>
-            <h1 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-5 sm:mb-6">
               Meet Our <span className="text-brand-teal">Team</span>
             </h1>
-            <p className="text-white/70 text-lg md:text-xl leading-relaxed max-w-xl mb-8">
+            <p className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-7 sm:mb-8">
               Dedicated professionals from engineering, architecture, and
               operations — united by a passion for building what matters.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button
                 type="button"
                 onClick={() => {
@@ -298,14 +298,14 @@ export default function TeamPage() {
                     .getElementById("team-grid")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center gap-2 bg-brand-teal text-white text-sm font-bold uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 active:scale-[0.98] transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-brand-teal text-white text-sm font-bold uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px] w-full sm:w-auto"
                 data-ocid="team.hero_cta_button"
               >
                 Meet the Team <ArrowRight size={16} />
               </button>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-8 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-8 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
                 data-ocid="team.hero_contact_button"
               >
                 Join Our Team
@@ -318,7 +318,7 @@ export default function TeamPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex items-center gap-2 mt-12 text-white/50 text-sm"
+            className="flex items-center gap-2 mt-10 sm:mt-12 text-white/50 text-sm"
           >
             <Link
               to="/"
@@ -335,11 +335,11 @@ export default function TeamPage() {
 
       {/* ── Stats Bar ── */}
       <section
-        className="bg-brand-teal py-14 md:py-16"
+        className="bg-brand-teal py-12 sm:py-14 md:py-16"
         data-ocid="team.stats_section"
       >
-        <div className="container-max px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 text-center">
             {statsData.map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -349,10 +349,10 @@ export default function TeamPage() {
                 transition={{ delay: i * 0.1, duration: 0.45 }}
                 data-ocid={`team.stat.${i + 1}`}
               >
-                <p className="text-4xl md:text-5xl font-black text-white mb-1">
+                <p className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-1">
                   <AnimatedCounter target={stat.value} suffix={stat.suffix} />
                 </p>
-                <p className="text-white/70 text-sm font-semibold uppercase tracking-wider">
+                <p className="text-white/70 text-xs sm:text-sm font-semibold uppercase tracking-wider">
                   {stat.label}
                 </p>
               </motion.div>
@@ -364,33 +364,33 @@ export default function TeamPage() {
       {/* ── Department Filter + Team Grid ── */}
       <section
         id="team-grid"
-        className="bg-brand-bg section-padding"
+        className="bg-brand-bg py-12 sm:py-16 lg:py-20"
         data-ocid="team.grid_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-10"
+            className="text-center mb-8 sm:mb-10"
           >
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               Our People
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
               Skilled Professionals, One Team
             </h2>
-            <p className="text-brand-muted text-lg max-w-2xl mx-auto">
+            <p className="text-brand-muted text-sm sm:text-lg max-w-2xl mx-auto">
               Browse by department to discover the expertise behind every
               Buildify project.
             </p>
           </motion.div>
 
-          {/* Department tabs */}
+          {/* Department tabs — flex-wrap so they wrap on mobile */}
           <div
-            className="flex flex-wrap justify-center gap-2 mb-12"
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12"
             role="tablist"
             data-ocid="team.dept_filter"
           >
@@ -401,7 +401,7 @@ export default function TeamPage() {
                 role="tab"
                 aria-selected={activeDept === dept}
                 onClick={() => setActiveDept(dept)}
-                className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${
+                className={`py-2 px-3 sm:px-5 rounded-full text-sm font-semibold transition-all min-h-[40px] ${
                   activeDept === dept
                     ? "bg-brand-teal text-white shadow-md"
                     : "bg-white text-brand-muted border border-border hover:border-brand-teal hover:text-brand-teal"
@@ -414,7 +414,7 @@ export default function TeamPage() {
           </div>
 
           {/* Team grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-7">
             {filtered.map((member, i) => (
               <motion.div
                 key={member.name}
@@ -426,7 +426,7 @@ export default function TeamPage() {
                 data-ocid={`team.member_card.${i + 1}`}
               >
                 {/* Photo */}
-                <div className="relative overflow-hidden h-56">
+                <div className="relative overflow-hidden h-52 sm:h-56">
                   <img
                     src={member.photo}
                     alt={member.name}
@@ -458,10 +458,10 @@ export default function TeamPage() {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
+                <div className="p-5 sm:p-6">
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div className="min-w-0">
-                      <h3 className="text-brand-text font-black text-lg leading-tight truncate">
+                      <h3 className="text-brand-text font-black text-base sm:text-lg leading-tight truncate">
                         {member.name}
                       </h3>
                       <p className="text-brand-teal font-semibold text-sm mt-0.5">
@@ -479,7 +479,7 @@ export default function TeamPage() {
                   </p>
 
                   {/* Bottom action */}
-                  <div className="mt-5 pt-4 border-t border-border flex items-center justify-between">
+                  <div className="mt-4 sm:mt-5 pt-4 border-t border-border flex items-center justify-between">
                     <div className="flex gap-2">
                       <a
                         href={`mailto:${member.email}`}
@@ -511,31 +511,31 @@ export default function TeamPage() {
 
       {/* ── Culture & Values ── */}
       <section
-        className="section-padding"
+        className="py-12 sm:py-16 lg:py-20"
         style={{ backgroundColor: "oklch(0.318 0.042 213.5)" }}
         data-ocid="team.culture_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-14"
+            className="text-center mb-10 sm:mb-14"
           >
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               How We Work
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-              Our Culture & Values
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4">
+              Our Culture &amp; Values
             </h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+            <p className="text-white/60 text-sm sm:text-lg max-w-2xl mx-auto">
               The principles that guide every decision, every day on every
               Buildify site.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {cultureValues.map((val, i) => (
               <motion.div
                 key={val.title}
@@ -543,7 +543,7 @@ export default function TeamPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-teal/40 rounded-2xl p-7 transition-all group"
+                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-teal/40 rounded-2xl p-6 sm:p-7 transition-all group"
                 data-ocid={`team.culture_card.${i + 1}`}
               >
                 <div className="w-12 h-12 bg-brand-teal/15 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
@@ -563,26 +563,26 @@ export default function TeamPage() {
 
       {/* ── Departments Overview Strip ── */}
       <section
-        className="bg-brand-bg py-16"
+        className="bg-brand-bg py-12 sm:py-16"
         data-ocid="team.departments_section"
       >
-        <div className="container-max px-4">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-10"
+            className="text-center mb-8 sm:mb-10"
           >
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               How We're Structured
             </p>
-            <h2 className="text-2xl md:text-3xl font-black text-brand-text">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-brand-text">
               Expert Departments, One Direction
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
             {[
               {
                 icon: Award,
@@ -622,16 +622,16 @@ export default function TeamPage() {
                     .getElementById("team-grid")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="bg-white border border-border rounded-2xl p-6 text-left hover:border-brand-teal hover:shadow-card-hover transition-all group"
+                className="bg-white border border-border rounded-2xl p-4 sm:p-6 text-left hover:border-brand-teal hover:shadow-card-hover transition-all group"
                 data-ocid={`team.dept_card.${i + 1}`}
               >
-                <div className="w-11 h-11 bg-brand-teal/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-brand-teal group-hover:scale-110 transition-all">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 bg-brand-teal/10 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-brand-teal group-hover:scale-110 transition-all">
                   <item.icon
-                    size={20}
+                    size={18}
                     className="text-brand-teal group-hover:text-white transition-colors"
                   />
                 </div>
-                <p className="text-brand-text font-black text-lg">
+                <p className="text-brand-text font-black text-base sm:text-lg">
                   {item.dept}
                 </p>
                 <p className="text-brand-teal text-sm font-bold">
@@ -648,10 +648,10 @@ export default function TeamPage() {
 
       {/* ── Join Our Team CTA ── */}
       <section
-        className="bg-brand-slate section-padding"
+        className="bg-brand-slate py-12 sm:py-16 lg:py-20"
         data-ocid="team.cta_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -662,25 +662,25 @@ export default function TeamPage() {
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-4">
               Grow With Us
             </p>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-5 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-5 leading-tight">
               Join Our Team
             </h2>
-            <p className="text-white/60 text-lg mb-10 leading-relaxed">
+            <p className="text-white/60 text-sm sm:text-lg mb-8 sm:mb-10 leading-relaxed">
               We're always looking for skilled engineers, project managers,
               architects, and site supervisors who share our commitment to
               excellence. Apply today and build your career at Buildify.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-brand-teal text-white text-sm font-bold uppercase tracking-wide px-8 py-4 rounded-full hover:opacity-90 active:scale-[0.98] transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-brand-teal text-white text-sm font-bold uppercase tracking-wide px-8 py-4 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px] w-full sm:w-auto"
                 data-ocid="team.cta_positions_button"
               >
                 View Open Positions <ArrowRight size={16} />
               </Link>
               <Link
                 to="/about"
-                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-8 py-4 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-8 py-4 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
                 data-ocid="team.cta_about_button"
               >
                 About Buildify

@@ -202,7 +202,7 @@ function StatsStrip() {
   return (
     <div
       ref={ref}
-      className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center"
+      className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center"
     >
       {stats.map((stat, i) => (
         <motion.div
@@ -212,10 +212,10 @@ function StatsStrip() {
           transition={{ delay: i * 0.1, duration: 0.5 }}
           data-ocid={`partner.stat.${i + 1}`}
         >
-          <p className="text-4xl md:text-5xl font-black text-white mb-2">
+          <p className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-2">
             {stat.value}
           </p>
-          <p className="text-white/70 text-sm font-medium uppercase tracking-wide">
+          <p className="text-white/70 text-xs sm:text-sm font-medium uppercase tracking-wide">
             {stat.label}
           </p>
         </motion.div>
@@ -239,16 +239,16 @@ function PartnerForm() {
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="text-center py-16"
+        className="text-center py-12 sm:py-16"
         data-ocid="partner.success_state"
       >
         <div className="w-20 h-20 bg-brand-teal/20 rounded-full flex items-center justify-center mx-auto mb-6">
           <CheckCircle2 size={40} className="text-brand-teal" />
         </div>
-        <h3 className="text-2xl font-black text-brand-text mb-3">
+        <h3 className="text-xl sm:text-2xl font-black text-brand-text mb-3">
           Expression of Interest Received!
         </h3>
-        <p className="text-brand-muted max-w-md mx-auto mb-8">
+        <p className="text-brand-muted text-sm sm:text-base max-w-md mx-auto mb-8">
           Thank you for your interest in partnering with Buildify. Our
           partnerships team will review your submission and reach out within 48
           business hours.
@@ -285,7 +285,7 @@ function PartnerForm() {
             type="text"
             required
             placeholder="Rajesh Kumar"
-            className="w-full px-4 py-3 rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
+            className="w-full px-4 py-3 text-base rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
             data-ocid="partner.name_input"
           />
         </div>
@@ -301,7 +301,7 @@ function PartnerForm() {
             type="text"
             required
             placeholder="Buildworks Pvt. Ltd."
-            className="w-full px-4 py-3 rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
+            className="w-full px-4 py-3 text-base rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
             data-ocid="partner.company_input"
           />
         </div>
@@ -321,7 +321,7 @@ function PartnerForm() {
             type="email"
             required
             placeholder="rajesh@buildworks.in"
-            className="w-full px-4 py-3 rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
+            className="w-full px-4 py-3 text-base rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
             data-ocid="partner.email_input"
           />
         </div>
@@ -336,7 +336,7 @@ function PartnerForm() {
             id="phone"
             type="tel"
             placeholder="+91 98765 43210"
-            className="w-full px-4 py-3 rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
+            className="w-full px-4 py-3 text-base rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
             data-ocid="partner.phone_input"
           />
         </div>
@@ -355,7 +355,7 @@ function PartnerForm() {
             id="category"
             type="button"
             onClick={() => setOpenSelect((p) => !p)}
-            className="w-full px-4 py-3 rounded-xl border border-input bg-white text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
+            className="w-full px-4 py-3 text-base rounded-xl border border-input bg-white text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition min-h-[44px]"
             data-ocid="partner.category_select"
             aria-haspopup="listbox"
             aria-expanded={openSelect}
@@ -405,7 +405,7 @@ function PartnerForm() {
             type="number"
             min="0"
             placeholder="e.g. 8"
-            className="w-full px-4 py-3 rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
+            className="w-full px-4 py-3 text-base rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
             data-ocid="partner.years_input"
           />
         </div>
@@ -420,7 +420,7 @@ function PartnerForm() {
             id="location"
             type="text"
             placeholder="Mumbai, Maharashtra"
-            className="w-full px-4 py-3 rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
+            className="w-full px-4 py-3 text-base rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition"
             data-ocid="partner.location_input"
           />
         </div>
@@ -440,14 +440,14 @@ function PartnerForm() {
           required
           rows={5}
           placeholder="Describe your services, team size, past projects, and what kind of partnership you're looking for…"
-          className="w-full px-4 py-3 rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition resize-none"
+          className="w-full px-4 py-3 text-base rounded-xl border border-input bg-white text-brand-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 transition resize-none"
           data-ocid="partner.message_textarea"
         />
       </div>
 
       <button
         type="submit"
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-teal text-white text-sm font-bold uppercase tracking-wide px-10 py-4 rounded-full hover:opacity-90 active:scale-[0.98] transition-all"
+        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-teal text-white text-sm font-bold uppercase tracking-wide px-8 sm:px-10 py-4 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px]"
         data-ocid="partner.submit_button"
       >
         Submit Expression of Interest <ArrowRight size={16} />
@@ -460,10 +460,10 @@ function PartnerForm() {
 
 export default function PartnerPage() {
   return (
-    <div className="pt-16 md:pt-20" data-ocid="partner.page">
+    <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="partner.page">
       {/* ── Hero ── */}
       <section
-        className="relative overflow-hidden min-h-[500px] md:min-h-[600px] flex items-center"
+        className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center"
         data-ocid="partner.hero_section"
       >
         <div
@@ -496,7 +496,7 @@ export default function PartnerPage() {
           style={{ background: "oklch(0.661 0.196 38.6)" }}
         />
 
-        <div className="container-max px-4 md:px-6 relative z-10 py-24 w-full">
+        <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20 md:py-24 w-full">
           <div className="max-w-3xl text-left">
             <motion.p
               initial={{ opacity: 0, y: 15 }}
@@ -511,7 +511,7 @@ export default function PartnerPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-[4rem] font-black text-white leading-tight mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-white leading-tight mb-6"
             >
               Build a Stronger <span className="text-brand-teal">Business</span>{" "}
               Together
@@ -520,7 +520,7 @@ export default function PartnerPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-white/70 text-lg md:text-xl leading-relaxed max-w-xl mb-10"
+              className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10"
             >
               Join Buildify's trusted network of contractors, suppliers,
               consultants, and developers. We believe the best structures are
@@ -530,18 +530,18 @@ export default function PartnerPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <a
                 href="#partner-form"
-                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white text-sm font-bold uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 active:scale-[0.98] transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white text-sm font-bold uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px] w-full sm:w-auto"
                 data-ocid="partner.hero_cta_button"
               >
                 Apply to Partner <ArrowRight size={16} />
               </a>
               <a
                 href="#partner-types"
-                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-8 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-8 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
                 data-ocid="partner.hero_learn_button"
               >
                 Who We Partner With
@@ -554,7 +554,7 @@ export default function PartnerPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="flex items-center gap-2 mt-14 text-white/50 text-sm"
+            className="flex items-center gap-2 mt-10 sm:mt-14 text-white/50 text-sm"
           >
             <Link
               to="/"
@@ -571,10 +571,10 @@ export default function PartnerPage() {
 
       {/* ── Stats Strip ── */}
       <section
-        className="bg-brand-teal py-14"
+        className="bg-brand-teal py-12 sm:py-14"
         data-ocid="partner.stats_section"
       >
-        <div className="container-max px-4 md:px-6">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <StatsStrip />
         </div>
       </section>
@@ -582,31 +582,31 @@ export default function PartnerPage() {
       {/* ── Partner Types ── */}
       <section
         id="partner-types"
-        className="bg-brand-bg section-padding"
+        className="bg-brand-bg py-12 sm:py-16 lg:py-20"
         data-ocid="partner.types_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-14"
+            className="text-center mb-10 sm:mb-14"
           >
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               Partnership Categories
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
               Who We Partner With
             </h2>
-            <p className="text-brand-muted text-lg max-w-2xl mx-auto">
+            <p className="text-brand-muted text-sm sm:text-lg max-w-2xl mx-auto">
               Whether you execute on-site, supply materials, design spaces, or
               fund developments — there's a place for you in the Buildify
               ecosystem.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7">
             {partnerTypes.map((type, i) => (
               <motion.div
                 key={type.title}
@@ -614,17 +614,17 @@ export default function PartnerPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.55 }}
-                className={`bg-white rounded-2xl p-8 border ${type.borderColor} shadow-sm hover:shadow-lg transition-all group`}
+                className={`bg-white rounded-2xl p-6 sm:p-8 border ${type.borderColor} shadow-sm hover:shadow-lg transition-all group`}
                 data-ocid={`partner.type_card.${i + 1}`}
               >
-                <div className="flex items-start gap-5 mb-5">
+                <div className="flex items-start gap-4 sm:gap-5 mb-5">
                   <div
-                    className={`w-14 h-14 ${type.accent} rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}
+                    className={`w-12 h-12 sm:w-14 sm:h-14 ${type.accent} rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <type.icon size={26} className="text-white" />
+                    <type.icon size={24} className="text-white" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-black text-brand-text mb-1">
+                  <div className="min-w-0">
+                    <h3 className="text-lg sm:text-xl font-black text-brand-text mb-1">
                       {type.title}
                     </h3>
                     <p className="text-brand-muted text-sm leading-relaxed">
@@ -650,31 +650,31 @@ export default function PartnerPage() {
 
       {/* ── Benefits ── */}
       <section
-        className="section-padding"
+        className="py-12 sm:py-16 lg:py-20"
         style={{ backgroundColor: "oklch(0.318 0.042 213.5)" }}
         data-ocid="partner.benefits_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-14"
+            className="text-center mb-10 sm:mb-14"
           >
             <p className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-3">
               The Buildify Partnership Advantage
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4">
               Why Partner With Us?
             </h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+            <p className="text-white/60 text-sm sm:text-lg max-w-2xl mx-auto">
               We don't just give you work — we invest in your growth, your
               reputation, and your long-term success.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {benefits.map((benefit, i) => (
               <motion.div
                 key={benefit.title}
@@ -682,7 +682,7 @@ export default function PartnerPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.5 }}
-                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-teal/30 rounded-2xl p-7 transition-all group"
+                className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-teal/30 rounded-2xl p-6 sm:p-7 transition-all group"
                 data-ocid={`partner.benefit_card.${i + 1}`}
               >
                 <div className="w-12 h-12 bg-brand-teal/15 rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
@@ -702,24 +702,24 @@ export default function PartnerPage() {
 
       {/* ── Process ── */}
       <section
-        className="bg-brand-bg section-padding"
+        className="bg-brand-bg py-12 sm:py-16 lg:py-20"
         data-ocid="partner.process_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-14"
+            className="text-center mb-10 sm:mb-14"
           >
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               Getting Started
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
               How the Partnership Works
             </h2>
-            <p className="text-brand-muted text-lg max-w-xl mx-auto">
+            <p className="text-brand-muted text-sm sm:text-lg max-w-xl mx-auto">
               A simple, transparent five-step process from your first expression
               of interest to your first Buildify project assignment.
             </p>
@@ -767,7 +767,7 @@ export default function PartnerPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="flex gap-5"
+                className="flex gap-4 sm:gap-5"
                 data-ocid={`partner.process_step_mobile.${i + 1}`}
               >
                 <div className="flex flex-col items-center">
@@ -797,28 +797,28 @@ export default function PartnerPage() {
 
       {/* ── Testimonials ── */}
       <section
-        className="section-padding"
+        className="py-12 sm:py-16 lg:py-20"
         style={{ backgroundColor: "oklch(0.94 0.005 220)" }}
         data-ocid="partner.testimonials_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.55 }}
-            className="text-center mb-14"
+            className="text-center mb-10 sm:mb-14"
           >
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               Partner Voices
             </p>
-            <h2 className="text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
               What Our Partners Say
             </h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-2 rounded-full" />
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-7">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-7">
             {testimonials.map((t, i) => (
               <motion.div
                 key={t.name}
@@ -826,7 +826,7 @@ export default function PartnerPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.12, duration: 0.5 }}
-                className="bg-white rounded-2xl p-7 border border-border hover:shadow-lg transition-shadow"
+                className="bg-white rounded-2xl p-6 sm:p-7 border border-border hover:shadow-lg transition-shadow"
                 data-ocid={`partner.testimonial_card.${i + 1}`}
               >
                 <StarRating count={t.stars} />
@@ -854,18 +854,18 @@ export default function PartnerPage() {
 
       {/* ── Contact Channels ── */}
       <section
-        className="bg-brand-bg py-14 px-4"
+        className="bg-brand-bg py-12 sm:py-14"
         data-ocid="partner.contact_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-white rounded-3xl p-8 md:p-12 border border-border shadow-sm"
+            className="bg-white rounded-3xl p-6 sm:p-8 md:p-12 border border-border shadow-sm"
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 bg-brand-teal/10 rounded-xl flex items-center justify-center shrink-0">
                   <Mail size={20} className="text-brand-teal" />
@@ -876,7 +876,7 @@ export default function PartnerPage() {
                   </p>
                   <a
                     href="mailto:partners@buildify.in"
-                    className="text-brand-teal text-sm font-medium hover:underline"
+                    className="text-brand-teal text-sm font-medium hover:underline break-all"
                     data-ocid="partner.email_link"
                   >
                     partners@buildify.in
@@ -930,12 +930,12 @@ export default function PartnerPage() {
       {/* ── Application Form ── */}
       <section
         id="partner-form"
-        className="section-padding"
+        className="py-12 sm:py-16 lg:py-20"
         style={{ backgroundColor: "oklch(0.94 0.005 220)" }}
         data-ocid="partner.form_section"
       >
-        <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
             {/* Left: copy */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -947,10 +947,10 @@ export default function PartnerPage() {
               <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
                 Apply Now
               </p>
-              <h2 className="text-3xl md:text-4xl font-black text-brand-text mb-5 leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-5 leading-tight">
                 Express Your <span className="text-brand-teal">Interest</span>
               </h2>
-              <p className="text-brand-muted leading-relaxed mb-8">
+              <p className="text-brand-muted text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
                 Fill out the form and our partnerships team will review your
                 profile. Approved partners are onboarded within 5–7 working
                 days.
@@ -979,7 +979,7 @@ export default function PartnerPage() {
               </ul>
 
               {/* Certifications note */}
-              <div className="mt-8 p-5 bg-white rounded-2xl border border-border">
+              <div className="mt-6 sm:mt-8 p-4 sm:p-5 bg-white rounded-2xl border border-border">
                 <div className="flex items-center gap-3 mb-3">
                   <Shield size={18} className="text-brand-teal shrink-0" />
                   <p className="text-brand-text font-semibold text-sm">
@@ -1009,7 +1009,7 @@ export default function PartnerPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-3 bg-white rounded-3xl p-8 md:p-10 border border-border shadow-sm"
+              className="lg:col-span-3 bg-white rounded-3xl p-6 sm:p-8 md:p-10 border border-border shadow-sm"
             >
               <PartnerForm />
             </motion.div>
@@ -1019,10 +1019,10 @@ export default function PartnerPage() {
 
       {/* ── Bottom CTA ── */}
       <section
-        className="bg-brand-slate section-padding"
+        className="bg-brand-slate py-12 sm:py-16 lg:py-20"
         data-ocid="partner.cta_section"
       >
-        <div className="container-max">
+        <div className="container-max px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1033,24 +1033,24 @@ export default function PartnerPage() {
             <div className="w-14 h-14 bg-brand-teal/20 rounded-full flex items-center justify-center mx-auto mb-6">
               <Handshake className="text-brand-teal" size={28} />
             </div>
-            <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
               Let's Build the Future Together
             </h2>
-            <p className="text-white/60 text-lg mb-9">
+            <p className="text-white/60 text-sm sm:text-lg mb-8 sm:mb-9">
               500+ projects. 180+ active partners. Join a network that rewards
               excellence and invests in your long-term success.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
               <a
                 href="#partner-form"
-                className="inline-flex items-center justify-center gap-2 bg-brand-teal text-white text-sm font-bold uppercase tracking-wide px-9 py-4 rounded-full hover:opacity-90 active:scale-[0.98] transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-brand-teal text-white text-sm font-bold uppercase tracking-wide px-8 sm:px-9 py-4 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px] w-full sm:w-auto"
                 data-ocid="partner.cta_primary_button"
               >
                 Apply Now <ArrowRight size={16} />
               </a>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-9 py-4 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-8 sm:px-9 py-4 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
                 data-ocid="partner.cta_contact_button"
               >
                 Contact Our Team

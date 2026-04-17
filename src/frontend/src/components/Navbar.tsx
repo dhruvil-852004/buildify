@@ -26,6 +26,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close mobile menu on resize to desktop
+  useEffect(() => {
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setMobileOpen(false);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   const handleMobileQuote = () => {
     setMobileOpen(false);
     if (isSubPage) {
@@ -50,34 +59,34 @@ export default function Navbar() {
         scrolled ? "bg-white shadow-md" : "bg-white"
       }`}
     >
-      <div className="container-max px-4 md:px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div className="container-max px-4 sm:px-6">
+        <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2.5"
+            className="flex items-center gap-2 sm:gap-2.5 min-w-0 flex-shrink-0"
             data-ocid="nav.link"
           >
-            <div className="w-9 h-9 bg-brand-teal rounded flex items-center justify-center">
-              <span className="text-white font-black text-lg leading-none">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 bg-brand-teal rounded flex items-center justify-center flex-shrink-0">
+              <span className="text-white font-black text-base sm:text-lg leading-none">
                 B
               </span>
             </div>
-            <span className="text-brand-text font-black text-xl tracking-tight uppercase">
+            <span className="text-brand-text font-black text-lg sm:text-xl tracking-tight uppercase truncate">
               Buildify
             </span>
           </Link>
 
           {/* Desktop Nav */}
           <nav
-            className="hidden lg:flex items-center gap-7"
+            className="hidden lg:flex items-center gap-5 xl:gap-7"
             aria-label="Main navigation"
           >
             {hashLinks.map((link) => (
               <a
                 key={link.label}
                 href={isSubPage ? `/${link.href}` : link.href}
-                className="text-sm font-medium text-brand-muted hover:text-brand-teal transition-colors"
+                className="text-sm font-medium text-brand-muted hover:text-brand-teal transition-colors whitespace-nowrap"
                 data-ocid="nav.link"
               >
                 {link.label}
@@ -85,7 +94,7 @@ export default function Navbar() {
             ))}
             <Link
               to="/services"
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
                 isServices
                   ? "text-brand-teal font-semibold"
                   : "text-brand-muted hover:text-brand-teal"
@@ -96,7 +105,7 @@ export default function Navbar() {
             </Link>
             <Link
               to="/team"
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
                 isTeam
                   ? "text-brand-teal font-semibold"
                   : "text-brand-muted hover:text-brand-teal"
@@ -107,7 +116,7 @@ export default function Navbar() {
             </Link>
             <Link
               to="/about"
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
                 isAbout
                   ? "text-brand-teal font-semibold"
                   : "text-brand-muted hover:text-brand-teal"
@@ -118,7 +127,7 @@ export default function Navbar() {
             </Link>
             <Link
               to="/contact"
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
                 isContact
                   ? "text-brand-teal font-semibold"
                   : "text-brand-muted hover:text-brand-teal"
@@ -129,7 +138,7 @@ export default function Navbar() {
             </Link>
             <Link
               to="/partner"
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
                 isPartner
                   ? "text-brand-teal font-semibold"
                   : "text-brand-muted hover:text-brand-teal"
@@ -140,26 +149,27 @@ export default function Navbar() {
             </Link>
           </nav>
 
-          {/* CTA */}
-          <div className="hidden lg:flex items-center">
+          {/* Desktop CTA */}
+          <div className="hidden lg:flex items-center flex-shrink-0">
             <a
               href={isSubPage ? "/#contact" : "#contact"}
-              className="bg-brand-teal text-white text-sm font-semibold uppercase tracking-wide px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity"
+              className="bg-brand-teal text-white text-sm font-semibold uppercase tracking-wide px-5 xl:px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap"
               data-ocid="nav.primary_button"
             >
               Request A Quote
             </a>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* Mobile Toggle — min 44x44px touch target */}
           <button
             type="button"
-            className="lg:hidden p-2 text-brand-text"
+            className="lg:hidden flex items-center justify-center w-11 h-11 -mr-1.5 text-brand-text rounded-md hover:bg-brand-bg-light transition-colors"
             onClick={() => setMobileOpen((p) => !p)}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
             data-ocid="nav.toggle"
           >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
@@ -171,14 +181,15 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t border-border"
+            transition={{ duration: 0.22, ease: "easeInOut" }}
+            className="lg:hidden bg-white border-t border-border overflow-hidden"
           >
-            <div className="px-4 py-4 flex flex-col gap-3">
+            <div className="px-4 sm:px-6 py-3 flex flex-col">
               {hashLinks.map((link) => (
                 <a
                   key={link.label}
                   href={isSubPage ? `/${link.href}` : link.href}
-                  className="text-sm font-medium text-brand-muted hover:text-brand-teal py-2 transition-colors"
+                  className="flex items-center min-h-[44px] text-sm font-medium text-brand-muted hover:text-brand-teal py-2.5 border-b border-border/40 transition-colors"
                   onClick={() => handleHashClick(link.href)}
                   data-ocid="nav.link"
                 >
@@ -187,7 +198,7 @@ export default function Navbar() {
               ))}
               <Link
                 to="/services"
-                className={`text-sm font-medium py-2 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
                   isServices
                     ? "text-brand-teal font-semibold"
                     : "text-brand-muted hover:text-brand-teal"
@@ -199,7 +210,7 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/team"
-                className={`text-sm font-medium py-2 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
                   isTeam
                     ? "text-brand-teal font-semibold"
                     : "text-brand-muted hover:text-brand-teal"
@@ -211,7 +222,7 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/about"
-                className={`text-sm font-medium py-2 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
                   isAbout
                     ? "text-brand-teal font-semibold"
                     : "text-brand-muted hover:text-brand-teal"
@@ -223,7 +234,7 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/contact"
-                className={`text-sm font-medium py-2 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
                   isContact
                     ? "text-brand-teal font-semibold"
                     : "text-brand-muted hover:text-brand-teal"
@@ -235,7 +246,7 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/partner"
-                className={`text-sm font-medium py-2 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
                   isPartner
                     ? "text-brand-teal font-semibold"
                     : "text-brand-muted hover:text-brand-teal"
@@ -245,14 +256,16 @@ export default function Navbar() {
               >
                 Partner With Us
               </Link>
-              <button
-                type="button"
-                onClick={handleMobileQuote}
-                className="bg-brand-teal text-white text-sm font-semibold uppercase tracking-wide px-6 py-2.5 rounded-full text-center mt-2"
-                data-ocid="nav.primary_button"
-              >
-                Request A Quote
-              </button>
+              <div className="pt-3 pb-2">
+                <button
+                  type="button"
+                  onClick={handleMobileQuote}
+                  className="w-full bg-brand-teal text-white text-sm font-semibold uppercase tracking-wide px-6 py-3.5 rounded-full text-center hover:opacity-90 transition-opacity min-h-[44px]"
+                  data-ocid="nav.primary_button"
+                >
+                  Request A Quote
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
