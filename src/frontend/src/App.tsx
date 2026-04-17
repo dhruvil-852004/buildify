@@ -14,6 +14,7 @@ import Services from "./components/Services";
 import Team from "./components/Team";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import ServicesPage from "./pages/ServicesPage";
 
 // Main single page
 function HomePage() {
@@ -55,6 +56,17 @@ function ContactRoute() {
   );
 }
 
+// Services page wrapper with shared layout
+function ServicesRoute() {
+  return (
+    <div className="min-h-screen bg-brand-bg">
+      <Navbar />
+      <ServicesPage />
+      <Footer />
+    </div>
+  );
+}
+
 const rootRoute = createRootRoute();
 
 const homeRoute = createRoute({
@@ -75,7 +87,18 @@ const contactRoute = createRoute({
   component: ContactRoute,
 });
 
-const routeTree = rootRoute.addChildren([homeRoute, aboutRoute, contactRoute]);
+const servicesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/services",
+  component: ServicesRoute,
+});
+
+const routeTree = rootRoute.addChildren([
+  homeRoute,
+  aboutRoute,
+  contactRoute,
+  servicesRoute,
+]);
 
 const router = createRouter({ routeTree });
 

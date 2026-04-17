@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 const hashLinks = [
   { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
   { label: "Team", href: "#team" },
 ];
@@ -17,6 +16,7 @@ export default function Navbar() {
   const pathname = routerState.location.pathname;
   const isAbout = pathname === "/about";
   const isContact = pathname === "/contact";
+  const isServices = pathname === "/services";
   const isSubPage = pathname !== "/";
 
   useEffect(() => {
@@ -82,6 +82,17 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <Link
+              to="/services"
+              className={`text-sm font-medium transition-colors ${
+                isServices
+                  ? "text-brand-teal font-semibold"
+                  : "text-brand-muted hover:text-brand-teal"
+              }`}
+              data-ocid="nav.services_link"
+            >
+              Services
+            </Link>
             <Link
               to="/about"
               className={`text-sm font-medium transition-colors ${
@@ -151,6 +162,18 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
+              <Link
+                to="/services"
+                className={`text-sm font-medium py-2 transition-colors ${
+                  isServices
+                    ? "text-brand-teal font-semibold"
+                    : "text-brand-muted hover:text-brand-teal"
+                }`}
+                onClick={() => setMobileOpen(false)}
+                data-ocid="nav.services_link"
+              >
+                Services
+              </Link>
               <Link
                 to="/about"
                 className={`text-sm font-medium py-2 transition-colors ${
