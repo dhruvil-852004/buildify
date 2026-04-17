@@ -4,16 +4,17 @@ import {
   createRoute,
   createRouter,
 } from "@tanstack/react-router";
+import AboutSnippet from "./components/AboutSnippet";
 import FAB from "./components/FAB";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
-import Products from "./components/Products";
 import Projects from "./components/Projects";
 import Services from "./components/Services";
 import Team from "./components/Team";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import PartnerPage from "./pages/PartnerPage";
 import ServicesPage from "./pages/ServicesPage";
 
 // Main single page
@@ -24,7 +25,7 @@ function HomePage() {
       <main>
         <Hero />
         <Services />
-        <Products />
+        <AboutSnippet />
         <Projects />
         <Team />
       </main>
@@ -67,6 +68,17 @@ function ServicesRoute() {
   );
 }
 
+// Partner page wrapper with shared layout
+function PartnerRoute() {
+  return (
+    <div className="min-h-screen bg-brand-bg">
+      <Navbar />
+      <PartnerPage />
+      <Footer />
+    </div>
+  );
+}
+
 const rootRoute = createRootRoute();
 
 const homeRoute = createRoute({
@@ -93,11 +105,18 @@ const servicesRoute = createRoute({
   component: ServicesRoute,
 });
 
+const partnerRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/partner",
+  component: PartnerRoute,
+});
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   aboutRoute,
   contactRoute,
   servicesRoute,
+  partnerRoute,
 ]);
 
 const router = createRouter({ routeTree });
