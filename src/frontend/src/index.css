@@ -1,0 +1,125 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Buildify Brand Colors in OKLCH */
+    /* Primary teal: #2C7A7B */
+    --brand-teal: 0.536 0.098 196.3;
+    /* Dark slate: #2A3E44 */
+    --brand-slate: 0.318 0.042 213.5;
+    /* Page bg: #F3F5F6 */
+    --brand-bg: 0.965 0.005 220;
+    /* Primary text: #1F2A2E */
+    --brand-text: 0.239 0.023 213;
+    /* Secondary text: #6B7A80 */
+    --brand-muted: 0.553 0.024 213;
+    /* Brown/tan CTA: #9A7A52 */
+    --brand-tan: 0.596 0.072 62.5;
+    /* FAB orange: #F05A28 */
+    --brand-orange: 0.661 0.196 38.6;
+
+    /* System tokens */
+    --background: 0.965 0.005 220;
+    --foreground: 0.239 0.023 213;
+    --card: 1 0 0;
+    --card-foreground: 0.239 0.023 213;
+    --popover: 1 0 0;
+    --popover-foreground: 0.239 0.023 213;
+    --primary: 0.536 0.098 196.3;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.596 0.072 62.5;
+    --secondary-foreground: 1 0 0;
+    --muted: 0.94 0.005 220;
+    --muted-foreground: 0.553 0.024 213;
+    --accent: 0.965 0.008 220;
+    --accent-foreground: 0.239 0.023 213;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+    --border: 0.88 0.008 215;
+    --input: 0.88 0.008 215;
+    --ring: 0.536 0.098 196.3;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.205 0 0;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.97 0 0;
+    --sidebar-accent-foreground: 0.205 0 0;
+    --sidebar-border: 0.922 0 0;
+    --sidebar-ring: 0.708 0 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-brand-teal {
+    color: oklch(var(--brand-teal));
+  }
+  .bg-brand-teal {
+    background-color: oklch(var(--brand-teal));
+  }
+  .bg-brand-slate {
+    background-color: oklch(var(--brand-slate));
+  }
+  .text-brand-slate {
+    color: oklch(var(--brand-slate));
+  }
+  .bg-brand-orange {
+    background-color: oklch(var(--brand-orange));
+  }
+  .text-brand-orange {
+    color: oklch(var(--brand-orange));
+  }
+  .bg-brand-tan {
+    background-color: oklch(var(--brand-tan));
+  }
+  .text-brand-muted {
+    color: oklch(var(--brand-muted));
+  }
+  .text-brand-text {
+    color: oklch(var(--brand-text));
+  }
+  .border-brand-teal {
+    border-color: oklch(var(--brand-teal));
+  }
+
+  .section-padding {
+    @apply py-20 px-4;
+  }
+
+  .container-max {
+    @apply max-w-6xl mx-auto;
+  }
+}
+
+@keyframes fab-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 oklch(0.661 0.196 38.6 / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px oklch(0.661 0.196 38.6 / 0);
+  }
+}
+
+.fab-pulse {
+  animation: fab-pulse 2s ease-in-out infinite;
+}
