@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const hashLinks = [
   { label: "Home", href: "#home" },
   { label: "Projects", href: "#projects" },
-  { label: "Team", href: "#team" },
 ];
 
 export default function Navbar() {
@@ -18,6 +17,7 @@ export default function Navbar() {
   const isContact = pathname === "/contact";
   const isServices = pathname === "/services";
   const isPartner = pathname === "/partner";
+  const isTeam = pathname === "/team";
   const isSubPage = pathname !== "/";
 
   useEffect(() => {
@@ -93,6 +93,17 @@ export default function Navbar() {
               data-ocid="nav.services_link"
             >
               Services
+            </Link>
+            <Link
+              to="/team"
+              className={`text-sm font-medium transition-colors ${
+                isTeam
+                  ? "text-brand-teal font-semibold"
+                  : "text-brand-muted hover:text-brand-teal"
+              }`}
+              data-ocid="nav.team_link"
+            >
+              Team
             </Link>
             <Link
               to="/about"
@@ -185,6 +196,18 @@ export default function Navbar() {
                 data-ocid="nav.services_link"
               >
                 Services
+              </Link>
+              <Link
+                to="/team"
+                className={`text-sm font-medium py-2 transition-colors ${
+                  isTeam
+                    ? "text-brand-teal font-semibold"
+                    : "text-brand-muted hover:text-brand-teal"
+                }`}
+                onClick={() => setMobileOpen(false)}
+                data-ocid="nav.team_link"
+              >
+                Team
               </Link>
               <Link
                 to="/about"

@@ -38,6 +38,15 @@
     --brand-tan: 0.596 0.072 62.5;
     /* FAB orange: #F05A28 */
     --brand-orange: 0.661 0.196 38.6;
+    /* Regrading earthy palette */
+    /* Soil Brown: deep earth accent for headers & borders */
+    --earth-brown: 0.48 0.08 60;
+    /* Equipment Yellow: machinery & highlights */
+    --earth-yellow: 0.74 0.18 92;
+    /* Charcoal: industrial text */
+    --earth-charcoal: 0.28 0.02 210;
+    /* Sand Beige: section backgrounds */
+    --earth-sand: 0.88 0.06 80;
 
     /* System tokens */
     --background: 0.965 0.005 220;
@@ -123,6 +132,37 @@
   }
   .border-brand-teal {
     border-color: oklch(var(--brand-teal));
+  }
+
+  .bg-earth-brown {
+    background-color: oklch(var(--earth-brown));
+  }
+  .text-earth-brown {
+    color: oklch(var(--earth-brown));
+  }
+  .border-earth-brown {
+    border-color: oklch(var(--earth-brown));
+  }
+
+  .bg-earth-yellow {
+    background-color: oklch(var(--earth-yellow));
+  }
+  .text-earth-yellow {
+    color: oklch(var(--earth-yellow));
+  }
+
+  .bg-earth-charcoal {
+    background-color: oklch(var(--earth-charcoal));
+  }
+  .text-earth-charcoal {
+    color: oklch(var(--earth-charcoal));
+  }
+
+  .bg-earth-sand {
+    background-color: oklch(var(--earth-sand));
+  }
+  .text-earth-sand {
+    color: oklch(var(--earth-sand));
   }
 
   .section-padding {

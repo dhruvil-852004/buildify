@@ -497,7 +497,7 @@ export default function PartnerPage() {
         />
 
         <div className="container-max px-4 md:px-6 relative z-10 py-24 w-full">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl text-left">
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}

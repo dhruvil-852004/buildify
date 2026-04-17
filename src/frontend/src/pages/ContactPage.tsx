@@ -125,7 +125,7 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }}
-            className="max-w-3xl"
+            className="max-w-3xl text-left"
           >
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-4">
               Let's Connect

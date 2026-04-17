@@ -16,6 +16,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PartnerPage from "./pages/PartnerPage";
 import ServicesPage from "./pages/ServicesPage";
+import TeamPage from "./pages/TeamPage";
 
 // Main single page
 function HomePage() {
@@ -79,6 +80,17 @@ function PartnerRoute() {
   );
 }
 
+// Team page wrapper with shared layout
+function TeamRoute() {
+  return (
+    <div className="min-h-screen bg-brand-bg">
+      <Navbar />
+      <TeamPage />
+      <Footer />
+    </div>
+  );
+}
+
 const rootRoute = createRootRoute();
 
 const homeRoute = createRoute({
@@ -111,12 +123,19 @@ const partnerRoute = createRoute({
   component: PartnerRoute,
 });
 
+const teamRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/team",
+  component: TeamRoute,
+});
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   aboutRoute,
   contactRoute,
   servicesRoute,
   partnerRoute,
+  teamRoute,
 ]);
 
 const router = createRouter({ routeTree });
