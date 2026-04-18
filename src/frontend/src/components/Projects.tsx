@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -92,13 +93,13 @@ export default function Projects() {
         </div>
 
         <div className="text-center mt-10">
-          <a
-            href="#contact"
+          <Link
+            to="/portfolio"
             className="inline-block border border-brand-teal text-brand-teal text-sm font-semibold uppercase tracking-wide px-8 py-3 rounded-full hover:bg-brand-teal hover:text-white transition-colors"
             data-ocid="projects.primary_button"
           >
             View All Projects
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,11 +1,13 @@
 import { Link } from "@tanstack/react-router";
 import {
+  ArrowRight,
   Building2,
   CheckCircle2,
   Clock,
   ExternalLink,
   Mail,
   MapPin,
+  MessageSquare,
   Navigation,
   Phone,
   Send,
@@ -100,7 +102,7 @@ export default function ContactPage() {
     <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="contact.page">
       {/* Hero Banner */}
       <section
-        className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] flex items-center"
+        className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center"
         data-ocid="contact.hero_section"
       >
         <div
@@ -110,42 +112,91 @@ export default function ContactPage() {
               "url('/assets/generated/contact-hero.dim_1400x600.jpg')",
           }}
         />
-        <div className="absolute inset-0 bg-brand-slate opacity-80" />
+        <div className="absolute inset-0 bg-brand-slate opacity-85" />
+
+        {/* Teal grid overlay */}
         <div
           className="absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage:
               "linear-gradient(oklch(0.536 0.098 196.3) 1px, transparent 1px), linear-gradient(90deg, oklch(0.536 0.098 196.3) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
+            backgroundSize: "52px 52px",
           }}
         />
+        {/* Geometric accent — radial circle bottom-right */}
+        <div
+          className="absolute right-0 bottom-0 w-[600px] h-[600px] rounded-full opacity-10"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.536 0.098 196.3) 0%, transparent 70%)",
+          }}
+        />
+        {/* Geometric accent — rotated square top-right */}
+        <div
+          className="absolute -top-20 -right-20 w-80 h-80 rotate-45 opacity-[0.06]"
+          style={{ background: "oklch(0.661 0.196 38.6)" }}
+        />
 
-        <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65 }}
-            className="max-w-3xl text-left"
-          >
-            <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-4">
+        <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20 md:py-24 w-full">
+          <div className="max-w-3xl text-left">
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-5 flex items-center gap-2"
+            >
+              <MessageSquare size={14} />
               Let's Connect
-            </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-5 sm:mb-6">
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-white leading-tight mb-6"
+            >
               Let's Build <span className="text-brand-teal">Something</span>{" "}
-              Great
-            </h1>
-            <p className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl">
+              Great Together
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10"
+            >
               Whether you have a question, need a free quote, or are ready to
               kick off your next major project — our team is here and ready to
               make it happen.
-            </p>
-          </motion.div>
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+            >
+              <a
+                href="#contact-form"
+                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white text-sm font-bold uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px] w-full sm:w-auto"
+                data-ocid="contact.hero_cta_button"
+              >
+                Get In Touch <ArrowRight size={16} />
+              </a>
+              <a
+                href="tel:+912248002200"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white text-sm font-semibold uppercase tracking-wide px-8 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
+                data-ocid="contact.hero_call_button"
+              >
+                <Phone size={15} />
+                Call Us Now
+              </a>
+            </motion.div>
+          </div>
 
+          {/* Breadcrumb */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex items-center gap-2 mt-8 sm:mt-10 text-white/50 text-sm"
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="flex items-center gap-2 mt-10 sm:mt-14 text-white/50 text-sm"
           >
             <Link
               to="/"
@@ -197,6 +248,7 @@ export default function ContactPage() {
 
       {/* Form + Visual Grid */}
       <section
+        id="contact-form"
         className="py-12 sm:py-16 lg:py-20"
         style={{ backgroundColor: "oklch(0.94 0.005 220)" }}
         data-ocid="contact.form_section"

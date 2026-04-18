@@ -15,6 +15,7 @@ import Team from "./components/Team";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PartnerPage from "./pages/PartnerPage";
+import PortfolioPage from "./pages/PortfolioPage";
 import ServicesPage from "./pages/ServicesPage";
 import TeamPage from "./pages/TeamPage";
 
@@ -91,6 +92,17 @@ function TeamRoute() {
   );
 }
 
+// Portfolio page wrapper with shared layout
+function PortfolioRoute() {
+  return (
+    <div className="min-h-screen bg-brand-bg">
+      <Navbar />
+      <PortfolioPage />
+      <Footer />
+    </div>
+  );
+}
+
 const rootRoute = createRootRoute();
 
 const homeRoute = createRoute({
@@ -129,6 +141,12 @@ const teamRoute = createRoute({
   component: TeamRoute,
 });
 
+const portfolioRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/portfolio",
+  component: PortfolioRoute,
+});
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   aboutRoute,
@@ -136,6 +154,7 @@ const routeTree = rootRoute.addChildren([
   servicesRoute,
   partnerRoute,
   teamRoute,
+  portfolioRoute,
 ]);
 
 const router = createRouter({ routeTree });

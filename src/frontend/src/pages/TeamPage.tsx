@@ -244,7 +244,7 @@ export default function TeamPage() {
     <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="team.page">
       {/* ── Hero ── */}
       <section
-        className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[560px] flex items-center"
+        className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center"
         data-ocid="team.hero_section"
       >
         <div
@@ -254,43 +254,66 @@ export default function TeamPage() {
               "url('/assets/generated/team-hero.dim_1400x600.jpg')",
           }}
         />
-        <div className="absolute inset-0 bg-brand-slate opacity-80" />
-        {/* Grid overlay */}
+        <div className="absolute inset-0 bg-brand-slate opacity-85" />
+
+        {/* Teal grid overlay */}
         <div
-          className="absolute inset-0 opacity-[0.06]"
+          className="absolute inset-0 opacity-[0.07]"
           style={{
             backgroundImage:
               "linear-gradient(oklch(0.536 0.098 196.3) 1px, transparent 1px), linear-gradient(90deg, oklch(0.536 0.098 196.3) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
+            backgroundSize: "52px 52px",
           }}
         />
-        {/* Teal diagonal accent */}
+        {/* Geometric accent — radial circle bottom-right */}
         <div
-          className="absolute -right-32 top-0 w-96 h-full opacity-10"
+          className="absolute right-0 bottom-0 w-[600px] h-[600px] rounded-full opacity-10"
           style={{
             background:
-              "linear-gradient(135deg, transparent 40%, oklch(0.536 0.098 196.3) 100%)",
+              "radial-gradient(circle, oklch(0.536 0.098 196.3) 0%, transparent 70%)",
           }}
         />
+        {/* Geometric accent — rotated square top-right */}
+        <div
+          className="absolute -top-20 -right-20 w-80 h-80 rotate-45 opacity-[0.06]"
+          style={{ background: "oklch(0.661 0.196 38.6)" }}
+        />
 
-        <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65 }}
-            className="max-w-3xl text-left"
-          >
-            <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-4">
+        <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20 md:py-24 w-full">
+          <div className="max-w-3xl text-left">
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-5 flex items-center gap-2"
+            >
+              <Users size={14} />
               The People Behind Every Build
-            </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-5 sm:mb-6">
-              Meet Our <span className="text-brand-teal">Team</span>
-            </h1>
-            <p className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-7 sm:mb-8">
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-white leading-tight mb-6"
+            >
+              Meet Our Dedicated <span className="text-brand-teal">Team</span>{" "}
+              of Experts
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10"
+            >
               Dedicated professionals from engineering, architecture, and
               operations — united by a passion for building what matters.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+            >
               <button
                 type="button"
                 onClick={() => {
@@ -298,7 +321,7 @@ export default function TeamPage() {
                     .getElementById("team-grid")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="inline-flex items-center justify-center gap-2 bg-brand-teal text-white text-sm font-bold uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px] w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white text-sm font-bold uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px] w-full sm:w-auto"
                 data-ocid="team.hero_cta_button"
               >
                 Meet the Team <ArrowRight size={16} />
@@ -310,15 +333,15 @@ export default function TeamPage() {
               >
                 Join Our Team
               </Link>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
           {/* Breadcrumb */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex items-center gap-2 mt-10 sm:mt-12 text-white/50 text-sm"
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="flex items-center gap-2 mt-10 sm:mt-14 text-white/50 text-sm"
           >
             <Link
               to="/"

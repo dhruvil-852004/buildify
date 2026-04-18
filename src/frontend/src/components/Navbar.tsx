@@ -3,10 +3,7 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
-const hashLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Projects", href: "#projects" },
-];
+const hashLinks = [{ label: "Home", href: "#home" }];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -18,6 +15,7 @@ export default function Navbar() {
   const isServices = pathname === "/services";
   const isPartner = pathname === "/partner";
   const isTeam = pathname === "/team";
+  const isPortfolio = pathname === "/portfolio";
   const isSubPage = pathname !== "/";
 
   useEffect(() => {
@@ -102,6 +100,17 @@ export default function Navbar() {
               data-ocid="nav.services_link"
             >
               Services
+            </Link>
+            <Link
+              to="/portfolio"
+              className={`text-sm font-medium transition-colors whitespace-nowrap ${
+                isPortfolio
+                  ? "text-brand-teal font-semibold"
+                  : "text-brand-muted hover:text-brand-teal"
+              }`}
+              data-ocid="nav.project_link"
+            >
+              Project
             </Link>
             <Link
               to="/team"
@@ -207,6 +216,18 @@ export default function Navbar() {
                 data-ocid="nav.services_link"
               >
                 Services
+              </Link>
+              <Link
+                to="/portfolio"
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
+                  isPortfolio
+                    ? "text-brand-teal font-semibold"
+                    : "text-brand-muted hover:text-brand-teal"
+                }`}
+                onClick={() => setMobileOpen(false)}
+                data-ocid="nav.project_link"
+              >
+                Project
               </Link>
               <Link
                 to="/team"

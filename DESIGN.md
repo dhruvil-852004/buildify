@@ -66,6 +66,16 @@
 - Image treatment: Full-width hero image with 50% dark gradient overlay for text readability
 - No color-only indicators; text labels required
 
+## Portfolio Page
+| Section | Background | Details |
+|---------|-----------|---------|
+| Hero | `bg-brand-teal` | Left-aligned "Our Portfolio" heading, white text, 50vh height, left-aligned content |
+| Filter Tabs | `bg-white` | Category buttons (All, Site Prep, Grading, Drainage), active state uses `text-brand-teal border-b-2 border-brand-teal` |
+| Project Grid | `bg-muted` | 4-column desktop / 2-column tablet / 1-column mobile, gap-6 |
+| Project Card | `bg-white shadow-card` | Image 200px height, title, location badge `bg-earth-yellow text-earth-charcoal`, border-l-4 `border-earth-brown`, stats row shows scope/equipment |
+| Stats Bar | `bg-earth-brown` text-white | Total projects, years experience, sites transformed (sticky or bottom-of-hero placement) |
+| CTA Section | `bg-brand-slate` | "Start Your Project" button, white text, tan-colored button |
+
 ## Constraints
 - No gradients (solid OKLCH colors only)
 - No generic rounded corners (intentional radius: 0, 4px, 8px, 12px)
@@ -73,3 +83,5 @@
 - Motion: ease-out cubic-bezier, 200–300ms duration max
 - Accessibility: AA+ contrast on all text, min 18px body, 24px heading
 - Hero max-height: 60vh to prevent excessive scrolling on mobile
+- Portfolio cards: 4 cols desktop, 2 cols tablet (md:), 1 col mobile
+- Image aspect ratio: 16:9 for consistency

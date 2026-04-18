@@ -1,0 +1,21 @@
+{
+  "overview": "Buildify is a construction-themed website featuring bold, industry-relevant visuals with a dedicated Portfolio page showcasing completed projects in a fully responsive, creative gallery layout.",
+  "features": [
+    "Dedicated Portfolio page at /portfolio with full project gallery",
+    "View All Projects button on home page routes to Portfolio page",
+    "Responsive project grid: 4 columns desktop, 2 tablet, 1 mobile",
+    "Creative project cards with images, categories, titles, descriptions",
+    "Construction-themed design with teal, slate, and neutral color palette",
+    "Navigation includes Portfolio page",
+    "All pages fully responsive across all devices"
+  ],
+  "category": "business",
+  "tags": [
+    "construction",
+    "portfolio",
+    "responsive",
+    "react",
+    "tailwind"
+  ],
+  "last_updated": "2026-04-18T04:46:54.854Z"
+}

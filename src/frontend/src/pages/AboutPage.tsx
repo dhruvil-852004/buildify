@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   Award,
+  Building2,
   CheckCircle2,
   ChevronRight,
   Clock,
@@ -190,49 +191,81 @@ export default function AboutPage() {
     <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="about.page">
       {/* ── Hero ── */}
       <section
-        className="relative min-h-[400px] sm:min-h-[500px] md:min-h-[580px] flex items-center overflow-hidden"
+        className="relative min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden"
         data-ocid="about.hero_section"
       >
-        <div className="absolute inset-0">
-          <img
-            src="/assets/generated/about-hero-regrading.dim_1600x900.jpg"
-            alt="Regrading operations at Buildify construction site"
-            className="w-full h-full object-cover object-center"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to right, oklch(0.15 0.02 50 / 0.85) 0%, oklch(0.15 0.02 50 / 0.55) 60%, transparent 100%)",
-            }}
-          />
-        </div>
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('/assets/generated/about-hero-regrading.dim_1600x900.jpg')",
+          }}
+        />
+        <div className="absolute inset-0 bg-brand-slate opacity-85" />
 
-        <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20 md:py-28 text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-2xl text-left"
-          >
-            <span className="inline-flex items-center gap-2 bg-brand-teal/20 border border-brand-teal/40 text-brand-teal text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-5 sm:mb-6">
-              <MapPin size={12} />
-              Mumbai · Pune · Ahmedabad · Surat
-            </span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-5 sm:mb-6 text-left">
+        {/* Teal grid overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "linear-gradient(oklch(0.536 0.098 196.3) 1px, transparent 1px), linear-gradient(90deg, oklch(0.536 0.098 196.3) 1px, transparent 1px)",
+            backgroundSize: "52px 52px",
+          }}
+        />
+        {/* Geometric accent — radial circle bottom-right */}
+        <div
+          className="absolute right-0 bottom-0 w-[600px] h-[600px] rounded-full opacity-10"
+          style={{
+            background:
+              "radial-gradient(circle, oklch(0.536 0.098 196.3) 0%, transparent 70%)",
+          }}
+        />
+        {/* Geometric accent — rotated square top-right */}
+        <div
+          className="absolute -top-20 -right-20 w-80 h-80 rotate-45 opacity-[0.06]"
+          style={{ background: "oklch(0.661 0.196 38.6)" }}
+        />
+
+        <div className="container-max px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-20 md:py-24 w-full">
+          <div className="max-w-3xl text-left">
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-5 flex items-center gap-2"
+            >
+              <Building2 size={14} />
+              Who We Are
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-white leading-tight mb-6"
+            >
               Masters of <span className="text-brand-teal">Site Regrading</span>{" "}
               &amp; Ground Preparation
-            </h1>
-            <p className="text-white/80 text-base sm:text-lg md:text-xl leading-relaxed mb-7 sm:mb-8 text-left">
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10"
+            >
               For 20+ years, Buildify has shaped the ground beneath Western
               India's most ambitious developments — delivering precision-graded,
               compacted, and drainage-ready sites that every structure can be
               built on with confidence.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-left">
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+            >
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-brand-teal text-white font-bold text-sm uppercase tracking-wide px-7 py-3.5 rounded-full hover:opacity-90 transition-opacity min-h-[44px] w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white font-bold text-sm uppercase tracking-wide px-8 py-3.5 rounded-full hover:opacity-90 active:scale-[0.98] transition-all min-h-[44px] w-full sm:w-auto"
                 data-ocid="about.hero_cta_primary"
               >
                 Get a Site Assessment
@@ -240,13 +273,31 @@ export default function AboutPage() {
               </Link>
               <a
                 href="#regrading-services"
-                className="inline-flex items-center justify-center gap-2 border border-white/40 text-white font-semibold text-sm uppercase tracking-wide px-7 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
+                className="inline-flex items-center justify-center gap-2 border border-white/30 text-white font-semibold text-sm uppercase tracking-wide px-8 py-3.5 rounded-full hover:border-brand-teal hover:text-brand-teal transition-colors min-h-[44px] w-full sm:w-auto"
                 data-ocid="about.hero_cta_secondary"
               >
                 Our Services
                 <ChevronRight size={16} />
               </a>
-            </div>
+            </motion.div>
+          </div>
+
+          {/* Breadcrumb */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="flex items-center gap-2 mt-10 sm:mt-14 text-white/50 text-sm"
+          >
+            <Link
+              to="/"
+              className="hover:text-brand-teal transition-colors"
+              data-ocid="about.home_link"
+            >
+              Home
+            </Link>
+            <span>/</span>
+            <span className="text-brand-teal">About Us</span>
           </motion.div>
         </div>
       </section>
