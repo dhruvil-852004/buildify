@@ -27,7 +27,7 @@ const slides: Slide[] = [
     primaryCta: { label: "View Our Projects", href: "#projects" },
     secondaryCta: { label: "Request A Consultation", href: "#contact" },
     image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80",
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1920&q=80",
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ const slides: Slide[] = [
     primaryCta: { label: "Our Services", href: "#services" },
     secondaryCta: { label: "Get a Free Quote", href: "#contact" },
     image:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1920&q=80",
+      "https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?auto=format&fit=crop&w=1920&q=80",
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ const slides: Slide[] = [
     primaryCta: { label: "Partner With Us", href: "/partner" },
     secondaryCta: { label: "Meet the Team", href: "/team" },
     image:
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1920&q=80",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80",
   },
 ];
 

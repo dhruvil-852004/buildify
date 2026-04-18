@@ -41,8 +41,14 @@ export default function Projects() {
   return (
     <section id="projects" className="section-padding bg-brand-slate">
       <div className="container-max">
-        {/* Heading */}
-        <div className="text-center mb-14">
+        {/* Heading — slides in from left */}
+        <motion.div
+          className="text-center mb-14"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
           <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-2">
             Featured Projects
           </p>
@@ -50,17 +56,17 @@ export default function Projects() {
             Portfolio
           </h2>
           <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
-        </div>
+        </motion.div>
 
-        {/* Project Grid */}
+        {/* Project Grid — staggered entrance */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {projects.map((project, i) => (
             <motion.div
               key={project.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
               className="rounded-xl overflow-hidden bg-white/5 border border-white/10 group hover:border-brand-teal transition-colors"
               data-ocid={`projects.item.${i + 1}`}
             >
@@ -92,15 +98,28 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="text-center mt-10">
-          <Link
-            to="/portfolio"
-            className="inline-block border border-brand-teal text-brand-teal text-sm font-semibold uppercase tracking-wide px-8 py-3 rounded-full hover:bg-brand-teal hover:text-white transition-colors"
-            data-ocid="projects.primary_button"
+        <motion.div
+          className="text-center mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+        >
+          <motion.div
+            className="inline-block"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
-            View All Projects
-          </Link>
-        </div>
+            <Link
+              to="/portfolio"
+              className="inline-block border border-brand-teal text-brand-teal text-sm font-semibold uppercase tracking-wide px-8 py-3 rounded-full hover:bg-brand-teal hover:text-white transition-colors"
+              data-ocid="projects.primary_button"
+            >
+              View All Projects
+            </Link>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

@@ -38,8 +38,14 @@ export default function Services() {
   return (
     <section id="services" className="section-padding bg-white">
       <div className="container-max">
-        {/* Heading */}
-        <div className="text-center mb-14">
+        {/* Heading — slides in from left */}
+        <motion.div
+          className="text-center mb-14"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
           <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-2">
             Our Expertise
           </p>
@@ -47,17 +53,17 @@ export default function Services() {
             Services
           </h2>
           <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
-        </div>
+        </motion.div>
 
-        {/* Cards */}
+        {/* Cards — staggered entrance */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((svc, i) => (
             <motion.div
               key={svc.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
               className="bg-white border border-border rounded-xl p-6 shadow-card hover:shadow-card-hover transition-shadow group"
               data-ocid={`services.card.${i + 1}`}
             >
@@ -70,13 +76,16 @@ export default function Services() {
               <p className="text-brand-muted text-sm leading-relaxed mb-5">
                 {svc.description}
               </p>
-              <a
+              <motion.a
                 href="#contact"
-                className="inline-flex items-center gap-1.5 text-brand-teal text-sm font-semibold hover:gap-3 transition-all"
+                className="inline-flex items-center gap-1.5 text-brand-teal text-sm font-semibold"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 data-ocid={`services.link.${i + 1}`}
               >
                 Learn More <ArrowRight size={14} />
-              </a>
+              </motion.a>
             </motion.div>
           ))}
         </div>

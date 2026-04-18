@@ -99,7 +99,13 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="contact.page">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="pt-16 md:pt-20 overflow-x-hidden"
+      data-ocid="contact.page"
+    >
       {/* Hero Banner */}
       <section
         className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center"
@@ -142,7 +148,7 @@ export default function ContactPage() {
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
               className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-5 flex items-center gap-2"
             >
               <MessageSquare size={14} />
@@ -151,7 +157,7 @@ export default function ContactPage() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-white leading-tight mb-6"
             >
               Let's Build <span className="text-brand-teal">Something</span>{" "}
@@ -160,7 +166,7 @@ export default function ContactPage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
               className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10"
             >
               Whether you have a question, need a free quote, or are ready to
@@ -170,7 +176,7 @@ export default function ContactPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <a
@@ -195,7 +201,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
             className="flex items-center gap-2 mt-10 sm:mt-14 text-white/50 text-sm"
           >
             <Link
@@ -223,7 +229,7 @@ export default function ContactPage() {
                 key={card.label}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.12, duration: 0.5 }}
                 className="bg-white rounded-2xl p-6 sm:p-7 border border-border shadow-card hover:shadow-card-hover transition-shadow group"
                 data-ocid={`contact.info_card.${i + 1}`}
@@ -257,18 +263,24 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 items-start">
             {/* Form */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
               className="lg:col-span-3 bg-white rounded-2xl p-6 sm:p-8 md:p-10 border border-border shadow-card"
             >
               <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-2">
                 Send A Message
               </p>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-brand-text mb-6 sm:mb-8">
+              <motion.h2
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5 }}
+                className="text-xl sm:text-2xl md:text-3xl font-bold text-brand-text mb-6 sm:mb-8"
+              >
                 Tell Us About Your Project
-              </h2>
+              </motion.h2>
 
               {submitted ? (
                 <motion.div
@@ -442,7 +454,7 @@ export default function ContactPage() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.15 }}
               className="lg:col-span-2 flex flex-col gap-5 sm:gap-6"
             >
@@ -530,16 +542,22 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.55 }}
             className="text-center mb-8 sm:mb-10"
           >
             <p className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-2">
               Our Location
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-white"
+            >
               Find Our <span className="text-brand-orange">Office</span>
-            </h2>
+            </motion.h2>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8 items-stretch">
@@ -547,7 +565,7 @@ export default function ContactPage() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.65 }}
               className="lg:col-span-3 relative rounded-2xl overflow-hidden shadow-2xl border border-white/10"
               data-ocid="contact.map_panel"
@@ -588,7 +606,7 @@ export default function ContactPage() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.65, delay: 0.12 }}
               className="lg:col-span-2 flex flex-col gap-5 sm:gap-6"
             >
@@ -726,7 +744,7 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-2xl mx-auto"
           >
@@ -756,6 +774,6 @@ export default function ContactPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

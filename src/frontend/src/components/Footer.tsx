@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Linkedin as SiLinkedin } from "lucide-react";
+import { motion } from "motion/react";
 import { SiFacebook, SiInstagram, SiX } from "react-icons/si";
 
 const socialLinks = [
@@ -26,7 +27,14 @@ export default function Footer() {
   )}`;
 
   return (
-    <footer id="contact" className="bg-brand-slate text-white">
+    <motion.footer
+      id="contact"
+      className="bg-brand-slate text-white"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       <div className="container-max px-4 sm:px-6 py-12 sm:py-14 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10">
           {/* Brand */}
@@ -48,15 +56,18 @@ export default function Footer() {
             {/* Social icons — min 44x44px tap target */}
             <div className="flex gap-2 flex-wrap">
               {socialLinks.map((social) => (
-                <a
+                <motion.a
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
                   className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center text-white/60 hover:bg-brand-teal hover:text-white transition-colors"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.92 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   data-ocid="footer.link"
                 >
                   <social.icon size={15} />
-                </a>
+                </motion.a>
               ))}
             </div>
           </div>
@@ -135,13 +146,16 @@ export default function Footer() {
               </li>
             </ul>
             <div className="mt-5 sm:mt-6">
-              <a
+              <motion.a
                 href="#contact"
                 className="inline-flex items-center justify-center bg-brand-teal text-white text-xs font-semibold uppercase tracking-wide px-6 py-3 rounded-full hover:opacity-90 transition-opacity min-h-[44px]"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 data-ocid="footer.primary_button"
               >
                 Get A Quote
-              </a>
+              </motion.a>
             </div>
           </div>
         </div>
@@ -166,6 +180,6 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

@@ -17,23 +17,32 @@ export default function AboutSnippet() {
       style={{ background: "oklch(0.975 0.004 62)" }}
     >
       <div className="container-max">
+        {/* Section heading entrance from left */}
+        <motion.div
+          className="mb-10"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
+          <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-1">
+            WHO WE ARE
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-text leading-tight">
+            Building Excellence{" "}
+            <span className="text-brand-teal">Since 2005</span>
+          </h2>
+          <div className="w-12 h-1 bg-brand-teal rounded-full mt-4" />
+        </motion.div>
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
-              WHO WE ARE
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-text leading-tight mb-4">
-              Building Excellence
-              <br />
-              <span className="text-brand-teal">Since 2005</span>
-            </h2>
-            <div className="w-12 h-1 bg-brand-teal rounded-full mb-6" />
             <p className="text-brand-muted text-base leading-relaxed mb-3">
               Buildify is a trusted construction company with two decades of
               experience delivering high-quality residential and commercial
@@ -50,21 +59,28 @@ export default function AboutSnippet() {
               precision, and passion.
             </p>
 
-            <Link
-              to="/about"
-              data-ocid="about_snippet.learn_more_button"
-              className="inline-flex items-center gap-2 bg-brand-teal text-white font-semibold uppercase tracking-wide text-sm px-8 py-3 rounded-full hover:opacity-90 transition-opacity duration-200 shadow-md"
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="inline-block"
             >
-              Learn More About Us
-            </Link>
+              <Link
+                to="/about"
+                data-ocid="about_snippet.learn_more_button"
+                className="inline-flex items-center gap-2 bg-brand-teal text-white font-semibold uppercase tracking-wide text-sm px-8 py-3 rounded-full hover:opacity-90 transition-opacity duration-200 shadow-md"
+              >
+                Learn More About Us
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* Stats Grid */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
             className="grid grid-cols-2 gap-5"
             data-ocid="about_snippet.stats"
           >
@@ -73,8 +89,12 @@ export default function AboutSnippet() {
                 key={label}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + i * 0.1, duration: 0.5 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{
+                  delay: 0.2 + i * 0.1,
+                  duration: 0.5,
+                  ease: "easeOut",
+                }}
                 className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center text-center group"
                 data-ocid={`about_snippet.stat.${i + 1}`}
               >

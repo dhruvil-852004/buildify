@@ -186,7 +186,7 @@ function FeaturedProjectCard({ project }: { project: Project }) {
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.6 }}
       className="relative rounded-2xl overflow-hidden shadow-xl border-l-4 border-earth-brown group mb-8"
       data-ocid="portfolio.featured_card"
@@ -236,8 +236,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: (index % 4) * 0.1, duration: 0.5 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: (index % 4) * 0.08, duration: 0.5 }}
+      whileHover={{ scale: 1.02, y: -4 }}
       className="bg-card rounded-xl overflow-hidden shadow-md group border border-border hover:border-l-4 hover:border-l-earth-brown transition-all duration-300 cursor-pointer"
       data-ocid={`portfolio.item.${index + 1}`}
     >
@@ -307,7 +308,13 @@ export default function PortfolioPage() {
       : gridProjects;
 
   return (
-    <div className="pt-14 sm:pt-16 md:pt-20">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="pt-14 sm:pt-16 md:pt-20"
+      data-ocid="portfolio.page"
+    >
       {/* Hero Banner */}
       <section
         className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center"
@@ -352,7 +359,7 @@ export default function PortfolioPage() {
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
               className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-5 flex items-center gap-2"
             >
               <ImageIcon size={14} />
@@ -361,7 +368,7 @@ export default function PortfolioPage() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-white leading-tight mb-6"
             >
               Our Completed <span className="text-brand-teal">Portfolio</span>{" "}
@@ -370,7 +377,7 @@ export default function PortfolioPage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
               className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10"
             >
               Explore our completed projects across Maharashtra and Gujarat —
@@ -380,7 +387,7 @@ export default function PortfolioPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <Link
@@ -404,7 +411,7 @@ export default function PortfolioPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
             className="flex items-center gap-2 mt-10 sm:mt-14 text-white/50 text-sm"
           >
             <Link
@@ -429,8 +436,8 @@ export default function PortfolioPage() {
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="text-center"
                 data-ocid={`portfolio.stat.${i + 1}`}
               >
@@ -452,6 +459,35 @@ export default function PortfolioPage() {
         data-ocid="portfolio.projects_section"
       >
         <div className="container-max">
+          {/* Section heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8"
+          >
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-3"
+            >
+              Our Projects
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="text-brand-muted text-base max-w-xl mx-auto"
+            >
+              Browse our portfolio of precision site work across Maharashtra and
+              Gujarat.
+            </motion.p>
+          </motion.div>
+
           {/* Filter Tabs */}
           <div
             className="overflow-x-auto pb-1 mb-10 -mx-1 px-1"
@@ -521,7 +557,7 @@ export default function PortfolioPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
           >
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
@@ -544,6 +580,6 @@ export default function PortfolioPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

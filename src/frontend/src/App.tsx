@@ -3,7 +3,9 @@ import {
   createRootRoute,
   createRoute,
   createRouter,
+  useRouterState,
 } from "@tanstack/react-router";
+import { AnimatePresence, motion } from "motion/react";
 import AboutSnippet from "./components/AboutSnippet";
 import FAB from "./components/FAB";
 import Footer from "./components/Footer";
@@ -19,87 +21,122 @@ import PortfolioPage from "./pages/PortfolioPage";
 import ServicesPage from "./pages/ServicesPage";
 import TeamPage from "./pages/TeamPage";
 
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 },
+};
+
+const pageTransition = { duration: 0.4, ease: [0.4, 0, 0.2, 1] as const };
+
+function PageWrapper({ children }: { children: React.ReactNode }) {
+  const routerState = useRouterState();
+  const key = routerState.location.pathname;
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={key}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={pageTransition}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 // Main single page
 function HomePage() {
   return (
-    <div className="min-h-screen bg-brand-bg">
-      <Navbar />
-      <main>
-        <Hero />
-        <Services />
-        <AboutSnippet />
-        <Projects />
-        <Team />
-      </main>
-      <Footer />
-      <FAB />
-    </div>
+    <PageWrapper>
+      <div className="min-h-screen bg-brand-bg">
+        <Navbar />
+        <main>
+          <Hero />
+          <Services />
+          <AboutSnippet />
+          <Projects />
+          <Team />
+        </main>
+        <Footer />
+        <FAB />
+      </div>
+    </PageWrapper>
   );
 }
 
-// About page wrapper with shared layout
 function AboutRoute() {
   return (
-    <div className="min-h-screen bg-brand-bg">
-      <Navbar />
-      <AboutPage />
-      <Footer />
-    </div>
+    <PageWrapper>
+      <div className="min-h-screen bg-brand-bg">
+        <Navbar />
+        <AboutPage />
+        <Footer />
+      </div>
+    </PageWrapper>
   );
 }
 
-// Contact page wrapper with shared layout
 function ContactRoute() {
   return (
-    <div className="min-h-screen bg-brand-bg">
-      <Navbar />
-      <ContactPage />
-      <Footer />
-    </div>
+    <PageWrapper>
+      <div className="min-h-screen bg-brand-bg">
+        <Navbar />
+        <ContactPage />
+        <Footer />
+      </div>
+    </PageWrapper>
   );
 }
 
-// Services page wrapper with shared layout
 function ServicesRoute() {
   return (
-    <div className="min-h-screen bg-brand-bg">
-      <Navbar />
-      <ServicesPage />
-      <Footer />
-    </div>
+    <PageWrapper>
+      <div className="min-h-screen bg-brand-bg">
+        <Navbar />
+        <ServicesPage />
+        <Footer />
+      </div>
+    </PageWrapper>
   );
 }
 
-// Partner page wrapper with shared layout
 function PartnerRoute() {
   return (
-    <div className="min-h-screen bg-brand-bg">
-      <Navbar />
-      <PartnerPage />
-      <Footer />
-    </div>
+    <PageWrapper>
+      <div className="min-h-screen bg-brand-bg">
+        <Navbar />
+        <PartnerPage />
+        <Footer />
+      </div>
+    </PageWrapper>
   );
 }
 
-// Team page wrapper with shared layout
 function TeamRoute() {
   return (
-    <div className="min-h-screen bg-brand-bg">
-      <Navbar />
-      <TeamPage />
-      <Footer />
-    </div>
+    <PageWrapper>
+      <div className="min-h-screen bg-brand-bg">
+        <Navbar />
+        <TeamPage />
+        <Footer />
+      </div>
+    </PageWrapper>
   );
 }
 
-// Portfolio page wrapper with shared layout
 function PortfolioRoute() {
   return (
-    <div className="min-h-screen bg-brand-bg">
-      <Navbar />
-      <PortfolioPage />
-      <Footer />
-    </div>
+    <PageWrapper>
+      <div className="min-h-screen bg-brand-bg">
+        <Navbar />
+        <PortfolioPage />
+        <Footer />
+      </div>
+    </PageWrapper>
   );
 }
 

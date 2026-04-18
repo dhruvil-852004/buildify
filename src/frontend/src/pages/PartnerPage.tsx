@@ -460,7 +460,13 @@ function PartnerForm() {
 
 export default function PartnerPage() {
   return (
-    <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="partner.page">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="pt-16 md:pt-20 overflow-x-hidden"
+      data-ocid="partner.page"
+    >
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center"
@@ -501,7 +507,7 @@ export default function PartnerPage() {
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
               className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-5 flex items-center gap-2"
             >
               <Handshake size={14} />
@@ -510,7 +516,7 @@ export default function PartnerPage() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-white leading-tight mb-6"
             >
               Build a Stronger <span className="text-brand-teal">Business</span>{" "}
@@ -519,7 +525,7 @@ export default function PartnerPage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
               className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10"
             >
               Join Buildify's trusted network of contractors, suppliers,
@@ -529,7 +535,7 @@ export default function PartnerPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <a
@@ -553,7 +559,7 @@ export default function PartnerPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
             className="flex items-center gap-2 mt-10 sm:mt-14 text-white/50 text-sm"
           >
             <Link
@@ -586,25 +592,31 @@ export default function PartnerPage() {
         data-ocid="partner.types_section"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-10 sm:mb-14"
-          >
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               Partnership Categories
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4"
+            >
               Who We Partner With
-            </h2>
-            <p className="text-brand-muted text-sm sm:text-lg max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="text-brand-muted text-sm sm:text-lg max-w-2xl mx-auto"
+            >
               Whether you execute on-site, supply materials, design spaces, or
               fund developments — there's a place for you in the Buildify
               ecosystem.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7">
             {partnerTypes.map((type, i) => (
@@ -612,7 +624,7 @@ export default function PartnerPage() {
                 key={type.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.55 }}
                 className={`bg-white rounded-2xl p-6 sm:p-8 border ${type.borderColor} shadow-sm hover:shadow-lg transition-all group`}
                 data-ocid={`partner.type_card.${i + 1}`}
@@ -655,24 +667,30 @@ export default function PartnerPage() {
         data-ocid="partner.benefits_section"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-10 sm:mb-14"
-          >
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-3">
               The Buildify Partnership Advantage
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4"
+            >
               Why Partner With Us?
-            </h2>
-            <p className="text-white/60 text-sm sm:text-lg max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="text-white/60 text-sm sm:text-lg max-w-2xl mx-auto"
+            >
               We don't just give you work — we invest in your growth, your
               reputation, and your long-term success.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {benefits.map((benefit, i) => (
@@ -680,7 +698,7 @@ export default function PartnerPage() {
                 key={benefit.title}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.08, duration: 0.5 }}
                 className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-teal/30 rounded-2xl p-6 sm:p-7 transition-all group"
                 data-ocid={`partner.benefit_card.${i + 1}`}
@@ -706,24 +724,30 @@ export default function PartnerPage() {
         data-ocid="partner.process_section"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-10 sm:mb-14"
-          >
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               Getting Started
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4"
+            >
               How the Partnership Works
-            </h2>
-            <p className="text-brand-muted text-sm sm:text-lg max-w-xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="text-brand-muted text-sm sm:text-lg max-w-xl mx-auto"
+            >
               A simple, transparent five-step process from your first expression
               of interest to your first Buildify project assignment.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           {/* Desktop */}
           <div className="hidden md:block">
@@ -735,7 +759,7 @@ export default function PartnerPage() {
                     key={step.step}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-50px" }}
                     transition={{ delay: i * 0.12, duration: 0.5 }}
                     className="flex flex-col items-center text-center"
                     data-ocid={`partner.process_step.${i + 1}`}
@@ -763,10 +787,10 @@ export default function PartnerPage() {
             {process.map((step, i) => (
               <motion.div
                 key={step.step}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.12, duration: 0.5 }}
                 className="flex gap-4 sm:gap-5"
                 data-ocid={`partner.process_step_mobile.${i + 1}`}
               >
@@ -802,30 +826,30 @@ export default function PartnerPage() {
         data-ocid="partner.testimonials_section"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-10 sm:mb-14"
-          >
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               Partner Voices
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4"
+            >
               What Our Partners Say
-            </h2>
+            </motion.h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-2 rounded-full" />
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-7">
             {testimonials.map((t, i) => (
               <motion.div
                 key={t.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.12, duration: 0.5 }}
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="bg-white rounded-2xl p-6 sm:p-7 border border-border hover:shadow-lg transition-shadow"
                 data-ocid={`partner.testimonial_card.${i + 1}`}
               >
@@ -861,7 +885,7 @@ export default function PartnerPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5 }}
             className="bg-white rounded-3xl p-6 sm:p-8 md:p-12 border border-border shadow-sm"
           >
@@ -940,7 +964,7 @@ export default function PartnerPage() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
               className="lg:col-span-2"
             >
@@ -1005,10 +1029,10 @@ export default function PartnerPage() {
 
             {/* Right: form */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
               className="lg:col-span-3 bg-white rounded-3xl p-6 sm:p-8 md:p-10 border border-border shadow-sm"
             >
               <PartnerForm />
@@ -1026,7 +1050,7 @@ export default function PartnerPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-2xl mx-auto"
           >
@@ -1059,6 +1083,6 @@ export default function PartnerPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

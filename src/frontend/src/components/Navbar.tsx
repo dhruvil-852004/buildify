@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 const hashLinks = [{ label: "Home", href: "#home" }];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const routerState = useRouterState();
   const pathname = routerState.location.pathname;
@@ -18,13 +17,6 @@ export default function Navbar() {
   const isPortfolio = pathname === "/portfolio";
   const isSubPage = pathname !== "/";
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Close mobile menu on resize to desktop
   useEffect(() => {
     const onResize = () => {
       if (window.innerWidth >= 1024) setMobileOpen(false);
@@ -52,12 +44,8 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md" : "bg-white"
-      }`}
-    >
-      <div className="container-max px-4 sm:px-6">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+      <div className="relative container-max px-4 sm:px-6">
         <div className="flex items-center justify-between h-14 sm:h-16 md:h-20">
           {/* Logo */}
           <Link
@@ -80,22 +68,29 @@ export default function Navbar() {
             className="hidden lg:flex items-center gap-5 xl:gap-7"
             aria-label="Main navigation"
           >
-            {hashLinks.map((link) => (
-              <a
-                key={link.label}
-                href={isSubPage ? `/${link.href}` : link.href}
-                className="text-sm font-medium text-brand-muted hover:text-brand-teal transition-colors whitespace-nowrap"
-                data-ocid="nav.link"
-              >
-                {link.label}
-              </a>
-            ))}
+            {hashLinks.map((link) => {
+              const isHomeActive = link.label === "Home" && pathname === "/";
+              return (
+                <a
+                  key={link.label}
+                  href={isSubPage ? `/${link.href}` : link.href}
+                  className={`text-sm font-medium transition-all whitespace-nowrap pb-0.5 border-b-2 ${
+                    isHomeActive
+                      ? "text-brand-teal font-semibold border-brand-teal"
+                      : "text-brand-muted border-transparent hover:text-brand-teal hover:border-brand-teal"
+                  }`}
+                  data-ocid="nav.link"
+                >
+                  {link.label}
+                </a>
+              );
+            })}
             <Link
               to="/services"
-              className={`text-sm font-medium transition-colors whitespace-nowrap ${
+              className={`text-sm font-medium transition-all whitespace-nowrap pb-0.5 border-b-2 ${
                 isServices
-                  ? "text-brand-teal font-semibold"
-                  : "text-brand-muted hover:text-brand-teal"
+                  ? "text-brand-teal font-semibold border-brand-teal"
+                  : "text-brand-muted border-transparent hover:text-brand-teal hover:border-brand-teal"
               }`}
               data-ocid="nav.services_link"
             >
@@ -103,10 +98,10 @@ export default function Navbar() {
             </Link>
             <Link
               to="/portfolio"
-              className={`text-sm font-medium transition-colors whitespace-nowrap ${
+              className={`text-sm font-medium transition-all whitespace-nowrap pb-0.5 border-b-2 ${
                 isPortfolio
-                  ? "text-brand-teal font-semibold"
-                  : "text-brand-muted hover:text-brand-teal"
+                  ? "text-brand-teal font-semibold border-brand-teal"
+                  : "text-brand-muted border-transparent hover:text-brand-teal hover:border-brand-teal"
               }`}
               data-ocid="nav.project_link"
             >
@@ -114,10 +109,10 @@ export default function Navbar() {
             </Link>
             <Link
               to="/team"
-              className={`text-sm font-medium transition-colors whitespace-nowrap ${
+              className={`text-sm font-medium transition-all whitespace-nowrap pb-0.5 border-b-2 ${
                 isTeam
-                  ? "text-brand-teal font-semibold"
-                  : "text-brand-muted hover:text-brand-teal"
+                  ? "text-brand-teal font-semibold border-brand-teal"
+                  : "text-brand-muted border-transparent hover:text-brand-teal hover:border-brand-teal"
               }`}
               data-ocid="nav.team_link"
             >
@@ -125,10 +120,10 @@ export default function Navbar() {
             </Link>
             <Link
               to="/about"
-              className={`text-sm font-medium transition-colors whitespace-nowrap ${
+              className={`text-sm font-medium transition-all whitespace-nowrap pb-0.5 border-b-2 ${
                 isAbout
-                  ? "text-brand-teal font-semibold"
-                  : "text-brand-muted hover:text-brand-teal"
+                  ? "text-brand-teal font-semibold border-brand-teal"
+                  : "text-brand-muted border-transparent hover:text-brand-teal hover:border-brand-teal"
               }`}
               data-ocid="nav.about_link"
             >
@@ -136,10 +131,10 @@ export default function Navbar() {
             </Link>
             <Link
               to="/contact"
-              className={`text-sm font-medium transition-colors whitespace-nowrap ${
+              className={`text-sm font-medium transition-all whitespace-nowrap pb-0.5 border-b-2 ${
                 isContact
-                  ? "text-brand-teal font-semibold"
-                  : "text-brand-muted hover:text-brand-teal"
+                  ? "text-brand-teal font-semibold border-brand-teal"
+                  : "text-brand-muted border-transparent hover:text-brand-teal hover:border-brand-teal"
               }`}
               data-ocid="nav.contact_link"
             >
@@ -147,10 +142,10 @@ export default function Navbar() {
             </Link>
             <Link
               to="/partner"
-              className={`text-sm font-medium transition-colors whitespace-nowrap ${
+              className={`text-sm font-medium transition-all whitespace-nowrap pb-0.5 border-b-2 ${
                 isPartner
-                  ? "text-brand-teal font-semibold"
-                  : "text-brand-muted hover:text-brand-teal"
+                  ? "text-brand-teal font-semibold border-brand-teal"
+                  : "text-brand-muted border-transparent hover:text-brand-teal hover:border-brand-teal"
               }`}
               data-ocid="nav.partner_link"
             >
@@ -160,16 +155,19 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center flex-shrink-0">
-            <a
+            <motion.a
               href={isSubPage ? "/#contact" : "#contact"}
               className="bg-brand-teal text-white text-sm font-semibold uppercase tracking-wide px-5 xl:px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               data-ocid="nav.primary_button"
             >
               Request A Quote
-            </a>
+            </motion.a>
           </div>
 
-          {/* Mobile Toggle — min 44x44px touch target */}
+          {/* Mobile Toggle */}
           <button
             type="button"
             className="lg:hidden flex items-center justify-center w-11 h-11 -mr-1.5 text-brand-text rounded-md hover:bg-brand-bg-light transition-colors"
@@ -187,30 +185,37 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.22, ease: "easeInOut" }}
-            className="lg:hidden bg-white border-t border-border overflow-hidden"
+            className="relative lg:hidden bg-white border-t border-border shadow-lg overflow-hidden"
           >
             <div className="px-4 sm:px-6 py-3 flex flex-col">
-              {hashLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={isSubPage ? `/${link.href}` : link.href}
-                  className="flex items-center min-h-[44px] text-sm font-medium text-brand-muted hover:text-brand-teal py-2.5 border-b border-border/40 transition-colors"
-                  onClick={() => handleHashClick(link.href)}
-                  data-ocid="nav.link"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {hashLinks.map((link) => {
+                const isHomeActive = link.label === "Home" && pathname === "/";
+                return (
+                  <a
+                    key={link.label}
+                    href={isSubPage ? `/${link.href}` : link.href}
+                    className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-all border-l-4 ${
+                      isHomeActive
+                        ? "text-brand-teal font-semibold border-l-brand-teal pl-2"
+                        : "text-brand-muted border-l-transparent pl-2 hover:text-brand-teal hover:border-l-brand-teal"
+                    }`}
+                    onClick={() => handleHashClick(link.href)}
+                    data-ocid="nav.link"
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
               <Link
                 to="/services"
-                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-all border-l-4 ${
                   isServices
-                    ? "text-brand-teal font-semibold"
-                    : "text-brand-muted hover:text-brand-teal"
+                    ? "text-brand-teal font-semibold border-l-brand-teal pl-2"
+                    : "text-brand-muted border-l-transparent pl-2 hover:text-brand-teal hover:border-l-brand-teal"
                 }`}
                 onClick={() => setMobileOpen(false)}
                 data-ocid="nav.services_link"
@@ -219,10 +224,10 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/portfolio"
-                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-all border-l-4 ${
                   isPortfolio
-                    ? "text-brand-teal font-semibold"
-                    : "text-brand-muted hover:text-brand-teal"
+                    ? "text-brand-teal font-semibold border-l-brand-teal pl-2"
+                    : "text-brand-muted border-l-transparent pl-2 hover:text-brand-teal hover:border-l-brand-teal"
                 }`}
                 onClick={() => setMobileOpen(false)}
                 data-ocid="nav.project_link"
@@ -231,10 +236,10 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/team"
-                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-all border-l-4 ${
                   isTeam
-                    ? "text-brand-teal font-semibold"
-                    : "text-brand-muted hover:text-brand-teal"
+                    ? "text-brand-teal font-semibold border-l-brand-teal pl-2"
+                    : "text-brand-muted border-l-transparent pl-2 hover:text-brand-teal hover:border-l-brand-teal"
                 }`}
                 onClick={() => setMobileOpen(false)}
                 data-ocid="nav.team_link"
@@ -243,10 +248,10 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/about"
-                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-all border-l-4 ${
                   isAbout
-                    ? "text-brand-teal font-semibold"
-                    : "text-brand-muted hover:text-brand-teal"
+                    ? "text-brand-teal font-semibold border-l-brand-teal pl-2"
+                    : "text-brand-muted border-l-transparent pl-2 hover:text-brand-teal hover:border-l-brand-teal"
                 }`}
                 onClick={() => setMobileOpen(false)}
                 data-ocid="nav.about_link"
@@ -255,10 +260,10 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/contact"
-                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-all border-l-4 ${
                   isContact
-                    ? "text-brand-teal font-semibold"
-                    : "text-brand-muted hover:text-brand-teal"
+                    ? "text-brand-teal font-semibold border-l-brand-teal pl-2"
+                    : "text-brand-muted border-l-transparent pl-2 hover:text-brand-teal hover:border-l-brand-teal"
                 }`}
                 onClick={() => setMobileOpen(false)}
                 data-ocid="nav.contact_link"
@@ -267,10 +272,10 @@ export default function Navbar() {
               </Link>
               <Link
                 to="/partner"
-                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-colors ${
+                className={`flex items-center min-h-[44px] text-sm font-medium py-2.5 border-b border-border/40 transition-all border-l-4 ${
                   isPartner
-                    ? "text-brand-teal font-semibold"
-                    : "text-brand-muted hover:text-brand-teal"
+                    ? "text-brand-teal font-semibold border-l-brand-teal pl-2"
+                    : "text-brand-muted border-l-transparent pl-2 hover:text-brand-teal hover:border-l-brand-teal"
                 }`}
                 onClick={() => setMobileOpen(false)}
                 data-ocid="nav.partner_link"
@@ -278,14 +283,17 @@ export default function Navbar() {
                 Partner With Us
               </Link>
               <div className="pt-3 pb-2">
-                <button
+                <motion.button
                   type="button"
                   onClick={handleMobileQuote}
                   className="w-full bg-brand-teal text-white text-sm font-semibold uppercase tracking-wide px-6 py-3.5 rounded-full text-center hover:opacity-90 transition-opacity min-h-[44px]"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   data-ocid="nav.primary_button"
                 >
                   Request A Quote
-                </button>
+                </motion.button>
               </div>
             </div>
           </motion.div>

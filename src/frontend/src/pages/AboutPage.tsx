@@ -8,7 +8,6 @@ import {
   Clock,
   Layers,
   Linkedin,
-  MapPin,
   Mountain,
   Shield,
   Truck,
@@ -188,7 +187,13 @@ const galleryImages = [
 
 export default function AboutPage() {
   return (
-    <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="about.page">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="pt-16 md:pt-20 overflow-x-hidden"
+      data-ocid="about.page"
+    >
       {/* ── Hero ── */}
       <section
         className="relative min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center overflow-hidden"
@@ -231,7 +236,7 @@ export default function AboutPage() {
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
               className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-5 flex items-center gap-2"
             >
               <Building2 size={14} />
@@ -240,7 +245,7 @@ export default function AboutPage() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-white leading-tight mb-6"
             >
               Masters of <span className="text-brand-teal">Site Regrading</span>{" "}
@@ -249,7 +254,7 @@ export default function AboutPage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
               className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10"
             >
               For 20+ years, Buildify has shaped the ground beneath Western
@@ -260,7 +265,7 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <Link
@@ -286,7 +291,7 @@ export default function AboutPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
             className="flex items-center gap-2 mt-10 sm:mt-14 text-white/50 text-sm"
           >
             <Link
@@ -311,7 +316,7 @@ export default function AboutPage() {
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 data-ocid={`about.stat.${i + 1}`}
               >
@@ -337,72 +342,86 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
               className="order-2 lg:order-1"
             >
               <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-3">
                 The Foundation of Every Build
               </p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text mb-5">
+              <motion.h2
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5 }}
+                className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text mb-5"
+              >
                 What is Site Regrading?
-              </h2>
-              <div className="w-10 h-1 bg-brand-teal rounded-full mb-6 sm:mb-7" />
-              <div className="space-y-4 text-brand-muted leading-relaxed text-sm sm:text-base">
-                <p>
-                  <strong className="text-brand-text">Site regrading</strong> is
-                  the controlled reshaping of land to a designed elevation and
-                  slope — the very first (and most critical) step before any
-                  foundation, road, or utility can be placed. Get it wrong and
-                  water migrates toward structures, bearing capacity fails, and
-                  every trade behind us pays the price.
-                </p>
-                <p>
-                  The process involves four stages: topographic{" "}
-                  <strong className="text-brand-text">survey</strong>, mass{" "}
-                  <strong className="text-brand-text">cut and fill</strong>{" "}
-                  earthwork to reach the design grade, layer-by-layer{" "}
-                  <strong className="text-brand-text">soil compaction</strong>{" "}
-                  to achieve structural density, and{" "}
-                  <strong className="text-brand-text">
-                    drainage correction
-                  </strong>{" "}
-                  to direct stormwater safely off-site.
-                </p>
-                <p>
-                  Buildify combines GPS machine control, real-time density
-                  testing, and 20 years of field experience to deliver finished
-                  grades that are certified, documented, and ready for the
-                  structural engineer's sign-off.
-                </p>
-              </div>
-              <div className="mt-7 sm:mt-8 grid grid-cols-2 gap-3 sm:gap-4">
-                {[
-                  "GPS Machine Control",
-                  "Proctor Density Testing",
-                  "SWPPP Compliance",
-                  "Certified Surveyors",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-2 text-xs sm:text-sm text-brand-text font-medium"
-                  >
-                    <CheckCircle2
-                      size={14}
-                      className="text-brand-teal shrink-0"
-                    />
-                    {item}
-                  </div>
-                ))}
-              </div>
+              </motion.h2>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: 0.15, duration: 0.5 }}
+              >
+                <div className="w-10 h-1 bg-brand-teal rounded-full mb-6 sm:mb-7" />
+                <div className="space-y-4 text-brand-muted leading-relaxed text-sm sm:text-base">
+                  <p>
+                    <strong className="text-brand-text">Site regrading</strong>{" "}
+                    is the controlled reshaping of land to a designed elevation
+                    and slope — the very first (and most critical) step before
+                    any foundation, road, or utility can be placed. Get it wrong
+                    and water migrates toward structures, bearing capacity
+                    fails, and every trade behind us pays the price.
+                  </p>
+                  <p>
+                    The process involves four stages: topographic{" "}
+                    <strong className="text-brand-text">survey</strong>, mass{" "}
+                    <strong className="text-brand-text">cut and fill</strong>{" "}
+                    earthwork to reach the design grade, layer-by-layer{" "}
+                    <strong className="text-brand-text">soil compaction</strong>{" "}
+                    to achieve structural density, and{" "}
+                    <strong className="text-brand-text">
+                      drainage correction
+                    </strong>{" "}
+                    to direct stormwater safely off-site.
+                  </p>
+                  <p>
+                    Buildify combines GPS machine control, real-time density
+                    testing, and 20 years of field experience to deliver
+                    finished grades that are certified, documented, and ready
+                    for the structural engineer's sign-off.
+                  </p>
+                </div>
+                <div className="mt-7 sm:mt-8 grid grid-cols-2 gap-3 sm:gap-4">
+                  {[
+                    "GPS Machine Control",
+                    "Proctor Density Testing",
+                    "SWPPP Compliance",
+                    "Certified Surveyors",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-2 text-xs sm:text-sm text-brand-text font-medium"
+                    >
+                      <CheckCircle2
+                        size={14}
+                        className="text-brand-teal shrink-0"
+                      />
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
               className="order-1 lg:order-2"
+              whileHover={{ scale: 1.03 }}
             >
               <div className="relative rounded-2xl overflow-hidden shadow-xl">
                 <img
@@ -435,10 +454,22 @@ export default function AboutPage() {
             <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-2">
               What We Do
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text"
+            >
               Our Regrading Services
-            </h2>
-            <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
+            </motion.h2>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full"
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
@@ -447,8 +478,8 @@ export default function AboutPage() {
                 key={svc.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="bg-card rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-all hover:-translate-y-1 group"
                 data-ocid={`about.service_card.${i + 1}`}
               >
@@ -489,9 +520,15 @@ export default function AboutPage() {
             <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-2">
               How We Work
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text"
+            >
               The Regrading Process
-            </h2>
+            </motion.h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
           </div>
 
@@ -500,10 +537,10 @@ export default function AboutPage() {
               {process.map((step, i) => (
                 <motion.div
                   key={step.step}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: i * 0.12, duration: 0.5 }}
                   className="flex gap-4 sm:gap-5 group"
                   data-ocid={`about.process_step.${i + 1}`}
                 >
@@ -532,8 +569,9 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.7 }}
+              whileHover={{ scale: 1.03 }}
               className="relative rounded-2xl overflow-hidden shadow-2xl"
             >
               <img
@@ -579,9 +617,15 @@ export default function AboutPage() {
             <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-2">
               What We Stand For
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-white"
+            >
               Why Choose Buildify
-            </h2>
+            </motion.h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
           </div>
 
@@ -591,7 +635,7 @@ export default function AboutPage() {
                 key={value.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="border border-white/10 rounded-2xl p-6 sm:p-7 hover:border-brand-teal/50 hover:bg-white/5 transition-all group"
                 data-ocid={`about.value_card.${i + 1}`}
@@ -624,9 +668,15 @@ export default function AboutPage() {
             <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-2">
               Our Work in the Field
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text"
+            >
               Project Gallery
-            </h2>
+            </motion.h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
           </div>
 
@@ -636,8 +686,9 @@ export default function AboutPage() {
                 key={img.caption}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.07, duration: 0.5 }}
+                whileHover={{ scale: 1.03 }}
                 className="group relative rounded-xl overflow-hidden shadow-md aspect-[4/3]"
                 data-ocid={`about.gallery_item.${i + 1}`}
               >
@@ -667,9 +718,15 @@ export default function AboutPage() {
             <p className="text-brand-teal text-xs font-bold uppercase tracking-widest mb-2">
               The Specialists Behind Every Site
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-brand-text"
+            >
               Our Leadership Team
-            </h2>
+            </motion.h2>
             <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
           </div>
 
@@ -677,10 +734,11 @@ export default function AboutPage() {
             {leaders.map((leader, i) => (
               <motion.div
                 key={leader.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.12, duration: 0.5 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+                whileHover={{ scale: 1.03 }}
                 className="bg-card rounded-2xl overflow-hidden border border-border hover:shadow-lg transition-shadow"
                 data-ocid={`about.leader_card.${i + 1}`}
               >
@@ -751,7 +809,7 @@ export default function AboutPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6 }}
               className="max-w-3xl"
             >
@@ -783,7 +841,7 @@ export default function AboutPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-2xl mx-auto"
           >
@@ -817,6 +875,6 @@ export default function AboutPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

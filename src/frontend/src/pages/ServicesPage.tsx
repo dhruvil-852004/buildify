@@ -227,7 +227,13 @@ function AnimatedCounter({
 
 export default function ServicesPage() {
   return (
-    <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="services.page">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="pt-16 md:pt-20 overflow-x-hidden"
+      data-ocid="services.page"
+    >
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center"
@@ -270,7 +276,7 @@ export default function ServicesPage() {
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
               className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-5 flex items-center gap-2"
             >
               <Hammer size={14} />
@@ -279,7 +285,7 @@ export default function ServicesPage() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-white leading-tight mb-6"
             >
               Expert Construction{" "}
@@ -288,7 +294,7 @@ export default function ServicesPage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
               className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10"
             >
               From ground-breaking to ribbon-cutting, Buildify delivers
@@ -297,7 +303,7 @@ export default function ServicesPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <Link
@@ -321,7 +327,7 @@ export default function ServicesPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
             className="flex items-center gap-2 mt-10 sm:mt-14 text-white/50 text-sm"
           >
             <Link
@@ -343,24 +349,30 @@ export default function ServicesPage() {
         data-ocid="services.grid_section"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-10 sm:mb-14"
-          >
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               Core Offerings
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4"
+            >
               Built for Every Scale
-            </h2>
-            <p className="text-brand-muted text-base sm:text-lg max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="text-brand-muted text-base sm:text-lg max-w-2xl mx-auto"
+            >
               Whether you're building a family home or a commercial complex, we
               have the expertise, team, and infrastructure to deliver.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7">
             {services.map((svc, i) => (
@@ -368,7 +380,7 @@ export default function ServicesPage() {
                 key={svc.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.55 }}
                 className={`bg-white rounded-2xl p-6 sm:p-8 border border-border shadow-card ${svc.borderHover} hover:shadow-card-hover transition-all group`}
                 data-ocid={`services.service_card.${i + 1}`}
@@ -430,25 +442,31 @@ export default function ServicesPage() {
         data-ocid="services.why_section"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-10 sm:mb-14"
-          >
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-3">
               The Buildify Advantage
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4"
+            >
               Why Choose Us?
-            </h2>
-            <p className="text-white/60 text-base sm:text-lg max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="text-white/60 text-base sm:text-lg max-w-2xl mx-auto"
+            >
               We've earned the trust of hundreds of clients by combining
               technical depth, disciplined execution, and genuine care for every
               project outcome.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {strengths.map((str, i) => (
@@ -456,7 +474,7 @@ export default function ServicesPage() {
                 key={str.title}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.08, duration: 0.5 }}
                 className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-teal/30 rounded-2xl p-6 transition-all group"
                 data-ocid={`services.strength_card.${i + 1}`}
@@ -482,28 +500,28 @@ export default function ServicesPage() {
         data-ocid="services.stats_section"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-8 sm:mb-10"
-          >
+          <div className="text-center mb-8 sm:mb-10">
             <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mb-2">
               By The Numbers
             </p>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-xl sm:text-2xl md:text-3xl font-black text-white"
+            >
               Our Performance Speaks
-            </h2>
-          </motion.div>
+            </motion.h2>
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-4">
             {statsData.map((stat, i) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.45 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="text-center"
                 data-ocid={`services.stat.${i + 1}`}
               >
@@ -525,24 +543,30 @@ export default function ServicesPage() {
         data-ocid="services.process_section"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-10 sm:mb-14"
-          >
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               How We Work
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4"
+            >
               Our Process
-            </h2>
-            <p className="text-brand-muted text-base sm:text-lg max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="text-brand-muted text-base sm:text-lg max-w-2xl mx-auto"
+            >
               A clear, structured approach — from your first call to the day you
               take ownership of your completed project.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           {/* Desktop timeline */}
           <div className="hidden md:block">
@@ -555,7 +579,7 @@ export default function ServicesPage() {
                     key={step.step}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, margin: "-50px" }}
                     transition={{ delay: i * 0.12, duration: 0.5 }}
                     className="flex flex-col items-center text-center"
                     data-ocid={`services.process_step.${i + 1}`}
@@ -584,10 +608,10 @@ export default function ServicesPage() {
             {processSteps.map((step, i) => (
               <motion.div
                 key={step.step}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.12, duration: 0.5 }}
                 className="flex gap-4 sm:gap-5"
                 data-ocid={`services.process_step_mobile.${i + 1}`}
               >
@@ -653,7 +677,7 @@ export default function ServicesPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-2xl mx-auto"
           >
@@ -686,6 +710,6 @@ export default function ServicesPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

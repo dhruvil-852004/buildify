@@ -241,7 +241,13 @@ export default function TeamPage() {
       : teamMembers.filter((m) => m.department === activeDept);
 
   return (
-    <div className="pt-16 md:pt-20 overflow-x-hidden" data-ocid="team.page">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="pt-16 md:pt-20 overflow-x-hidden"
+      data-ocid="team.page"
+    >
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[600px] flex items-center"
@@ -284,7 +290,7 @@ export default function TeamPage() {
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
               className="text-brand-orange text-xs font-semibold uppercase tracking-widest mb-5 flex items-center gap-2"
             >
               <Users size={14} />
@@ -293,7 +299,7 @@ export default function TeamPage() {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-black text-white leading-tight mb-6"
             >
               Meet Our Dedicated <span className="text-brand-teal">Team</span>{" "}
@@ -302,7 +308,7 @@ export default function TeamPage() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
               className="text-white/70 text-sm sm:text-base md:text-xl leading-relaxed max-w-xl mb-8 sm:mb-10"
             >
               Dedicated professionals from engineering, architecture, and
@@ -311,7 +317,7 @@ export default function TeamPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
               className="flex flex-col sm:flex-row gap-3 sm:gap-4"
             >
               <button
@@ -340,7 +346,7 @@ export default function TeamPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
+            transition={{ delay: 1.1, duration: 0.5 }}
             className="flex items-center gap-2 mt-10 sm:mt-14 text-white/50 text-sm"
           >
             <Link
@@ -366,10 +372,10 @@ export default function TeamPage() {
             {statsData.map((stat, i) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.45 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
                 data-ocid={`team.stat.${i + 1}`}
               >
                 <p className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-1">
@@ -392,24 +398,30 @@ export default function TeamPage() {
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
           {/* Section header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-8 sm:mb-10"
-          >
+          <div className="text-center mb-8 sm:mb-10">
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               Our People
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-brand-text mb-4"
+            >
               Skilled Professionals, One Team
-            </h2>
-            <p className="text-brand-muted text-sm sm:text-lg max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="text-brand-muted text-sm sm:text-lg max-w-2xl mx-auto"
+            >
               Browse by department to discover the expertise behind every
               Buildify project.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           {/* Department tabs — flex-wrap so they wrap on mobile */}
           <div
@@ -441,11 +453,12 @@ export default function TeamPage() {
             {filtered.map((member, i) => (
               <motion.div
                 key={member.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.08, duration: 0.5 }}
-                className="bg-white rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all group"
+                whileHover={{ scale: 1.03 }}
+                className="bg-white rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-card-hover transition-shadow group"
                 data-ocid={`team.member_card.${i + 1}`}
               >
                 {/* Photo */}
@@ -539,24 +552,30 @@ export default function TeamPage() {
         data-ocid="team.culture_section"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-10 sm:mb-14"
-          >
+          <div className="text-center mb-10 sm:mb-14">
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               How We Work
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-4"
+            >
               Our Culture &amp; Values
-            </h2>
-            <p className="text-white/60 text-sm sm:text-lg max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.15, duration: 0.5 }}
+              className="text-white/60 text-sm sm:text-lg max-w-2xl mx-auto"
+            >
               The principles that guide every decision, every day on every
               Buildify site.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
             {cultureValues.map((val, i) => (
@@ -564,7 +583,7 @@ export default function TeamPage() {
                 key={val.title}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
                 className="bg-white/5 hover:bg-white/10 border border-white/10 hover:border-brand-teal/40 rounded-2xl p-6 sm:p-7 transition-all group"
                 data-ocid={`team.culture_card.${i + 1}`}
@@ -590,20 +609,20 @@ export default function TeamPage() {
         data-ocid="team.departments_section"
       >
         <div className="container-max px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="text-center mb-8 sm:mb-10"
-          >
+          <div className="text-center mb-8 sm:mb-10">
             <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-3">
               How We're Structured
             </p>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-brand-text">
+            <motion.h2
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5 }}
+              className="text-xl sm:text-2xl md:text-3xl font-black text-brand-text"
+            >
               Expert Departments, One Direction
-            </h2>
-          </motion.div>
+            </motion.h2>
+          </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
             {[
@@ -637,7 +656,7 @@ export default function TeamPage() {
                 type="button"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: i * 0.1, duration: 0.45 }}
                 onClick={() => {
                   setActiveDept(item.dept as Department);
@@ -678,7 +697,7 @@ export default function TeamPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-2xl mx-auto"
           >
@@ -712,6 +731,6 @@ export default function TeamPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 }

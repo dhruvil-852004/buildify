@@ -40,7 +40,14 @@ export default function Team() {
   return (
     <section id="team" className="section-padding bg-brand-bg">
       <div className="container-max">
-        <div className="text-center mb-14">
+        {/* Heading — slides in from left */}
+        <motion.div
+          className="text-center mb-14"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
+        >
           <p className="text-brand-teal text-xs font-semibold uppercase tracking-widest mb-2">
             Meet Our Leadership
           </p>
@@ -48,16 +55,17 @@ export default function Team() {
             Our Team
           </h2>
           <div className="w-12 h-1 bg-brand-teal mx-auto mt-4 rounded-full" />
-        </div>
+        </motion.div>
 
+        {/* Team cards — staggered entrance */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {team.map((member, i) => (
             <motion.div
               key={member.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: i * 0.08, duration: 0.5, ease: "easeOut" }}
               className="text-center group"
               data-ocid={`team.card.${i + 1}`}
             >
@@ -78,26 +86,32 @@ export default function Team() {
                 {member.bio}
               </p>
               <div className="flex justify-center gap-3 mt-4">
-                <a
+                <motion.a
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${member.name} LinkedIn`}
                   className="w-8 h-8 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal hover:bg-brand-teal hover:text-white transition-colors"
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   data-ocid={`team.link.${i + 1}`}
                 >
                   <Linkedin size={14} />
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   href={member.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${member.name} Twitter`}
                   className="w-8 h-8 rounded-full bg-brand-teal/10 flex items-center justify-center text-brand-teal hover:bg-brand-teal hover:text-white transition-colors"
+                  whileHover={{ scale: 1.15 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   data-ocid={`team.link.${i + 1}`}
                 >
                   <Twitter size={14} />
-                </a>
+                </motion.a>
               </div>
             </motion.div>
           ))}
