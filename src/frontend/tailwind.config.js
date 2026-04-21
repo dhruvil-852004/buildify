@@ -90,6 +90,7 @@ export default {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
         card: "0 2px 12px rgba(0,0,0,0.08)",
         "card-hover": "0 8px 30px rgba(0,0,0,0.14)",
+        "admin-focus": "0 0 0 3px rgba(44, 122, 123, 0.1)",
       },
       keyframes: {
         "accordion-down": {
@@ -112,6 +113,14 @@ export default {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.8" },
         },
+        "chart-appear": {
+          from: { opacity: "0", transform: "scale(0.95)" },
+          to: { opacity: "1", transform: "scale(1)" },
+        },
+        "data-slide": {
+          from: { opacity: "0", transform: "translateY(10px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -119,6 +128,8 @@ export default {
         "fade-in": "fade-in 0.5s ease-out",
         "slide-up": "slide-up 0.6s ease-out",
         "pulse-soft": "pulse-soft 3s ease-in-out infinite",
+        "chart-appear": "chart-appear 0.6s ease-out",
+        "data-slide": "data-slide 0.5s ease-out",
       },
     },
   },

@@ -8,10 +8,284 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const idlService = IDL.Service({});
+export const ProjectId = IDL.Nat;
+export const SubmissionId = IDL.Nat;
+export const ProjectCategory = IDL.Variant({
+  'Commercial' : IDL.Null,
+  'Foundation' : IDL.Null,
+  'Drainage' : IDL.Null,
+  'SiteRegrading' : IDL.Null,
+  'Residential' : IDL.Null,
+});
+export const CreateProjectInput = IDL.Record({
+  'title' : IDL.Text,
+  'featured' : IDL.Bool,
+  'active' : IDL.Bool,
+  'description' : IDL.Text,
+  'imageUrl' : IDL.Text,
+  'category' : ProjectCategory,
+  'location' : IDL.Text,
+});
+export const Timestamp = IDL.Int;
+export const Project = IDL.Record({
+  'id' : ProjectId,
+  'title' : IDL.Text,
+  'featured' : IDL.Bool,
+  'active' : IDL.Bool,
+  'createdAt' : Timestamp,
+  'description' : IDL.Text,
+  'updatedAt' : Timestamp,
+  'imageUrl' : IDL.Text,
+  'category' : ProjectCategory,
+  'location' : IDL.Text,
+});
+export const CreateTeamMemberInput = IDL.Record({
+  'bio' : IDL.Text,
+  'linkedIn' : IDL.Text,
+  'twitter' : IDL.Text,
+  'displayOrder' : IDL.Nat,
+  'name' : IDL.Text,
+  'role' : IDL.Text,
+  'imageUrl' : IDL.Text,
+});
+export const TeamMemberId = IDL.Nat;
+export const TeamMember = IDL.Record({
+  'id' : TeamMemberId,
+  'bio' : IDL.Text,
+  'linkedIn' : IDL.Text,
+  'twitter' : IDL.Text,
+  'displayOrder' : IDL.Nat,
+  'name' : IDL.Text,
+  'role' : IDL.Text,
+  'imageUrl' : IDL.Text,
+});
+export const ContactSubmission = IDL.Record({
+  'id' : SubmissionId,
+  'projectType' : IDL.Text,
+  'name' : IDL.Text,
+  'read' : IDL.Bool,
+  'submittedAt' : Timestamp,
+  'email' : IDL.Text,
+  'message' : IDL.Text,
+});
+export const ServiceId = IDL.Nat;
+export const Service = IDL.Record({
+  'id' : ServiceId,
+  'title' : IDL.Text,
+  'displayOrder' : IDL.Nat,
+  'description' : IDL.Text,
+  'iconUrl' : IDL.Text,
+});
+export const CreateSubmissionInput = IDL.Record({
+  'projectType' : IDL.Text,
+  'name' : IDL.Text,
+  'email' : IDL.Text,
+  'message' : IDL.Text,
+});
+export const UpdateProjectInput = IDL.Record({
+  'id' : ProjectId,
+  'title' : IDL.Text,
+  'featured' : IDL.Bool,
+  'active' : IDL.Bool,
+  'description' : IDL.Text,
+  'imageUrl' : IDL.Text,
+  'category' : ProjectCategory,
+  'location' : IDL.Text,
+});
+export const UpdateServiceInput = IDL.Record({
+  'id' : ServiceId,
+  'title' : IDL.Text,
+  'displayOrder' : IDL.Nat,
+  'description' : IDL.Text,
+  'iconUrl' : IDL.Text,
+});
+export const UpdateTeamMemberInput = IDL.Record({
+  'id' : TeamMemberId,
+  'bio' : IDL.Text,
+  'linkedIn' : IDL.Text,
+  'twitter' : IDL.Text,
+  'displayOrder' : IDL.Nat,
+  'name' : IDL.Text,
+  'role' : IDL.Text,
+  'imageUrl' : IDL.Text,
+});
+
+export const idlService = IDL.Service({
+  'batchDeleteProjects' : IDL.Func([IDL.Vec(ProjectId)], [IDL.Nat], []),
+  'batchDeleteSubmissions' : IDL.Func([IDL.Vec(SubmissionId)], [IDL.Nat], []),
+  'createProject' : IDL.Func([CreateProjectInput], [Project], []),
+  'createTeamMember' : IDL.Func([CreateTeamMemberInput], [TeamMember], []),
+  'deleteProject' : IDL.Func([ProjectId], [IDL.Bool], []),
+  'deleteSubmission' : IDL.Func([SubmissionId], [IDL.Bool], []),
+  'deleteTeamMember' : IDL.Func([TeamMemberId], [IDL.Bool], []),
+  'getAdmins' : IDL.Func([], [IDL.Vec(IDL.Principal)], ['query']),
+  'getProject' : IDL.Func([ProjectId], [IDL.Opt(Project)], ['query']),
+  'getTeamMember' : IDL.Func([TeamMemberId], [IDL.Opt(TeamMember)], ['query']),
+  'isAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'listContactSubmissions' : IDL.Func(
+      [],
+      [IDL.Vec(ContactSubmission)],
+      ['query'],
+    ),
+  'listProjects' : IDL.Func([], [IDL.Vec(Project)], ['query']),
+  'listServices' : IDL.Func([], [IDL.Vec(Service)], ['query']),
+  'listTeamMembers' : IDL.Func([], [IDL.Vec(TeamMember)], ['query']),
+  'markSubmissionRead' : IDL.Func([SubmissionId, IDL.Bool], [IDL.Bool], []),
+  'setAdmins' : IDL.Func([IDL.Vec(IDL.Principal)], [], []),
+  'submitContactForm' : IDL.Func(
+      [CreateSubmissionInput],
+      [ContactSubmission],
+      [],
+    ),
+  'toggleProjectStatus' : IDL.Func([ProjectId], [IDL.Bool], []),
+  'updateProject' : IDL.Func([UpdateProjectInput], [IDL.Bool], []),
+  'updateService' : IDL.Func([UpdateServiceInput], [IDL.Bool], []),
+  'updateTeamMember' : IDL.Func([UpdateTeamMemberInput], [IDL.Bool], []),
+  'updateTeamMemberOrder' : IDL.Func([TeamMemberId, IDL.Nat], [IDL.Bool], []),
+});
 
 export const idlInitArgs = [];
 
-export const idlFactory = ({ IDL }) => { return IDL.Service({}); };
+export const idlFactory = ({ IDL }) => {
+  const ProjectId = IDL.Nat;
+  const SubmissionId = IDL.Nat;
+  const ProjectCategory = IDL.Variant({
+    'Commercial' : IDL.Null,
+    'Foundation' : IDL.Null,
+    'Drainage' : IDL.Null,
+    'SiteRegrading' : IDL.Null,
+    'Residential' : IDL.Null,
+  });
+  const CreateProjectInput = IDL.Record({
+    'title' : IDL.Text,
+    'featured' : IDL.Bool,
+    'active' : IDL.Bool,
+    'description' : IDL.Text,
+    'imageUrl' : IDL.Text,
+    'category' : ProjectCategory,
+    'location' : IDL.Text,
+  });
+  const Timestamp = IDL.Int;
+  const Project = IDL.Record({
+    'id' : ProjectId,
+    'title' : IDL.Text,
+    'featured' : IDL.Bool,
+    'active' : IDL.Bool,
+    'createdAt' : Timestamp,
+    'description' : IDL.Text,
+    'updatedAt' : Timestamp,
+    'imageUrl' : IDL.Text,
+    'category' : ProjectCategory,
+    'location' : IDL.Text,
+  });
+  const CreateTeamMemberInput = IDL.Record({
+    'bio' : IDL.Text,
+    'linkedIn' : IDL.Text,
+    'twitter' : IDL.Text,
+    'displayOrder' : IDL.Nat,
+    'name' : IDL.Text,
+    'role' : IDL.Text,
+    'imageUrl' : IDL.Text,
+  });
+  const TeamMemberId = IDL.Nat;
+  const TeamMember = IDL.Record({
+    'id' : TeamMemberId,
+    'bio' : IDL.Text,
+    'linkedIn' : IDL.Text,
+    'twitter' : IDL.Text,
+    'displayOrder' : IDL.Nat,
+    'name' : IDL.Text,
+    'role' : IDL.Text,
+    'imageUrl' : IDL.Text,
+  });
+  const ContactSubmission = IDL.Record({
+    'id' : SubmissionId,
+    'projectType' : IDL.Text,
+    'name' : IDL.Text,
+    'read' : IDL.Bool,
+    'submittedAt' : Timestamp,
+    'email' : IDL.Text,
+    'message' : IDL.Text,
+  });
+  const ServiceId = IDL.Nat;
+  const Service = IDL.Record({
+    'id' : ServiceId,
+    'title' : IDL.Text,
+    'displayOrder' : IDL.Nat,
+    'description' : IDL.Text,
+    'iconUrl' : IDL.Text,
+  });
+  const CreateSubmissionInput = IDL.Record({
+    'projectType' : IDL.Text,
+    'name' : IDL.Text,
+    'email' : IDL.Text,
+    'message' : IDL.Text,
+  });
+  const UpdateProjectInput = IDL.Record({
+    'id' : ProjectId,
+    'title' : IDL.Text,
+    'featured' : IDL.Bool,
+    'active' : IDL.Bool,
+    'description' : IDL.Text,
+    'imageUrl' : IDL.Text,
+    'category' : ProjectCategory,
+    'location' : IDL.Text,
+  });
+  const UpdateServiceInput = IDL.Record({
+    'id' : ServiceId,
+    'title' : IDL.Text,
+    'displayOrder' : IDL.Nat,
+    'description' : IDL.Text,
+    'iconUrl' : IDL.Text,
+  });
+  const UpdateTeamMemberInput = IDL.Record({
+    'id' : TeamMemberId,
+    'bio' : IDL.Text,
+    'linkedIn' : IDL.Text,
+    'twitter' : IDL.Text,
+    'displayOrder' : IDL.Nat,
+    'name' : IDL.Text,
+    'role' : IDL.Text,
+    'imageUrl' : IDL.Text,
+  });
+  
+  return IDL.Service({
+    'batchDeleteProjects' : IDL.Func([IDL.Vec(ProjectId)], [IDL.Nat], []),
+    'batchDeleteSubmissions' : IDL.Func([IDL.Vec(SubmissionId)], [IDL.Nat], []),
+    'createProject' : IDL.Func([CreateProjectInput], [Project], []),
+    'createTeamMember' : IDL.Func([CreateTeamMemberInput], [TeamMember], []),
+    'deleteProject' : IDL.Func([ProjectId], [IDL.Bool], []),
+    'deleteSubmission' : IDL.Func([SubmissionId], [IDL.Bool], []),
+    'deleteTeamMember' : IDL.Func([TeamMemberId], [IDL.Bool], []),
+    'getAdmins' : IDL.Func([], [IDL.Vec(IDL.Principal)], ['query']),
+    'getProject' : IDL.Func([ProjectId], [IDL.Opt(Project)], ['query']),
+    'getTeamMember' : IDL.Func(
+        [TeamMemberId],
+        [IDL.Opt(TeamMember)],
+        ['query'],
+      ),
+    'isAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'listContactSubmissions' : IDL.Func(
+        [],
+        [IDL.Vec(ContactSubmission)],
+        ['query'],
+      ),
+    'listProjects' : IDL.Func([], [IDL.Vec(Project)], ['query']),
+    'listServices' : IDL.Func([], [IDL.Vec(Service)], ['query']),
+    'listTeamMembers' : IDL.Func([], [IDL.Vec(TeamMember)], ['query']),
+    'markSubmissionRead' : IDL.Func([SubmissionId, IDL.Bool], [IDL.Bool], []),
+    'setAdmins' : IDL.Func([IDL.Vec(IDL.Principal)], [], []),
+    'submitContactForm' : IDL.Func(
+        [CreateSubmissionInput],
+        [ContactSubmission],
+        [],
+      ),
+    'toggleProjectStatus' : IDL.Func([ProjectId], [IDL.Bool], []),
+    'updateProject' : IDL.Func([UpdateProjectInput], [IDL.Bool], []),
+    'updateService' : IDL.Func([UpdateServiceInput], [IDL.Bool], []),
+    'updateTeamMember' : IDL.Func([UpdateTeamMemberInput], [IDL.Bool], []),
+    'updateTeamMemberOrder' : IDL.Func([TeamMemberId, IDL.Nat], [IDL.Bool], []),
+  });
+};
 
 export const init = ({ IDL }) => { return []; };

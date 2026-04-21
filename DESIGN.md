@@ -85,3 +85,52 @@
 - Hero max-height: 60vh to prevent excessive scrolling on mobile
 - Portfolio cards: 4 cols desktop, 2 cols tablet (md:), 1 col mobile
 - Image aspect ratio: 16:9 for consistency
+
+## Admin Dashboard Design
+| Component | Token | Purpose |
+|-----------|-------|---------|
+| Sidebar Background | `brand-slate` (0.318 0.042 213.5) | Dark, professional admin navigation |
+| Sidebar Text | White (0.985 0 0) | High contrast labels & links |
+| Sidebar Hover | `brand-teal` (0.536 0.098 196.3) | Interactive state, active indicators |
+| Header | White (1 0 0) | Clean separation, admin/user info display |
+| Header Border | `border` (0.91 0.008 215) | Subtle definition |
+| Content Area | `muted` (0.94 0.005 220) | Neutral backdrop for dashboard cards |
+| Cards | White (1 0 0) | Data display, form inputs, stats |
+| Card Border | `border` (0.91 0.008 215) | Subtle definition, visual separation |
+| Focus/Active | `brand-teal` | CTAs, active nav items, links |
+| Danger Actions | `destructive` (0.577 0.245 27.325) | Delete/archive buttons, warnings |
+
+## Admin Layout
+| Zone | Structure | Treatment |
+|------|-----------|-----------|
+| Sidebar | Fixed left column, 16rem desktop / collapsible mobile | `bg-brand-slate`, vertical nav items, active state highlights |
+| Header | Fixed top bar, admin name + logout | `bg-white`, `border-b`, sticky z-40 |
+| Content | Main flex area, scrollable | `bg-muted`, padding py-6 px-4, max-width 1400px |
+| Dashboard Stats | 4-column grid on desktop, 2 on tablet, 1 on mobile | `.admin-stat` cards, large teal numbers, gray labels |
+| Action Cards | Card grid with quick shortcuts | `bg-white`, `border-l-4 border-teal`, icon + label + description |
+| Data Tables | Responsive tables in cards | Zebra striping optional, hover row highlight, sortable headers |
+| Modals/Forms | Overlay with focus-trap | White card, slate heading, teal primary button, orange delete button |
+
+## Admin Analytics
+| Component | Style | Data Source |
+|-----------|-------|-------------|
+| Bar Chart | Recharts BarChart, chart-1 (orange-brown) / chart-2 (teal) / chart-4 (yellow) bars | Monthly project submissions (real canister data) |
+| Donut Chart | Recharts PieChart, chart-1/2/3/5 segments | Project categories or team distribution |
+| Line Chart | Recharts LineChart, smooth curves in chart palette | Submissions trend + team growth over time |
+| Chart Cards | `chart-card` white bg, teal titles, minimal borders | Responsive grid 3-col desktop / 2-tablet / 1-mobile |
+| Mini Stats | Analytics stat cards with teal numbers + muted labels | Real-time project count, submissions, team size |
+| Legends | Horizontal flex layout, color dots + labels | Identify chart segments by category |
+
+## Admin Typography & Motion
+| Tier | Font | Usage |
+|------|------|-------|
+| Admin Heading | DM Sans 600 | Dashboard title, card headers, section labels |
+| Admin Body | Inter 400 | Form labels, table content, descriptions |
+| Admin Label | Inter 600 uppercase | Section titles, stat labels, input labels |
+| Mono | Geist Mono 400 | IDs, timestamps, data display |
+- **Sidebar hover**: 200ms fade, no scale
+- **Card entrance**: Staggered fade-in on dashboard load
+- **Chart load**: `animate-chart-appear` 600ms scale + fade
+- **Data elements**: `animate-data-slide` staggered, 100–200ms delay per item
+- **Button focus**: `shadow-admin-focus` ring + text color shift
+- **Transition**: All interactive elements use `transition-all duration-200`

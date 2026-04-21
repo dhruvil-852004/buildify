@@ -81,6 +81,20 @@
     --sidebar-accent-foreground: 0.205 0 0;
     --sidebar-border: 0.922 0 0;
     --sidebar-ring: 0.708 0 0;
+
+    /* Admin Dashboard Tokens */
+    /* Darker, utilitarian palette for admin interface */
+    --admin-sidebar-bg: 0.318 0.042 213.5;
+    --admin-sidebar-text: 0.985 0 0;
+    --admin-sidebar-hover: 0.536 0.098 196.3;
+    --admin-header-bg: 1 0 0;
+    --admin-header-border: 0.88 0.008 215;
+    --admin-content-bg: 0.99 0.002 220;
+    --admin-card-bg: 1 0 0;
+    --admin-card-border: 0.91 0.008 215;
+    --admin-label: 0.553 0.024 213;
+    --admin-focus: 0.536 0.098 196.3;
+    --admin-danger: 0.577 0.245 27.325;
   }
 
   * {
@@ -209,6 +223,143 @@
 
   .portfolio-filter-btn:hover:not(.active) {
     @apply text-brand-muted;
+  }
+
+  /* Admin Dashboard Utilities */
+  .admin-sidebar {
+    @apply bg-brand-slate text-white;
+  }
+
+  .admin-sidebar-item {
+    @apply px-4 py-3 text-sm font-medium transition-all duration-200 hover:bg-brand-teal hover:text-white cursor-pointer;
+  }
+
+  .admin-sidebar-item.active {
+    @apply bg-brand-teal text-white;
+  }
+
+  .admin-header {
+    @apply bg-white border-b border-border shadow-xs sticky top-0 z-40;
+  }
+
+  .admin-content {
+    @apply bg-muted min-h-screen;
+  }
+
+  .admin-card {
+    @apply bg-white rounded-md border border-border shadow-xs p-6;
+  }
+
+  .admin-button-primary {
+    @apply bg-brand-teal text-white px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 hover:opacity-90;
+  }
+
+  .admin-button-danger {
+    @apply bg-destructive text-destructive-foreground px-4 py-2 rounded-md font-medium text-sm transition-all duration-200 hover:opacity-90;
+  }
+
+  .admin-label {
+    @apply text-sm font-semibold text-brand-text uppercase tracking-wide;
+  }
+
+  .admin-stat {
+    @apply flex flex-col items-center justify-center p-6 bg-white rounded-md border border-border;
+  }
+
+  .admin-stat-value {
+    @apply text-3xl font-bold text-brand-teal;
+    font-family: var(--font-display);
+  }
+
+  .admin-stat-label {
+    @apply text-sm text-muted-foreground mt-2;
+  }
+
+  /* Analytics & Glassmorphism Utilities */
+  .glass-card {
+    @apply backdrop-blur-md bg-white/70 border border-white/20 rounded-xl shadow-lg;
+  }
+
+  .glass-card-dark {
+    @apply backdrop-blur-md bg-slate-900/40 border border-white/10 rounded-xl shadow-lg;
+  }
+
+  .chart-card {
+    @apply bg-white rounded-xl border border-border shadow-xs p-6 md:p-8;
+  }
+
+  .chart-title {
+    @apply text-lg md:text-xl font-bold text-foreground mb-1;
+    font-family: var(--font-display);
+  }
+
+  .chart-subtitle {
+    @apply text-sm text-muted-foreground mb-6;
+  }
+
+  .chart-container {
+    @apply w-full h-80 md:h-96 flex items-center justify-center;
+  }
+
+  .analytics-stat-mini {
+    @apply flex items-center gap-3 p-4 bg-muted/50 rounded-lg;
+  }
+
+  .analytics-stat-value {
+    @apply text-2xl font-bold text-brand-teal;
+    font-family: var(--font-display);
+  }
+
+  .analytics-stat-label {
+    @apply text-xs text-muted-foreground uppercase tracking-wide;
+  }
+
+  .chart-legend {
+    @apply flex flex-wrap gap-4 mt-6 pt-6 border-t border-border;
+  }
+
+  .chart-legend-item {
+    @apply flex items-center gap-2 text-sm text-muted-foreground;
+  }
+
+  .chart-legend-color {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  /* Analytics Grid */
+  .analytics-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  .analytics-section {
+    @apply py-8 md:py-12 px-4 md:px-6;
+  }
+
+  .analytics-header {
+    @apply mb-8;
+  }
+
+  .analytics-header-title {
+    @apply text-2xl md:text-3xl font-bold text-foreground;
+    font-family: var(--font-display);
+  }
+
+  .analytics-header-subtitle {
+    @apply text-sm text-muted-foreground mt-2;
+  }
+
+  /* Chart entrance animations */
+  .animate-chart-appear {
+    animation: chart-appear 0.6s ease-out both;
+  }
+
+  .animate-data-slide {
+    animation: data-slide 0.5s ease-out both;
+  }
+
+  /* Glassmorphism utilities */
+  .glass-analytics {
+    @apply bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-slate-100/80;
   }
 }
 

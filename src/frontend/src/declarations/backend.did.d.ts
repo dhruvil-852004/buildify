@@ -10,7 +10,130 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export interface _SERVICE {}
+export interface ContactSubmission {
+  'id' : SubmissionId,
+  'projectType' : string,
+  'name' : string,
+  'read' : boolean,
+  'submittedAt' : Timestamp,
+  'email' : string,
+  'message' : string,
+}
+export interface CreateProjectInput {
+  'title' : string,
+  'featured' : boolean,
+  'active' : boolean,
+  'description' : string,
+  'imageUrl' : string,
+  'category' : ProjectCategory,
+  'location' : string,
+}
+export interface CreateSubmissionInput {
+  'projectType' : string,
+  'name' : string,
+  'email' : string,
+  'message' : string,
+}
+export interface CreateTeamMemberInput {
+  'bio' : string,
+  'linkedIn' : string,
+  'twitter' : string,
+  'displayOrder' : bigint,
+  'name' : string,
+  'role' : string,
+  'imageUrl' : string,
+}
+export interface Project {
+  'id' : ProjectId,
+  'title' : string,
+  'featured' : boolean,
+  'active' : boolean,
+  'createdAt' : Timestamp,
+  'description' : string,
+  'updatedAt' : Timestamp,
+  'imageUrl' : string,
+  'category' : ProjectCategory,
+  'location' : string,
+}
+export type ProjectCategory = { 'Commercial' : null } |
+  { 'Foundation' : null } |
+  { 'Drainage' : null } |
+  { 'SiteRegrading' : null } |
+  { 'Residential' : null };
+export type ProjectId = bigint;
+export interface Service {
+  'id' : ServiceId,
+  'title' : string,
+  'displayOrder' : bigint,
+  'description' : string,
+  'iconUrl' : string,
+}
+export type ServiceId = bigint;
+export type SubmissionId = bigint;
+export interface TeamMember {
+  'id' : TeamMemberId,
+  'bio' : string,
+  'linkedIn' : string,
+  'twitter' : string,
+  'displayOrder' : bigint,
+  'name' : string,
+  'role' : string,
+  'imageUrl' : string,
+}
+export type TeamMemberId = bigint;
+export type Timestamp = bigint;
+export interface UpdateProjectInput {
+  'id' : ProjectId,
+  'title' : string,
+  'featured' : boolean,
+  'active' : boolean,
+  'description' : string,
+  'imageUrl' : string,
+  'category' : ProjectCategory,
+  'location' : string,
+}
+export interface UpdateServiceInput {
+  'id' : ServiceId,
+  'title' : string,
+  'displayOrder' : bigint,
+  'description' : string,
+  'iconUrl' : string,
+}
+export interface UpdateTeamMemberInput {
+  'id' : TeamMemberId,
+  'bio' : string,
+  'linkedIn' : string,
+  'twitter' : string,
+  'displayOrder' : bigint,
+  'name' : string,
+  'role' : string,
+  'imageUrl' : string,
+}
+export interface _SERVICE {
+  'batchDeleteProjects' : ActorMethod<[Array<ProjectId>], bigint>,
+  'batchDeleteSubmissions' : ActorMethod<[Array<SubmissionId>], bigint>,
+  'createProject' : ActorMethod<[CreateProjectInput], Project>,
+  'createTeamMember' : ActorMethod<[CreateTeamMemberInput], TeamMember>,
+  'deleteProject' : ActorMethod<[ProjectId], boolean>,
+  'deleteSubmission' : ActorMethod<[SubmissionId], boolean>,
+  'deleteTeamMember' : ActorMethod<[TeamMemberId], boolean>,
+  'getAdmins' : ActorMethod<[], Array<Principal>>,
+  'getProject' : ActorMethod<[ProjectId], [] | [Project]>,
+  'getTeamMember' : ActorMethod<[TeamMemberId], [] | [TeamMember]>,
+  'isAdmin' : ActorMethod<[], boolean>,
+  'listContactSubmissions' : ActorMethod<[], Array<ContactSubmission>>,
+  'listProjects' : ActorMethod<[], Array<Project>>,
+  'listServices' : ActorMethod<[], Array<Service>>,
+  'listTeamMembers' : ActorMethod<[], Array<TeamMember>>,
+  'markSubmissionRead' : ActorMethod<[SubmissionId, boolean], boolean>,
+  'setAdmins' : ActorMethod<[Array<Principal>], undefined>,
+  'submitContactForm' : ActorMethod<[CreateSubmissionInput], ContactSubmission>,
+  'toggleProjectStatus' : ActorMethod<[ProjectId], boolean>,
+  'updateProject' : ActorMethod<[UpdateProjectInput], boolean>,
+  'updateService' : ActorMethod<[UpdateServiceInput], boolean>,
+  'updateTeamMember' : ActorMethod<[UpdateTeamMemberInput], boolean>,
+  'updateTeamMemberOrder' : ActorMethod<[TeamMemberId, bigint], boolean>,
+}
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];
 export declare const idlFactory: IDL.InterfaceFactory;

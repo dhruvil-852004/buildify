@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { LogIn, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 
@@ -154,7 +154,7 @@ export default function Navbar() {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center flex-shrink-0">
+          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <motion.a
               href={isSubPage ? "/#contact" : "#contact"}
               className="bg-brand-teal text-white text-sm font-semibold uppercase tracking-wide px-5 xl:px-6 py-2.5 rounded-full hover:opacity-90 transition-opacity whitespace-nowrap"
@@ -165,6 +165,20 @@ export default function Navbar() {
             >
               Request A Quote
             </motion.a>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <Link
+                to="/admin/login"
+                className="flex items-center gap-1.5 border-2 border-slate-700 text-slate-700 text-sm font-semibold uppercase tracking-wide px-4 xl:px-5 py-2 rounded-full hover:bg-slate-700 hover:text-white transition-colors whitespace-nowrap"
+                data-ocid="nav.login_button"
+              >
+                <LogIn size={14} />
+                Login
+              </Link>
+            </motion.div>
           </div>
 
           {/* Mobile Toggle */}
@@ -282,7 +296,7 @@ export default function Navbar() {
               >
                 Partner With Us
               </Link>
-              <div className="pt-3 pb-2">
+              <div className="pt-3 pb-2 flex flex-col gap-2">
                 <motion.button
                   type="button"
                   onClick={handleMobileQuote}
@@ -294,6 +308,21 @@ export default function Navbar() {
                 >
                   Request A Quote
                 </motion.button>
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <Link
+                    to="/admin/login"
+                    className="flex items-center justify-center gap-2 w-full border-2 border-slate-700 text-slate-700 text-sm font-semibold uppercase tracking-wide px-6 py-3 rounded-full text-center hover:bg-slate-700 hover:text-white transition-colors min-h-[44px]"
+                    onClick={() => setMobileOpen(false)}
+                    data-ocid="nav.login_button"
+                  >
+                    <LogIn size={15} />
+                    Login
+                  </Link>
+                </motion.div>
               </div>
             </div>
           </motion.div>

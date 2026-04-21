@@ -1,4 +1,88 @@
 // Version: 1.0.0
+type ContactSubmission__93684224 =
+  {
+    email : Text;
+    id : SubmissionId__741433157;
+    message : Text;
+    name : Text;
+    projectType : Text;
+    read : Bool;
+    submittedAt : Timestamp__301639476
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type ProjectCategory__248964741 =
+  {#Commercial; #Drainage; #Foundation; #Residential; #SiteRegrading};
+type ProjectId__478417951 = Nat;
+type Project__19257312 =
+  {
+    active : Bool;
+    category : ProjectCategory__248964741;
+    createdAt : Timestamp__301639476;
+    description : Text;
+    featured : Bool;
+    id : ProjectId__478417951;
+    imageUrl : Text;
+    location : Text;
+    title : Text;
+    updatedAt : Timestamp__301639476
+  };
+type ServiceId__271116140 = Nat;
+type Service__980514341 =
+  {
+    description : Text;
+    displayOrder : Nat;
+    iconUrl : Text;
+    id : ServiceId__271116140;
+    title : Text
+  };
+type SubmissionId__741433157 = Nat;
+type TeamMemberId__757761988 = Nat;
+type TeamMember__16370082 =
+  {
+    bio : Text;
+    displayOrder : Nat;
+    id : TeamMemberId__757761988;
+    imageUrl : Text;
+    linkedIn : Text;
+    name : Text;
+    role : Text;
+    twitter : Text
+  };
+type Timestamp__301639476 = Int;
 actor {
-  
+  stable adminList :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Principal]];
+      var elementIndex : Nat__490723111
+    };
+  stable nextProjectId : {var value : Nat};
+  stable nextSubmissionId : {var value : Nat};
+  stable nextTeamMemberId : {var value : Nat};
+  stable owner : {var value : Principal};
+  stable projects :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Project__19257312]];
+      var elementIndex : Nat__490723111
+    };
+  stable services :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Service__980514341]];
+      var elementIndex : Nat__490723111
+    };
+  stable submissions :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ContactSubmission__93684224]];
+      var elementIndex : Nat__490723111
+    };
+  stable teamMembers :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?TeamMember__16370082]];
+      var elementIndex : Nat__490723111
+    }
 };

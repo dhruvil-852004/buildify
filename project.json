@@ -1,21 +1,24 @@
 {
-  "overview": "Buildify is a construction-themed website featuring bold, industry-relevant visuals with a dedicated Portfolio page showcasing completed projects in a fully responsive, creative gallery layout.",
+  "overview": "Buildify is a construction-themed website with a fully responsive admin dashboard. Admins can manage portfolio projects, team members, services, and contact submissions — all backed by real canister data — with a clean, mobile-optimized layout across every device.",
   "features": [
-    "Dedicated Portfolio page at /portfolio with full project gallery",
-    "View All Projects button on home page routes to Portfolio page",
-    "Responsive project grid: 4 columns desktop, 2 tablet, 1 mobile",
-    "Creative project cards with images, categories, titles, descriptions",
-    "Construction-themed design with teal, slate, and neutral color palette",
-    "Navigation includes Portfolio page",
-    "All pages fully responsive across all devices"
+    "Admin dashboard with real-time project, team, services, and submission stats",
+    "Fully responsive admin layout for mobile, tablet, and desktop",
+    "Portfolio project management with CRUD and category filtering",
+    "Team member management with photo upload and display order",
+    "Contact submissions inbox with read/unread status and CSV export",
+    "Services editor with inline updates",
+    "Internet Identity protected admin login",
+    "Mobile-optimized tables with stacked card views",
+    "Responsive modals and forms with touch-friendly controls"
   ],
   "category": "business",
   "tags": [
     "construction",
-    "portfolio",
+    "admin",
+    "dashboard",
     "responsive",
-    "react",
-    "tailwind"
+    "portfolio",
+    "cms"
   ],
-  "last_updated": "2026-04-18T04:46:54.854Z"
+  "last_updated": "2026-04-21T04:52:17.251Z"
 }

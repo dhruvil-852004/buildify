@@ -20,6 +20,13 @@ import PartnerPage from "./pages/PartnerPage";
 import PortfolioPage from "./pages/PortfolioPage";
 import ServicesPage from "./pages/ServicesPage";
 import TeamPage from "./pages/TeamPage";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminProjects from "./pages/admin/AdminProjects";
+import AdminServices from "./pages/admin/AdminServices";
+import AdminSubmissions from "./pages/admin/AdminSubmissions";
+import AdminTeam from "./pages/admin/AdminTeam";
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -48,7 +55,8 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Main single page
+// ─── Public Routes ────────────────────────────────────────────────────────────
+
 function HomePage() {
   return (
     <PageWrapper>
@@ -140,6 +148,63 @@ function PortfolioRoute() {
   );
 }
 
+// ─── Admin Routes ────────────────────────────────────────────────────────────
+
+function AdminDashboardRoute() {
+  return (
+    <AdminLayout
+      breadcrumb={[{ label: "Admin", path: "/admin" }, { label: "Dashboard" }]}
+    >
+      <AdminDashboard />
+    </AdminLayout>
+  );
+}
+
+function AdminProjectsRoute() {
+  return (
+    <AdminLayout
+      breadcrumb={[{ label: "Admin", path: "/admin" }, { label: "Projects" }]}
+    >
+      <AdminProjects />
+    </AdminLayout>
+  );
+}
+
+function AdminServicesRoute() {
+  return (
+    <AdminLayout
+      breadcrumb={[{ label: "Admin", path: "/admin" }, { label: "Services" }]}
+    >
+      <AdminServices />
+    </AdminLayout>
+  );
+}
+
+function AdminTeamRoute() {
+  return (
+    <AdminLayout
+      breadcrumb={[{ label: "Admin", path: "/admin" }, { label: "Team" }]}
+    >
+      <AdminTeam />
+    </AdminLayout>
+  );
+}
+
+function AdminSubmissionsRoute() {
+  return (
+    <AdminLayout
+      breadcrumb={[
+        { label: "Admin", path: "/admin" },
+        { label: "Submissions" },
+      ]}
+    >
+      <AdminSubmissions />
+    </AdminLayout>
+  );
+}
+
+// ─── Route Tree ───────────────────────────────────────────────────────────────
+
 const rootRoute = createRootRoute();
 
 const homeRoute = createRoute({
@@ -184,6 +249,42 @@ const portfolioRoute = createRoute({
   component: PortfolioRoute,
 });
 
+const adminLoginRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/admin/login",
+  component: AdminLogin,
+});
+
+const adminDashboardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/admin",
+  component: AdminDashboardRoute,
+});
+
+const adminProjectsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/admin/projects",
+  component: AdminProjectsRoute,
+});
+
+const adminServicesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/admin/services",
+  component: AdminServicesRoute,
+});
+
+const adminTeamRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/admin/team",
+  component: AdminTeamRoute,
+});
+
+const adminSubmissionsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/admin/submissions",
+  component: AdminSubmissionsRoute,
+});
+
 const routeTree = rootRoute.addChildren([
   homeRoute,
   aboutRoute,
@@ -192,6 +293,12 @@ const routeTree = rootRoute.addChildren([
   partnerRoute,
   teamRoute,
   portfolioRoute,
+  adminLoginRoute,
+  adminDashboardRoute,
+  adminProjectsRoute,
+  adminServicesRoute,
+  adminTeamRoute,
+  adminSubmissionsRoute,
 ]);
 
 const router = createRouter({ routeTree });

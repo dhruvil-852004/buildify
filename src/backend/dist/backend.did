@@ -1,2 +1,137 @@
+type UpdateTeamMemberInput = 
+ record {
+   bio: text;
+   displayOrder: nat;
+   id: TeamMemberId;
+   imageUrl: text;
+   linkedIn: text;
+   name: text;
+   role: text;
+   twitter: text;
+ };
+type UpdateServiceInput = 
+ record {
+   description: text;
+   displayOrder: nat;
+   iconUrl: text;
+   id: ServiceId;
+   title: text;
+ };
+type UpdateProjectInput = 
+ record {
+   active: bool;
+   category: ProjectCategory;
+   description: text;
+   featured: bool;
+   id: ProjectId;
+   imageUrl: text;
+   location: text;
+   title: text;
+ };
+type Timestamp = int;
+type TeamMemberId = nat;
+type TeamMember = 
+ record {
+   bio: text;
+   displayOrder: nat;
+   id: TeamMemberId;
+   imageUrl: text;
+   linkedIn: text;
+   name: text;
+   role: text;
+   twitter: text;
+ };
+type SubmissionId = nat;
+type ServiceId = nat;
+type Service = 
+ record {
+   description: text;
+   displayOrder: nat;
+   iconUrl: text;
+   id: ServiceId;
+   title: text;
+ };
+type ProjectId = nat;
+type ProjectCategory = 
+ variant {
+   Commercial;
+   Drainage;
+   Foundation;
+   Residential;
+   SiteRegrading;
+ };
+type Project = 
+ record {
+   active: bool;
+   category: ProjectCategory;
+   createdAt: Timestamp;
+   description: text;
+   featured: bool;
+   id: ProjectId;
+   imageUrl: text;
+   location: text;
+   title: text;
+   updatedAt: Timestamp;
+ };
+type CreateTeamMemberInput = 
+ record {
+   bio: text;
+   displayOrder: nat;
+   imageUrl: text;
+   linkedIn: text;
+   name: text;
+   role: text;
+   twitter: text;
+ };
+type CreateSubmissionInput = 
+ record {
+   email: text;
+   message: text;
+   name: text;
+   projectType: text;
+ };
+type CreateProjectInput = 
+ record {
+   active: bool;
+   category: ProjectCategory;
+   description: text;
+   featured: bool;
+   imageUrl: text;
+   location: text;
+   title: text;
+ };
+type ContactSubmission = 
+ record {
+   email: text;
+   id: SubmissionId;
+   message: text;
+   name: text;
+   projectType: text;
+   read: bool;
+   submittedAt: Timestamp;
+ };
 service : {
+  batchDeleteProjects: (ids: vec ProjectId) -> (nat);
+  batchDeleteSubmissions: (ids: vec SubmissionId) -> (nat);
+  createProject: (input: CreateProjectInput) -> (Project);
+  createTeamMember: (input: CreateTeamMemberInput) -> (TeamMember);
+  deleteProject: (id: ProjectId) -> (bool);
+  deleteSubmission: (id: SubmissionId) -> (bool);
+  deleteTeamMember: (id: TeamMemberId) -> (bool);
+  getAdmins: () -> (vec principal) query;
+  getProject: (id: ProjectId) -> (opt Project) query;
+  getTeamMember: (id: TeamMemberId) -> (opt TeamMember) query;
+  isAdmin: () -> (bool) query;
+  listContactSubmissions: () -> (vec ContactSubmission) query;
+  listProjects: () -> (vec Project) query;
+  listServices: () -> (vec Service) query;
+  listTeamMembers: () -> (vec TeamMember) query;
+  markSubmissionRead: (id: SubmissionId, read: bool) -> (bool);
+  setAdmins: (newAdmins: vec principal) -> ();
+  submitContactForm: (input: CreateSubmissionInput) -> (ContactSubmission);
+  toggleProjectStatus: (id: ProjectId) -> (bool);
+  updateProject: (input: UpdateProjectInput) -> (bool);
+  updateService: (input: UpdateServiceInput) -> (bool);
+  updateTeamMember: (input: UpdateTeamMemberInput) -> (bool);
+  updateTeamMemberOrder: (id: TeamMemberId, displayOrder: nat) -> (bool);
 }

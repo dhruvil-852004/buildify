@@ -89,10 +89,610 @@ export class ExternalBlob {
         return this;
     }
 }
-export interface backendInterface {
+export interface UpdateServiceInput {
+    id: ServiceId;
+    title: string;
+    displayOrder: bigint;
+    description: string;
+    iconUrl: string;
 }
+export type ServiceId = bigint;
+export type Timestamp = bigint;
+export interface ContactSubmission {
+    id: SubmissionId;
+    projectType: string;
+    name: string;
+    read: boolean;
+    submittedAt: Timestamp;
+    email: string;
+    message: string;
+}
+export interface CreateSubmissionInput {
+    projectType: string;
+    name: string;
+    email: string;
+    message: string;
+}
+export interface Service {
+    id: ServiceId;
+    title: string;
+    displayOrder: bigint;
+    description: string;
+    iconUrl: string;
+}
+export interface UpdateTeamMemberInput {
+    id: TeamMemberId;
+    bio: string;
+    linkedIn: string;
+    twitter: string;
+    displayOrder: bigint;
+    name: string;
+    role: string;
+    imageUrl: string;
+}
+export type SubmissionId = bigint;
+export interface CreateTeamMemberInput {
+    bio: string;
+    linkedIn: string;
+    twitter: string;
+    displayOrder: bigint;
+    name: string;
+    role: string;
+    imageUrl: string;
+}
+export interface UpdateProjectInput {
+    id: ProjectId;
+    title: string;
+    featured: boolean;
+    active: boolean;
+    description: string;
+    imageUrl: string;
+    category: ProjectCategory;
+    location: string;
+}
+export type TeamMemberId = bigint;
+export type ProjectId = bigint;
+export interface TeamMember {
+    id: TeamMemberId;
+    bio: string;
+    linkedIn: string;
+    twitter: string;
+    displayOrder: bigint;
+    name: string;
+    role: string;
+    imageUrl: string;
+}
+export interface CreateProjectInput {
+    title: string;
+    featured: boolean;
+    active: boolean;
+    description: string;
+    imageUrl: string;
+    category: ProjectCategory;
+    location: string;
+}
+export interface Project {
+    id: ProjectId;
+    title: string;
+    featured: boolean;
+    active: boolean;
+    createdAt: Timestamp;
+    description: string;
+    updatedAt: Timestamp;
+    imageUrl: string;
+    category: ProjectCategory;
+    location: string;
+}
+export enum ProjectCategory {
+    Commercial = "Commercial",
+    Foundation = "Foundation",
+    Drainage = "Drainage",
+    SiteRegrading = "SiteRegrading",
+    Residential = "Residential"
+}
+export interface backendInterface {
+    batchDeleteProjects(ids: Array<ProjectId>): Promise<bigint>;
+    batchDeleteSubmissions(ids: Array<SubmissionId>): Promise<bigint>;
+    createProject(input: CreateProjectInput): Promise<Project>;
+    createTeamMember(input: CreateTeamMemberInput): Promise<TeamMember>;
+    deleteProject(id: ProjectId): Promise<boolean>;
+    deleteSubmission(id: SubmissionId): Promise<boolean>;
+    deleteTeamMember(id: TeamMemberId): Promise<boolean>;
+    getAdmins(): Promise<Array<Principal>>;
+    getProject(id: ProjectId): Promise<Project | null>;
+    getTeamMember(id: TeamMemberId): Promise<TeamMember | null>;
+    isAdmin(): Promise<boolean>;
+    listContactSubmissions(): Promise<Array<ContactSubmission>>;
+    listProjects(): Promise<Array<Project>>;
+    listServices(): Promise<Array<Service>>;
+    listTeamMembers(): Promise<Array<TeamMember>>;
+    markSubmissionRead(id: SubmissionId, read: boolean): Promise<boolean>;
+    setAdmins(newAdmins: Array<Principal>): Promise<void>;
+    submitContactForm(input: CreateSubmissionInput): Promise<ContactSubmission>;
+    toggleProjectStatus(id: ProjectId): Promise<boolean>;
+    updateProject(input: UpdateProjectInput): Promise<boolean>;
+    updateService(input: UpdateServiceInput): Promise<boolean>;
+    updateTeamMember(input: UpdateTeamMemberInput): Promise<boolean>;
+    updateTeamMemberOrder(id: TeamMemberId, displayOrder: bigint): Promise<boolean>;
+}
+import type { CreateProjectInput as _CreateProjectInput, Project as _Project, ProjectCategory as _ProjectCategory, ProjectId as _ProjectId, TeamMember as _TeamMember, Timestamp as _Timestamp, UpdateProjectInput as _UpdateProjectInput } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
+    async batchDeleteProjects(arg0: Array<ProjectId>): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.batchDeleteProjects(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.batchDeleteProjects(arg0);
+            return result;
+        }
+    }
+    async batchDeleteSubmissions(arg0: Array<SubmissionId>): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.batchDeleteSubmissions(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.batchDeleteSubmissions(arg0);
+            return result;
+        }
+    }
+    async createProject(arg0: CreateProjectInput): Promise<Project> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.createProject(to_candid_CreateProjectInput_n1(this._uploadFile, this._downloadFile, arg0));
+                return from_candid_Project_n5(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.createProject(to_candid_CreateProjectInput_n1(this._uploadFile, this._downloadFile, arg0));
+            return from_candid_Project_n5(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async createTeamMember(arg0: CreateTeamMemberInput): Promise<TeamMember> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.createTeamMember(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.createTeamMember(arg0);
+            return result;
+        }
+    }
+    async deleteProject(arg0: ProjectId): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteProject(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteProject(arg0);
+            return result;
+        }
+    }
+    async deleteSubmission(arg0: SubmissionId): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteSubmission(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteSubmission(arg0);
+            return result;
+        }
+    }
+    async deleteTeamMember(arg0: TeamMemberId): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteTeamMember(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteTeamMember(arg0);
+            return result;
+        }
+    }
+    async getAdmins(): Promise<Array<Principal>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAdmins();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAdmins();
+            return result;
+        }
+    }
+    async getProject(arg0: ProjectId): Promise<Project | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getProject(arg0);
+                return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getProject(arg0);
+            return from_candid_opt_n9(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getTeamMember(arg0: TeamMemberId): Promise<TeamMember | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getTeamMember(arg0);
+                return from_candid_opt_n10(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getTeamMember(arg0);
+            return from_candid_opt_n10(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async isAdmin(): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.isAdmin();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.isAdmin();
+            return result;
+        }
+    }
+    async listContactSubmissions(): Promise<Array<ContactSubmission>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.listContactSubmissions();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.listContactSubmissions();
+            return result;
+        }
+    }
+    async listProjects(): Promise<Array<Project>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.listProjects();
+                return from_candid_vec_n11(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.listProjects();
+            return from_candid_vec_n11(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async listServices(): Promise<Array<Service>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.listServices();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.listServices();
+            return result;
+        }
+    }
+    async listTeamMembers(): Promise<Array<TeamMember>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.listTeamMembers();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.listTeamMembers();
+            return result;
+        }
+    }
+    async markSubmissionRead(arg0: SubmissionId, arg1: boolean): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.markSubmissionRead(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.markSubmissionRead(arg0, arg1);
+            return result;
+        }
+    }
+    async setAdmins(arg0: Array<Principal>): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.setAdmins(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.setAdmins(arg0);
+            return result;
+        }
+    }
+    async submitContactForm(arg0: CreateSubmissionInput): Promise<ContactSubmission> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.submitContactForm(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.submitContactForm(arg0);
+            return result;
+        }
+    }
+    async toggleProjectStatus(arg0: ProjectId): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.toggleProjectStatus(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.toggleProjectStatus(arg0);
+            return result;
+        }
+    }
+    async updateProject(arg0: UpdateProjectInput): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateProject(to_candid_UpdateProjectInput_n12(this._uploadFile, this._downloadFile, arg0));
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateProject(to_candid_UpdateProjectInput_n12(this._uploadFile, this._downloadFile, arg0));
+            return result;
+        }
+    }
+    async updateService(arg0: UpdateServiceInput): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateService(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateService(arg0);
+            return result;
+        }
+    }
+    async updateTeamMember(arg0: UpdateTeamMemberInput): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateTeamMember(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateTeamMember(arg0);
+            return result;
+        }
+    }
+    async updateTeamMemberOrder(arg0: TeamMemberId, arg1: bigint): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateTeamMemberOrder(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateTeamMemberOrder(arg0, arg1);
+            return result;
+        }
+    }
+}
+function from_candid_ProjectCategory_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _ProjectCategory): ProjectCategory {
+    return from_candid_variant_n8(_uploadFile, _downloadFile, value);
+}
+function from_candid_Project_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Project): Project {
+    return from_candid_record_n6(_uploadFile, _downloadFile, value);
+}
+function from_candid_opt_n10(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_TeamMember]): TeamMember | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_Project]): Project | null {
+    return value.length === 0 ? null : from_candid_Project_n5(_uploadFile, _downloadFile, value[0]);
+}
+function from_candid_record_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    id: _ProjectId;
+    title: string;
+    featured: boolean;
+    active: boolean;
+    createdAt: _Timestamp;
+    description: string;
+    updatedAt: _Timestamp;
+    imageUrl: string;
+    category: _ProjectCategory;
+    location: string;
+}): {
+    id: ProjectId;
+    title: string;
+    featured: boolean;
+    active: boolean;
+    createdAt: Timestamp;
+    description: string;
+    updatedAt: Timestamp;
+    imageUrl: string;
+    category: ProjectCategory;
+    location: string;
+} {
+    return {
+        id: value.id,
+        title: value.title,
+        featured: value.featured,
+        active: value.active,
+        createdAt: value.createdAt,
+        description: value.description,
+        updatedAt: value.updatedAt,
+        imageUrl: value.imageUrl,
+        category: from_candid_ProjectCategory_n7(_uploadFile, _downloadFile, value.category),
+        location: value.location
+    };
+}
+function from_candid_variant_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    Commercial: null;
+} | {
+    Foundation: null;
+} | {
+    Drainage: null;
+} | {
+    SiteRegrading: null;
+} | {
+    Residential: null;
+}): ProjectCategory {
+    return "Commercial" in value ? ProjectCategory.Commercial : "Foundation" in value ? ProjectCategory.Foundation : "Drainage" in value ? ProjectCategory.Drainage : "SiteRegrading" in value ? ProjectCategory.SiteRegrading : "Residential" in value ? ProjectCategory.Residential : value;
+}
+function from_candid_vec_n11(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Project>): Array<Project> {
+    return value.map((x)=>from_candid_Project_n5(_uploadFile, _downloadFile, x));
+}
+function to_candid_CreateProjectInput_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: CreateProjectInput): _CreateProjectInput {
+    return to_candid_record_n2(_uploadFile, _downloadFile, value);
+}
+function to_candid_ProjectCategory_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: ProjectCategory): _ProjectCategory {
+    return to_candid_variant_n4(_uploadFile, _downloadFile, value);
+}
+function to_candid_UpdateProjectInput_n12(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: UpdateProjectInput): _UpdateProjectInput {
+    return to_candid_record_n13(_uploadFile, _downloadFile, value);
+}
+function to_candid_record_n13(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    id: ProjectId;
+    title: string;
+    featured: boolean;
+    active: boolean;
+    description: string;
+    imageUrl: string;
+    category: ProjectCategory;
+    location: string;
+}): {
+    id: _ProjectId;
+    title: string;
+    featured: boolean;
+    active: boolean;
+    description: string;
+    imageUrl: string;
+    category: _ProjectCategory;
+    location: string;
+} {
+    return {
+        id: value.id,
+        title: value.title,
+        featured: value.featured,
+        active: value.active,
+        description: value.description,
+        imageUrl: value.imageUrl,
+        category: to_candid_ProjectCategory_n3(_uploadFile, _downloadFile, value.category),
+        location: value.location
+    };
+}
+function to_candid_record_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    title: string;
+    featured: boolean;
+    active: boolean;
+    description: string;
+    imageUrl: string;
+    category: ProjectCategory;
+    location: string;
+}): {
+    title: string;
+    featured: boolean;
+    active: boolean;
+    description: string;
+    imageUrl: string;
+    category: _ProjectCategory;
+    location: string;
+} {
+    return {
+        title: value.title,
+        featured: value.featured,
+        active: value.active,
+        description: value.description,
+        imageUrl: value.imageUrl,
+        category: to_candid_ProjectCategory_n3(_uploadFile, _downloadFile, value.category),
+        location: value.location
+    };
+}
+function to_candid_variant_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: ProjectCategory): {
+    Commercial: null;
+} | {
+    Foundation: null;
+} | {
+    Drainage: null;
+} | {
+    SiteRegrading: null;
+} | {
+    Residential: null;
+} {
+    return value == ProjectCategory.Commercial ? {
+        Commercial: null
+    } : value == ProjectCategory.Foundation ? {
+        Foundation: null
+    } : value == ProjectCategory.Drainage ? {
+        Drainage: null
+    } : value == ProjectCategory.SiteRegrading ? {
+        SiteRegrading: null
+    } : value == ProjectCategory.Residential ? {
+        Residential: null
+    } : value;
 }
 export interface CreateActorOptions {
     agent?: Agent;
