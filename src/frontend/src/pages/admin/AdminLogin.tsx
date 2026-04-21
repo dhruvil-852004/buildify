@@ -71,12 +71,6 @@ export default function AdminLogin() {
           className="absolute bottom-[-60px] left-[-40px] w-[260px] h-[260px] rounded-full opacity-[0.07]"
           style={{ background: "oklch(var(--brand-orange))" }}
         />
-        {/* Orange diagonal slash */}
-        <div
-          className="absolute top-0 right-0 w-1 h-full opacity-60"
-          style={{ background: "oklch(var(--brand-orange))" }}
-        />
-
         {/* Brand mark */}
         <motion.div
           initial={{ opacity: 0, y: -16 }}
@@ -347,22 +341,6 @@ export default function AdminLogin() {
               <br />
               Contact your system administrator if you need access.
             </p>
-          </div>
-
-          {/* Bottom orange accent bar */}
-          <div className="mt-8 flex gap-1.5">
-            <div
-              className="h-1 flex-1 rounded-full opacity-30"
-              style={{ background: "oklch(var(--brand-teal))" }}
-            />
-            <div
-              className="h-1 w-8 rounded-full"
-              style={{ background: "oklch(var(--brand-orange))" }}
-            />
-            <div
-              className="h-1 flex-1 rounded-full opacity-10"
-              style={{ background: "oklch(var(--brand-slate))" }}
-            />
           </div>
         </motion.div>
       </div>

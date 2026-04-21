@@ -97,10 +97,6 @@ export default function Hero() {
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
-  const scrollTo = useCallback(
-    (i: number) => emblaApi?.scrollTo(i),
-    [emblaApi],
-  );
 
   return (
     <section
@@ -234,27 +230,6 @@ export default function Hero() {
       >
         <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
       </button>
-
-      {/* ── Dot indicators ── */}
-      <div
-        className="absolute bottom-24 sm:bottom-28 md:bottom-32 left-0 right-0 z-20 flex justify-center gap-2 sm:gap-2.5"
-        aria-label="Slide indicators"
-      >
-        {slides.map((slide, i) => (
-          <button
-            type="button"
-            key={slide.id}
-            aria-label={`Go to slide ${i + 1}`}
-            onClick={() => scrollTo(i)}
-            className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
-              i === current
-                ? "w-7 sm:w-8 bg-brand-teal"
-                : "w-2 bg-white/40 hover:bg-white/70"
-            }`}
-            data-ocid={`hero.tab.${i + 1}`}
-          />
-        ))}
-      </div>
 
       {/* ── Stats bar — pinned to bottom ── */}
       <motion.div
