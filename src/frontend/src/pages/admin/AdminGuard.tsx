@@ -1,45 +1,46 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import { useInternetIdentity } from "@caffeineai/core-infrastructure";
 import { useNavigate } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface AdminGuardProps {
   children: React.ReactNode;
 }
 
 export default function AdminGuard({ children }: AdminGuardProps) {
-  const { isAuthenticated, loginStatus } = useInternetIdentity();
   const navigate = useNavigate();
+  const [checked, setChecked] = useState(false);
+  const [authed, setAuthed] = useState(false);
 
   useEffect(() => {
-    if (loginStatus !== "initializing" && !isAuthenticated) {
+    const isAuth = localStorage.getItem("buildify_admin_auth") === "true";
+    setAuthed(isAuth);
+    setChecked(true);
+    if (!isAuth) {
       navigate({ to: "/admin/login" });
     }
-  }, [loginStatus, isAuthenticated, navigate]);
+  }, [navigate]);
 
-  if (loginStatus === "initializing") {
+  if (!checked) {
     return (
       <div
         className="min-h-screen bg-muted flex items-center justify-center"
         data-ocid="admin.guard.loading_state"
       >
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 rounded-full border-4 border-brand-teal border-t-transparent animate-spin" />
+          <div
+            className="w-10 h-10 rounded-full border-4 border-t-transparent animate-spin"
+            style={{
+              borderColor: "oklch(var(--brand-teal))",
+              borderTopColor: "transparent",
+            }}
+          />
           <p className="text-sm text-muted-foreground">Verifying session…</p>
         </div>
       </div>
     );
   }
 
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-muted flex items-center justify-center">
-        <div className="space-y-3 w-full max-w-sm px-4">
-          <Skeleton className="h-10 w-full" />
-          <Skeleton className="h-10 w-3/4" />
-        </div>
-      </div>
-    );
+  if (!authed) {
+    return null;
   }
 
   return <>{children}</>;

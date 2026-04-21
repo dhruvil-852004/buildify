@@ -6,7 +6,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useInternetIdentity } from "@caffeineai/core-infrastructure";
 import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { LogOut, Menu, User } from "lucide-react";
 
@@ -38,17 +37,16 @@ export default function AdminHeader({
   onMobileMenuToggle,
   breadcrumb,
 }: AdminHeaderProps) {
-  const { identity, clear, isAuthenticated } = useInternetIdentity();
   const navigate = useNavigate();
   const routerState = useRouterState();
   const pathname = routerState.location.pathname;
 
   const crumbs = breadcrumb ?? getBreadcrumbFromPath(pathname);
 
-  const principalId = identity?.getPrincipal().toText() ?? "";
-  const shortId = principalId
-    ? `${principalId.slice(0, 5)}…${principalId.slice(-4)}`
-    : "Admin";
+  const handleLogout = () => {
+    localStorage.removeItem("buildify_admin_auth");
+    navigate({ to: "/" });
+  };
 
   return (
     <header
@@ -100,12 +98,10 @@ export default function AdminHeader({
 
       {/* Right actions */}
       <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-        {/* Session status — desktop only */}
+        {/* Session indicator */}
         <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-muted rounded-full text-xs text-muted-foreground">
-          <span
-            className={`w-1.5 h-1.5 rounded-full ${isAuthenticated ? "bg-green-500" : "bg-amber-500"}`}
-          />
-          {isAuthenticated ? "Active" : "Connecting…"}
+          <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+          Active
         </div>
 
         {/* User dropdown */}
@@ -117,27 +113,29 @@ export default function AdminHeader({
               data-ocid="admin.header.user_menu"
               aria-label="User menu"
             >
-              <div className="w-7 h-7 rounded-full bg-brand-teal flex items-center justify-center flex-shrink-0">
+              <div
+                className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ background: "oklch(var(--brand-teal))" }}
+              >
                 <User size={14} className="text-white" />
               </div>
               <span className="hidden sm:block text-sm font-medium text-foreground max-w-[120px] truncate">
-                {shortId}
+                Admin
               </span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-52">
             <div className="px-3 py-2">
-              <p className="text-xs font-semibold text-foreground">Admin</p>
-              <p className="text-xs text-muted-foreground mt-0.5 break-all">
-                {shortId}
+              <p className="text-xs font-semibold text-foreground">
+                Buildify Admin
+              </p>
+              <p className="text-xs text-muted-foreground mt-0.5">
+                Authenticated
               </p>
             </div>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              onClick={() => {
-                clear();
-                navigate({ to: "/" });
-              }}
+              onClick={handleLogout}
               className="text-destructive focus:text-destructive focus:bg-destructive/10 cursor-pointer min-h-[44px]"
               data-ocid="admin.header.logout_button"
             >
